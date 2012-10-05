@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="slt.theme"
+    interface="slt.theme.browser.interfaces.ISltThemeLayer"
+    />
+</layers>
