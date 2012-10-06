@@ -30,6 +30,7 @@ setup(
         'plone.app.themingplugins',
         'plone.browserlayer',
         'setuptools',
+        'slt.content',
         'z3c.autoinclude'],
     entry_points="""
     # -*- Entry points: -*-

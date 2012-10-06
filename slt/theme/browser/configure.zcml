@@ -4,6 +4,47 @@
   xmlns:five="http://namespaces.zope.org/five"
   xmlns="http://namespaces.zope.org/zope">
 
+  <permission
+    id="slt.theme.ManageFeedForShopTop"
+    title="slt.theme: Manage feed for shop top"
+    />
+
+  <browser:page
+    attribute="feedable_to_shop_top"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    name="feedable-to-shop-top"
+    permission="slt.theme.ManageFeedForShopTop"
+    />
+
+  <browser:page
+    attribute="unfeedable_from_shop_top"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    name="unfeedable-from-shop-top"
+    permission="slt.theme.ManageFeedForShopTop"
+    />
+
+  <browser:page
+    attribute="feed_to_shop_top"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    name="feed-to-shop-top"
+    permission="slt.theme.ManageFeedForShopTop"
+    />
+
+  <browser:page
+    attribute="unfeed_from_shop_top"
+    class=".miscellaneous.Miscellaneous"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    name="unfeed-from-shop-top"
+    permission="slt.theme.ManageFeedForShopTop"
+    />
+
   <browser:viewlet
     name="plone.path_bar"
     manager="plone.app.layout.viewlets.interfaces.IAboveContent"

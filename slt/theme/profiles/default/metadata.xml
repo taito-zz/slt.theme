@@ -2,6 +2,7 @@
 <metadata>
   <version>0</version>
   <dependencies>
+    <dependency>profile-slt.content:default</dependency>
     <dependency>profile-plone.app.theming:default</dependency>
   </dependencies>
 </metadata>
