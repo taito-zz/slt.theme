@@ -1,0 +1,78 @@
+body{
+    color: #333333;
+}
+#potal-top {
+    background: white;
+}
+#portal-body {
+    background: -moz-linear-gradient(SkyBlue, transparent);
+    background: -webkit-gradient(linear, left top, left bottom, from(SkyBlue), to(transparent));
+    padding: 1em 0 0;
+    clear: both;
+}
+#portal-footer-wrapper{
+    background:#747474;
+    background: -moz-linear-gradient(#545454, #747474) no-repeat scroll 0 0 transparent;
+    background: -webkit-gradient(linear, left top, left bottom, from(#545454), to(#747474));
+    clear: both;
+}
+#portal-header,
+#portal-columns,
+#portal-footer {
+    margin: 0 10%;
+    width: 80%;
+}
+#portal-columns{
+    background: white;
+    border-radius: 10px;
+    float: left;
+    padding: 1em 0 0 0;
+}
+#portal-footer {
+    background: transparent;
+}
+
+a:link, a:visited {
+    color: #00a2c0;
+}
+
+#portal-logo {
+    margin: 0.7em 0;
+}
+
+#portal-globalnav {
+    background: transparent;
+    font-size: 90%;
+    margin: 0 0 0.2em;
+}
+#portal-globalnav .selected a,
+#portal-globalnav .selected a:hover {
+    background: none repeat scroll 0 0 #ca2464;
+    color: white;
+}
+#portal-globalnav li a {
+    border-radius: 5px;
+    border-right: 0.1em solid white;
+    min-width: 0;
+    padding: 0.4em 1em;
+}
+
+#portal-breadcrumbs {
+    line-height: 2em;
+    margin-left: 0.25em;
+    padding: 0.25em 0;
+}
+#portal-breadcrumbs a {
+    color: #333333;
+}
+
+/*Search field*/
+input.searchField {
+    -moz-appearance: textfield;
+}
+input.searchButton {
+    background: #ca2464;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}

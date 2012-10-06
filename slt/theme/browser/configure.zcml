@@ -1,0 +1,15 @@
+<configure
+  i18n_domain="slt.theme"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns="http://namespaces.zope.org/zope">
+
+  <browser:viewlet
+    name="plone.path_bar"
+    manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+    class=".viewlet.PathBarViewlet"
+    permission="zope2.View"
+    layer=".interfaces.ISltThemeLayer"
+    />
+
+</configure>
