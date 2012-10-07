@@ -1,0 +1,156 @@
+.portletCart {
+  background: #29A2BF;
+  border-radius: 5px;
+  color: #29A2BF;
+}
+
+dl.portletCart dd.portletItem {
+  padding: 0.7em 1em;
+}
+
+.portletCart table{
+  width: 100%;
+}
+
+#go-to-cart a {
+  color: white;
+}
+
+#article-count {
+  background: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+section#order-flow {
+  font-size: 120%;
+}
+
+section#order-flow,
+section#order-flow a:link,
+section#order-flow a:visited {
+  border-bottom: none;
+  color: #A7A7A7;
+}
+
+section#order-flow #current-step {
+  color: #575757;
+}
+
+section.checkout-content {
+  margin: 1em 0;
+  width: 90%;
+}
+
+section#cart-articles {
+  border-bottom: 2px #cccccc solid;
+}
+
+section#cart-articles table,
+section#cart-total,
+section#confirmation-total {
+  width: 100%;
+}
+
+section#cart-articles table
+ {
+  margin: 0;
+}
+
+section#cart-articles tr {
+  border-bottom: 2px #cccccc solid;
+}
+
+section#cart-articles td {
+  padding: 1em 0;
+}
+
+section#cart-articles td.name {
+  padding: 1em 0.3em 1em 0.7em;
+}
+
+section#cart-articles td.name h3 {
+  font-weight: normal;
+  margin: 0.1em 0;
+}
+
+section#cart-articles td.name h3 a {
+  color: #575757;
+}
+
+section#cart-articles td.name p{
+  margin: 0;
+}
+
+td.price-and-quantity,
+section#cart-total,
+section#confirmation-total,
+section#checkout {
+  text-align: right;
+}
+
+.gross,
+section#cart-total,
+section#confirmation-total {
+  font-size: 150%;
+}
+
+.gross,
+#total {
+  color: #CA2464;
+}
+
+.vat {
+  color: #A7A7A7;
+  font-size: 80%;
+}
+
+section.buttons {
+  margin: 0.3em 0 0 0;
+}
+
+.shopping-button {
+  padding: 0.3em 0.5em;
+}
+
+.update, .remove, .checkout, .clear {
+  border: 0;
+  border-radius: 5px;
+  color: white;
+}
+
+.update, .remove, .checkout {
+  background: #CA2464;
+}
+
+.checkout, .clear {
+  padding: 0.5em 0.7em;
+}
+
+.clear {
+  background: #989898;
+}
+
+section#cart-total {
+  margin: 1em 0;
+}
+
+section#checkout {
+  margin: 3em 0;
+}
+
+p#cart-is-empty {
+  color: #A7A7A7;
+  font-size: 150%;
+  margin: 5em 0;
+  text-align: center;
+}
+
+section#shipping-method {
+  margin: 2em 0 ;
+  border-bottom: 4px solid #666666;
+}
+
+section#shipping-method table{
+  width: 100%;
+}

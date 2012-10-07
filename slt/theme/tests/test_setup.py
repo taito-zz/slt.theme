@@ -12,6 +12,85 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertTrue(installer.isProductInstalled('slt.theme'))
 
+    def get_action(self, name):
+        """Get action.
+
+        :param name: Name of action.
+        :param type: str
+
+        :rtype: action
+        """
+        return getattr(getattr(getToolByName(
+            self.portal, 'portal_actions'), 'object_buttons'), name, None)
+
+    def test_actions__object_buttons__feed_to_shop_top__i18n_domain(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(action.i18n_domain, 'slt.theme')
+
+    def test_actions__object_buttons__feed_to_shop_top__meta_type(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(action.meta_type, 'CMF Action')
+
+    def test_actions__object_buttons__feed_to_shop_top__title(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(action.title, 'Feed to Shop Top')
+
+    def test_actions__object_buttons__feed_to_shop_top__description(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(action.description, '')
+
+    def test_actions__object_buttons__feed_to_shop_top__url_expr(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(
+            action.url_expr, 'string:${globals_view/getCurrentObjectUrl}/@@feed-to-shop-top')
+
+    def test_actions__object_buttons__feed_to_shop_top__available_expr(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(
+            action.available_expr, 'python: object.restrictedTraverse("feedable-to-shop-top")()')
+
+    def test_actions__object_buttons__feed_to_shop_top__permissions(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(action.permissions, ('slt.theme: Manage feed for shop top',))
+
+    def test_actions__object_buttons__feed_to_shop_top__visible(self):
+        action = self.get_action('feed_to_shop_top')
+        self.assertTrue(action.visible)
+
+    def test_actions__object_buttons__unfeed_from_shop_top__i18n_domain(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(action.i18n_domain, 'slt.theme')
+
+    def test_actions__object_buttons__unfeed_from_shop_top__meta_type(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(action.meta_type, 'CMF Action')
+
+    def test_actions__object_buttons__unfeed_from_shop_top__title(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(action.title, 'Unfeed from Shop Top')
+
+    def test_actions__object_buttons__unfeed_from_shop_top__description(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(action.description, '')
+
+    def test_actions__object_buttons__unfeed_from_shop_top__url_expr(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(
+            action.url_expr, 'string:${globals_view/getCurrentObjectUrl}/@@unfeed-from-shop-top')
+
+    def test_actions__object_buttons__unfeed_from_shop_top__available_expr(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(
+            action.available_expr, 'python: object.restrictedTraverse("unfeedable-from-shop-top")()')
+
+    def test_actions__object_buttons__unfeed_from_shop_top__permissions(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(action.permissions, ('slt.theme: Manage feed for shop top',))
+
+    def test_actions__object_buttons__unfeed_from_shop_top__visible(self):
+        action = self.get_action('unfeed_from_shop_top')
+        self.assertTrue(action.visible)
+
     def test_browserlayer(self):
         from slt.theme.browser.interfaces import ISltThemeLayer
         from plone.browserlayer import utils
@@ -64,6 +143,50 @@ class TestCase(IntegrationTestCase):
         resource = self.get_css_resource('++theme++slt.theme/css/main.css')
         self.assertTrue(resource.getApplyPrefix())
 
+    def test_cssregistry__shop__title(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertIsNone(resource.getTitle())
+
+    def test_cssregistry__shop__authenticated(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertFalse(resource.getAuthenticated())
+
+    def test_cssregistry__shop__compression(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertEqual(resource.getCompression(), 'safe')
+
+    def test_cssregistry__shop__conditionalcomment(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertEqual(resource.getConditionalcomment(), '')
+
+    def test_cssregistry__shop__cookable(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertTrue(resource.getCookable())
+
+    def test_cssregistry__shop__enabled(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertTrue(resource.getEnabled())
+
+    def test_cssregistry__shop__expression(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertEqual(resource.getExpression(), 'request/HTTP_X_THEME_ENABLED | nothing')
+
+    def test_cssregistry__shop__media(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertIsNone(resource.getMedia())
+
+    def test_cssregistry__shop__rel(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertEqual(resource.getRel(), 'stylesheet')
+
+    def test_cssregistry__shop__rendering(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertEqual(resource.getRendering(), 'link')
+
+    def test_cssregistry__shop__applyPrefix(self):
+        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        self.assertTrue(resource.getApplyPrefix())
+
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
@@ -91,6 +214,27 @@ class TestCase(IntegrationTestCase):
         theme = self.get_theme()
         self.assertTrue(theme.enabled)
 
+    def get_ctype(self, name):
+        """Returns content type info.
+
+        :param name: Name of content type.
+        :type name: test_types__Plone_Site__filter_content_types
+        """
+        types = getToolByName(self.portal, 'portal_types')
+        return types.getTypeInfo(name)
+
+    def test_types__Plone_Site__immediate_view(self):
+        ctype = self.get_ctype('Plone Site')
+        self.assertEqual(ctype.immediate_view, 'slt-view')
+
+    def test_types__Plone_Site__default_view(self):
+        ctype = self.get_ctype('Plone Site')
+        self.assertEqual(ctype.default_view, 'slt-view')
+
+    def test_types__Plone_Site__view_methods(self):
+        ctype = self.get_ctype('Plone Site')
+        self.assertEqual(ctype.view_methods, ('slt-view',))
+
     def uninstall_package(self):
         """Uninstall package: slt.theme."""
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -100,6 +244,14 @@ class TestCase(IntegrationTestCase):
         self.uninstall_package()
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertFalse(installer.isProductInstalled('slt.theme'))
+
+    def test_uninstall__actions__object_buttons__feed_to_shop_top(self):
+        self.uninstall_package()
+        self.assertIsNone(self.get_action('feed_to_shop_top'))
+
+    def test_uninstall__actions__object_buttons__unfeed_from_shop_top(self):
+        self.uninstall_package()
+        self.assertIsNone(self.get_action('unfeed_from_shop_top'))
 
     def test_uninstall__browserlayer(self):
         self.uninstall_package()
@@ -112,15 +264,37 @@ class TestCase(IntegrationTestCase):
         resources = set(getToolByName(self.portal, 'portal_css').getResourceIds())
         self.assertNotIn('++theme++slt.theme/css/main.css', resources)
 
+    def test_uninstall__cssregistry_shop(self):
+        self.uninstall_package()
+        resources = set(getToolByName(self.portal, 'portal_css').getResourceIds())
+        self.assertNotIn('++theme++slt.theme/css/shop.css', resources)
+
     def test_uninstall__metadata__installed__plone_app_theming(self):
         self.uninstall_package()
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('plone.app.theming'))
 
     def test_uninstall__them__currentTheme(self):
+        self.uninstall_package()
         theme = self.get_theme()
         self.assertEqual(theme.currentTheme, u'slt.theme')
 
     def test_unintall__theme__enabled(self):
+        self.uninstall_package()
         theme = self.get_theme()
         self.assertTrue(theme.enabled)
+
+    def test_unintall__types__Plone_Site__immediate_view(self):
+        self.uninstall_package()
+        ctype = self.get_ctype('Plone Site')
+        self.assertEqual(ctype.immediate_view, 'slt-view')
+
+    def test_unintall__types__Plone_Site__default_view(self):
+        self.uninstall_package()
+        ctype = self.get_ctype('Plone Site')
+        self.assertEqual(ctype.default_view, 'slt-view')
+
+    def test_unintall__types__Plone_Site__view_methods(self):
+        self.uninstall_package()
+        ctype = self.get_ctype('Plone Site')
+        self.assertEqual(ctype.view_methods, ('slt-view',))

@@ -1,6 +1,66 @@
 Log in as Manager::
 
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Doctype should be <!DOCTYPE html>::
+
     >>> print browser.contents
     <!DOCTYPE html>
     ...
+
+Change view for root::
+
+    >>> browser.open('/selectViewTemplate?templateId=slt-view')
+
+    >>> print browser.bycss('.documentFirstHeading')
+    --- 1 ---
+    <h1 class="documentFirstHeading">Luonnonsuojelukauppa</h1>
+
+    >>> print browser.bycss('.documentDescription')
+    --- 1 ---
+    <p class="documentDescription description">Suomen Luonnonsuojelun Tuki Oy</p>
+
+Add Article Container to Shop::
+
+    >>> browser.open('/++add++collective.cart.shopping.ArticleContainer')
+    >>> browser.getControl(name="form.widgets.IDublinCore.title").value = 'Kirjat'
+    >>> browser.getControl(name="form.widgets.IDublinCore.description").value = 'Kirjoiden kuvaus.'
+    >>> browser.getControl(name="form.buttons.save").click()
+
+Add Article::
+
+    >>> browser.open('/kirjat/++add++collective.cart.core.Article')
+    >>> browser.getControl(name="form.widgets.IDublinCore.title").value = 'Kirja1'
+    >>> browser.getControl(name="form.widgets.IDublinCore.description").value = 'Kirja1:n kuvaus.'
+    >>> browser.getControl(name="form.widgets.IDiscount.price").value = '12.30'
+    >>> browser.getControl(name="form.widgets.ISize.weight").value = '100.0'
+    >>> browser.getControl(name="form.buttons.save").click()
+
+    >>> browser.open('/')
+    >>> print browser.bycss('#slt-theme-top-articles')
+
+Feed article1 to shop top::
+
+    >>> browser.open('/kirjat/kirja1')
+    >>> 'Feed to Shop Top' in browser.contents
+    True
+    >>> 'Unfeed from Shop Top' in browser.contents
+    False
+    >>> browser.getLink('Feed to Shop Top').click()
+    >>> 'Feed to Shop Top' in browser.contents
+    False
+    >>> 'Unfeed from Shop Top' in browser.contents
+    True
+
+Check shop top page::
+
+    >>> browser.open('/')
+    >>> print browser.bycss('#slt-theme-top-articles')
+    --- 1 ---
+    <section id="slt-theme-top-articles"><article style="style"><h1>
+    <a href="http://nohost/plone/kirjat/kirja1">Kirja1</a>
+    </h1>
+    <p>
+    <a href="http://nohost/plone/kirjat/kirja1">Kirja1:n kuvaus.</a>
+    </p>
+    </article></section>

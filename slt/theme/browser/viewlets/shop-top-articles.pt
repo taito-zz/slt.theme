@@ -1,0 +1,18 @@
+<section
+  id="slt-theme-top-articles"
+  i18n:domain="slt.theme"
+  tal:condition="viewlet/articles">
+  <article tal:repeat="item viewlet/articles" tal:attributes="style item/style">
+    <div tal:replace="structure item/image" />
+    <h1>
+      <a
+        tal:attributes="href item/url"
+        tal:content="item/title" />
+    </h1>
+    <p>
+      <a
+        tal:attributes="href item/url"
+        tal:content="item/description" />
+    </p>
+  </article>
+</section>

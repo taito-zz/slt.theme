@@ -1,29 +1,55 @@
 from Acquisition import aq_inner
-from Acquisition import aq_parent
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.layout.navigation.interfaces import INavigationRoot
-from plone.app.layout.viewlets import common
+from five import grok
+from plone.app.contentlisting.interfaces import IContentListing
+from plone.app.layout.globals.interfaces import IViewView
+from plone.app.viewletmanager.manager import OrderedViewletManager
+from sll.shopping.interfaces import IFeedToShopTop
+from slt.theme.browser.interfaces import ISltThemeLayer
 from zope.component import getMultiAdapter
 
 
-class PathBarViewlet(common.PathBarViewlet):
+grok.templatedir('viewlets')
 
-    index = ViewPageTemplateFile('viewlets/path_bar.pt')
 
-    @property
-    def portal_url(self):
-        portal_state = getMultiAdapter(
-            (self.context, self.request), name=u'plone_portal_state')
-        return portal_state.portal_url()
+class ShopTopViewletManager(OrderedViewletManager, grok.ViewletManager):
+    """Viewlet manager for shop top page."""
+    grok.context(IPloneSiteRoot)
+    grok.layer(ISltThemeLayer)
+    grok.name('slt.theme.shop.top.viewletmanager')
 
-    @property
-    def root(self):
+
+class ShopTopArticlesViewlet(grok.Viewlet):
+    """Viewlet to show articles."""
+    grok.context(IPloneSiteRoot)
+    grok.layer(ISltThemeLayer)
+    grok.name('slt.theme.shop.top.articles')
+    grok.require('zope2.View')
+    grok.template('shop-top-articles')
+    grok.view(IViewView)
+    grok.viewletmanager(ShopTopViewletManager)
+
+    def articles(self):
         context = aq_inner(self.context)
-        while not INavigationRoot.providedBy(context):
-            context = aq_parent(context)
-        return context
+        catalog = getToolByName(context, 'portal_catalog')
+        limit = 4
+        query = {
+            'path': '/'.join(context.getPhysicalPath()),
+            'object_provides': IFeedToShopTop.__identifier__,
+            'sort_limit': limit,
+        }
+        return [{
+            'description': item.Description(),
+            'image': self._image(item),
+            'style': 'style',
+            'title': item.Title(),
+            'url': item.getURL(),
+        } for item in IContentListing(catalog(query)[:limit])]
 
-    @property
-    def available(self):
-        return not IPloneSiteRoot.providedBy(self.context)
+    def _image(self, item):
+        """Returns scales image tag."""
+        scales = getMultiAdapter((item.getObject(), self.request), name='images')
+        scale = scales.scale('image', scale='mini')
+        if scale:
+            return scale.tag()

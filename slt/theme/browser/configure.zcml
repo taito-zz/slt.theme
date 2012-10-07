@@ -45,12 +45,4 @@
     permission="slt.theme.ManageFeedForShopTop"
     />
 
-  <browser:viewlet
-    name="plone.path_bar"
-    manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-    class=".viewlet.PathBarViewlet"
-    permission="zope2.View"
-    layer=".interfaces.ISltThemeLayer"
-    />
-
 </configure>

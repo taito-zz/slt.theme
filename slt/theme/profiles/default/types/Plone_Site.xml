@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<object name="Plone Site">
+  <property name="immediate_view">slt-view</property>
+  <property name="default_view">slt-view</property>
+  <property name="view_methods">
+    <element value="slt-view"/>
+  </property>
+</object>

@@ -45,6 +45,9 @@ def setUp(self):
     # Set the site back in English mode to make testing easier.
     portal.portal_languages.manage_setLanguageSettings('en', ['en', 'fi'])
 
+    # Set title and description for the plone site.
+    portal.manage_changeProperties(title='Luonnonsuojelukauppa', description='Suomen Luonnonsuojelun Tuki Oy')
+
     transaction.commit()
 
 
