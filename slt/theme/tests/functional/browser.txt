@@ -64,3 +64,21 @@ Check shop top page::
     <a href="http://nohost/plone/kirjat/kirja1">Kirja1:n kuvaus.</a>
     </p>
     </article></section>
+
+Unfeed article1 from shop top::
+
+    >>> browser.open('/kirjat/kirja1')
+    >>> 'Feed to Shop Top' in browser.contents
+    False
+    >>> 'Unfeed from Shop Top' in browser.contents
+    True
+    >>> browser.getLink('Unfeed from Shop Top').click()
+    >>> 'Feed to Shop Top' in browser.contents
+    True
+    >>> 'Unfeed from Shop Top' in browser.contents
+    False
+
+Check shop top page::
+
+    >>> browser.open('/')
+    >>> print browser.bycss('#slt-theme-top-articles')
