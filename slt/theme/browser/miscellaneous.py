@@ -1,6 +1,6 @@
 from Products.Five.browser import BrowserView
 from collective.cart.shopping.interfaces import IArticle
-from sll.shopping.interfaces import IFeedToShopTop
+from slt.theme.interfaces import IFeedToShopTop
 from zope.interface import alsoProvides
 from zope.interface import noLongerProvides
 from zope.lifecycleevent import modified

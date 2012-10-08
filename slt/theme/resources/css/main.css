@@ -76,3 +76,28 @@ input.searchButton {
     border-radius: 5px;
     color: white;
 }
+
+/*Portlet: Navigation*/
+dl.portlet ul.navTreeLevel0 > .navTreeItem {
+    background: #29A2BF;
+    border-bottom: none;
+    border-radius: 5px;
+}
+
+dl.portlet ul.navTree li a.state-published {
+    color: white;
+}
+
+dl.portlet ul.navTree li a:hover {
+    color: #333333 !important;
+}
+
+dl.portlet ul.navTree li.navTreeCurrentNode {
+    background: #ca2464;
+}
+
+dl.portlet ul.navTree .navTreeCurrentItem {
+    background: transparent;
+    border: none;
+    padding-left: 1em;
+}

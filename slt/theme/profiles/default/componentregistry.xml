@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<componentregistry>
+  <utilities>
+    <utility
+      factory="slt.theme.userdataschema.UserDataSchemaProvider"
+      interface="plone.app.users.userdataschema.IUserDataSchemaProvider"
+      />
+  </utilities>
+</componentregistry>

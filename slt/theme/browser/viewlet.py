@@ -5,8 +5,8 @@ from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
 from plone.app.viewletmanager.manager import OrderedViewletManager
-from sll.shopping.interfaces import IFeedToShopTop
 from slt.theme.browser.interfaces import ISltThemeLayer
+from slt.theme.interfaces import IFeedToShopTop
 from zope.component import getMultiAdapter
 
 

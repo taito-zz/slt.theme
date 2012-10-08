@@ -45,4 +45,37 @@
     permission="slt.theme.ManageFeedForShopTop"
     />
 
+  <permission
+    id="slt.theme.ViewPersonalPreferences"
+    title="slt.theme: View Personal Preferences"
+    />
+
+  <browser:page
+    class="plone.app.users.browser.personalpreferences.PersonalPreferencesPanel"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="personal-preferences"
+    permission="slt.theme.ViewPersonalPreferences"
+    />
+
+  <browser:page
+    class=".personalpreferences.UserDataPanel"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="personal-information"
+    permission="cmf.SetOwnProperties"
+    />
+
+  <!-- <utility
+    factory="slt.theme.userdataschema.UserDataSchemaProvider"
+    provides="plone.app.users.userdataschema.IUserDataSchemaProvider"
+    /> -->
+
+  <adapter
+    provides="slt.theme.userdataschema.IUserDataSchema"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    factory="plone.app.users.browser.personalpreferences.UserDataPanelAdapter"
+    />
+
+
 </configure>
