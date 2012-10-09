@@ -3,16 +3,20 @@
   i18n:domain="slt.theme"
   tal:condition="viewlet/articles">
   <article tal:repeat="item viewlet/articles" tal:attributes="style item/style">
-    <div tal:replace="structure item/image" />
-    <h1>
-      <a
-        tal:attributes="href item/url"
-        tal:content="item/title" />
-    </h1>
-    <p>
-      <a
-        tal:attributes="href item/url"
-        tal:content="item/description" />
-    </p>
+    <img tal:attributes="
+      src string:${item/url}/@@images/image;
+      title item/title" />
+    <div class="text">
+      <h1>
+        <a
+          tal:attributes="href item/url"
+          tal:content="item/title" />
+      </h1>
+      <p>
+        <a
+          tal:attributes="href item/url"
+          tal:content="item/description" />
+      </p>
+    </div>
   </article>
 </section>

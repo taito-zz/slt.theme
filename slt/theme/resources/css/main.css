@@ -85,7 +85,7 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {
 }
 
 dl.portlet ul.navTree li a.state-published {
-    color: white;
+    color: white !important;
 }
 
 dl.portlet ul.navTree li a:hover {
@@ -100,4 +100,8 @@ dl.portlet ul.navTree .navTreeCurrentItem {
     background: transparent;
     border: none;
     padding-left: 1em;
+}
+
+#viewlet-below-content {
+    clear: both;
 }

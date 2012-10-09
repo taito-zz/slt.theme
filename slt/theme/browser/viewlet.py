@@ -5,9 +5,10 @@ from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
 from plone.app.viewletmanager.manager import OrderedViewletManager
+from plone.registry.interfaces import IRegistry
 from slt.theme.browser.interfaces import ISltThemeLayer
 from slt.theme.interfaces import IFeedToShopTop
-from zope.component import getMultiAdapter
+from zope.component import getUtility
 
 
 grok.templatedir('viewlets')
@@ -33,7 +34,7 @@ class ShopTopArticlesViewlet(grok.Viewlet):
     def articles(self):
         context = aq_inner(self.context)
         catalog = getToolByName(context, 'portal_catalog')
-        limit = 4
+        limit = getUtility(IRegistry)['slt.theme.articles_feed_on_top_page']
         query = {
             'path': '/'.join(context.getPhysicalPath()),
             'object_provides': IFeedToShopTop.__identifier__,
@@ -41,15 +42,7 @@ class ShopTopArticlesViewlet(grok.Viewlet):
         }
         return [{
             'description': item.Description(),
-            'image': self._image(item),
             'style': 'style',
             'title': item.Title(),
             'url': item.getURL(),
         } for item in IContentListing(catalog(query)[:limit])]
-
-    def _image(self, item):
-        """Returns scales image tag."""
-        scales = getMultiAdapter((item.getObject(), self.request), name='images')
-        scale = scales.scale('image', scale='mini')
-        if scale:
-            return scale.tag()

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<registry>
+  <record name="slt.theme.articles_feed_on_top_page">
+    <field type="plone.registry.field.Int">
+      <title>Articles feed on top page</title>
+      <min>1</min>
+    </field>
+    <value>4</value>
+  </record>
+</registry>

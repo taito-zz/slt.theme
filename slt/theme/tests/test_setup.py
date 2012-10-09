@@ -99,6 +99,94 @@ class TestCase(IntegrationTestCase):
     def get_css_resource(self, name):
         return getToolByName(self.portal, 'portal_css').getResource(name)
 
+    def test_cssregistry__jquery_autocomplete__title(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertIsNone(resource.getTitle())
+
+    def test_cssregistry__jquery_autocomplete__authenticated(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertFalse(resource.getAuthenticated())
+
+    def test_cssregistry__jquery_autocomplete__compression(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertEqual(resource.getCompression(), 'safe')
+
+    def test_cssregistry__jquery_autocomplete__conditionalcomment(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertEqual(resource.getConditionalcomment(), '')
+
+    def test_cssregistry__jquery_autocomplete__cookable(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertTrue(resource.getCookable())
+
+    def test_cssregistry__jquery_autocomplete__enabled(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertTrue(resource.getEnabled())
+
+    def test_cssregistry__jquery_autocomplete__expression(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertEqual(resource.getExpression(), '')
+
+    def test_cssregistry__jquery_autocomplete__media(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertEqual(resource.getMedia(), 'screen')
+
+    def test_cssregistry__jquery_autocomplete__rel(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertEqual(resource.getRel(), 'stylesheet')
+
+    def test_cssregistry__jquery_autocomplete__rendering(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertEqual(resource.getRendering(), 'link')
+
+    def test_cssregistry__jquery_autocomplete__applyPrefix(self):
+        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
+        self.assertTrue(resource.getApplyPrefix())
+
+    def test_cssregistry__jquerytools_dateinput__title(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertIsNone(resource.getTitle())
+
+    def test_cssregistry__jquerytools_dateinput__authenticated(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertFalse(resource.getAuthenticated())
+
+    def test_cssregistry__jquerytools_dateinput__compression(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertEqual(resource.getCompression(), 'safe')
+
+    def test_cssregistry__jquerytools_dateinput__conditionalcomment(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertEqual(resource.getConditionalcomment(), '')
+
+    def test_cssregistry__jquerytools_dateinput__cookable(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertTrue(resource.getCookable())
+
+    def test_cssregistry__jquerytools_dateinput__enabled(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertTrue(resource.getEnabled())
+
+    def test_cssregistry__jquerytools_dateinput__expression(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertEqual(resource.getExpression(), '')
+
+    def test_cssregistry__jquerytools_dateinput__media(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertEqual(resource.getMedia(), 'screen')
+
+    def test_cssregistry__jquerytools_dateinput__rel(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertEqual(resource.getRel(), 'stylesheet')
+
+    def test_cssregistry__jquerytools_dateinput__rendering(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertEqual(resource.getRendering(), 'link')
+
+    def test_cssregistry__jquerytools_dateinput__applyPrefix(self):
+        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
+        self.assertTrue(resource.getApplyPrefix())
+
     def test_cssregistry__main__title(self):
         resource = self.get_css_resource('++theme++slt.theme/css/main.css')
         self.assertIsNone(resource.getTitle())
@@ -195,6 +283,29 @@ class TestCase(IntegrationTestCase):
     def test_metadata__installed__plone_app_theming(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('plone.app.theming'))
+
+    def get_record(self, name):
+        """Get registry record based on """
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        return getUtility(IRegistry).records.get(name)
+
+    def test_registry_record__slt_theme_articles_feed_on_top_page__field__type(self):
+        from plone.registry.field import Int
+        record = self.get_record('slt.theme.articles_feed_on_top_page')
+        self.assertIsInstance(record.field, Int)
+
+    def test_registry_record__slt_theme_articles_feed_on_top_page__field__title(self):
+        record = self.get_record('slt.theme.articles_feed_on_top_page')
+        self.assertEqual(record.field.title, u'Articles feed on top page')
+
+    def test_registry_record__slt_theme_articles_feed_on_top_page__field__min(self):
+        record = self.get_record('slt.theme.articles_feed_on_top_page')
+        self.assertEqual(record.field.min, 1)
+
+    def test_registry_record__slt_theme_articles_feed_on_top_page(self):
+        record = self.get_record('slt.theme.articles_feed_on_top_page')
+        self.assertEqual(record.value, 4)
 
     def get_theme(self):
         from plone.app.theming.interfaces import IThemeSettings
