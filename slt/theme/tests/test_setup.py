@@ -278,7 +278,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'0')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'1')
 
     def test_metadata__installed__plone_app_theming(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -345,6 +345,22 @@ class TestCase(IntegrationTestCase):
     def test_types__Plone_Site__view_methods(self):
         ctype = self.get_ctype('Plone Site')
         self.assertEqual(ctype.view_methods, ('slt-view',))
+
+    def test_viewlets__hidden__plone_portalfooter(self):
+        from zope.component import getUtility
+        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+        storage = getUtility(IViewletSettingsStorage)
+        manager = "plone.portalfooter"
+        skinname = "Plone Default"
+        self.assertEqual(storage.getHidden(manager, skinname), (u'plone.colophon', u'plone.site_actions'))
+
+    def test_viewlets__hidden__plone_abovecontenttitle(self):
+        from zope.component import getUtility
+        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+        storage = getUtility(IViewletSettingsStorage)
+        manager = "plone.abovecontenttitle"
+        skinname = "Plone Default"
+        self.assertEqual(storage.getHidden(manager, skinname), (u'collective.cart.core.add.to.cart',))
 
     def uninstall_package(self):
         """Uninstall package: slt.theme."""

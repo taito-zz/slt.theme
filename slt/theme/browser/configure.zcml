@@ -66,16 +66,10 @@
     permission="cmf.SetOwnProperties"
     />
 
-  <!-- <utility
-    factory="slt.theme.userdataschema.UserDataSchemaProvider"
-    provides="plone.app.users.userdataschema.IUserDataSchemaProvider"
-    /> -->
-
   <adapter
     provides="slt.theme.userdataschema.IUserDataSchema"
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     factory="plone.app.users.browser.personalpreferences.UserDataPanelAdapter"
     />
-
 
 </configure>
