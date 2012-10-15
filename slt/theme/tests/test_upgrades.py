@@ -1,4 +1,3 @@
-from Products.CMFCore.utils import getToolByName
 from slt.theme.tests.base import IntegrationTestCase
 
 
