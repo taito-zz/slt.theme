@@ -75,6 +75,7 @@ input.searchButton {
     border: none;
     border-radius: 5px;
     color: white;
+    padding: 0.05em 0.2em;
 }
 
 /*Portlet: Navigation*/
