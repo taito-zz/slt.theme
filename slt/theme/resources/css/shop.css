@@ -170,7 +170,8 @@ section#collective-cart-shopping-article-container-articles article {
 }
 
 section#slt-theme-top-articles article img,
-section#collective-cart-shopping-article-container-articles article img {
+section#collective-cart-shopping-article-container-articles article img,
+section#collective-cart-shopping-article section#articles td#representative-image img {
   width: 100%;
 }
 section#slt-theme-top-articles article div.text,
@@ -266,4 +267,8 @@ td#article-images {
 }
 .scrollable .active {
   display: none;
+}
+
+section#collective-cart-shopping-article section#articles td#representative-image {
+  width: 15%;
 }
