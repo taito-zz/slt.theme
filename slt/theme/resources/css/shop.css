@@ -1,3 +1,7 @@
+input#quantity {
+  text-align: right;
+}
+
 .portletCart {
   background: #29A2BF;
   border-radius: 5px;
@@ -221,6 +225,10 @@ section#collective-cart-shopping-article-container-articles article div.text p s
 }
 
 /*Article*/
+section#collective-cart-shopping-article table {
+  width: 100%;
+}
+
 section#collective-cart-shopping-article td {
   vertical-align: top;
 }

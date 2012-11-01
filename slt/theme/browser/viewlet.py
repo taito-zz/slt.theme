@@ -4,14 +4,24 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
+from plone.app.layout.viewlets.interfaces import IPortalFooter
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.registry.interfaces import IRegistry
 from slt.theme.browser.interfaces import ISltThemeLayer
 from slt.theme.interfaces import IFeedToShopTop
 from zope.component import getUtility
-
+from zope.interface import Interface
 
 grok.templatedir('viewlets')
+
+
+class FooterViewlet(grok.Viewlet):
+    grok.context(Interface)
+    grok.layer(ISltThemeLayer)
+    grok.name('plone.footer')
+    grok.require('zope2.View')
+    grok.template('footer')
+    grok.viewletmanager(IPortalFooter)
 
 
 class ShopTopViewletManager(OrderedViewletManager, grok.ViewletManager):
