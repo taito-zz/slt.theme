@@ -185,6 +185,21 @@ section#collective-cart-shopping-article-container-articles article div.text {
   position: absolute;
   width: 100%;
 }
+section#slt-theme-top-articles article.discount div.discount
+{
+  border-radius: 0 0 0 5px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  padding: 0.5em 1em;
+  position: absolute;
+  right: 0em;
+  top: 0em;
+}
+section#slt-theme-top-articles article.discount div.discount,
+section#slt-theme-top-articles article.discount div.text {
+  background: rgba(208, 51, 115, 0.9);
+}
+section#slt-theme-top-articles article.discount div.discount,
 section#slt-theme-top-articles article div.text a,
 section#collective-cart-shopping-article-container-articles article div.text a {
   border-bottom: none;

@@ -1,6 +1,7 @@
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from collective.cart.shopping.interfaces import IArticleAdapter
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
@@ -50,9 +51,15 @@ class ShopTopArticlesViewlet(grok.Viewlet):
             'object_provides': IFeedToShopTop.__identifier__,
             'sort_limit': limit,
         }
-        return [{
-            'description': item.Description(),
-            'style': 'style',
-            'title': item.Title(),
-            'url': item.getURL(),
-        } for item in IContentListing(catalog(query)[:limit])]
+        res = []
+        for item in IContentListing(catalog(query)[:limit]):
+            style_class = 'normal'
+            if IArticleAdapter(item.getObject()).discount_available:
+                style_class = 'discount'
+            res.append({
+                'description': item.Description(),
+                'class': style_class,
+                'title': item.Title(),
+                'url': item.getURL(),
+            })
+        return res

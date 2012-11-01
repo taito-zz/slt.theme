@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-10-15 20:34+0000\n"
+"POT-Creation-Date: 2012-11-01 22:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: slt.theme\n"
+
+#: ./browser/viewlets/shop-top-articles.pt:9
+msgid "Discount"
+msgstr ""
 
 #: ./profiles/default/actions.xml
 msgid "Feed to Shop Top"
