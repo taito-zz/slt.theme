@@ -58,7 +58,9 @@ Check shop top page::
     >>> browser.open('/')
     >>> print browser.bycss('#slt-theme-top-articles')
     --- 1 ---
-    <section id="slt-theme-top-articles"><article style="style"><img src="http://nohost/plone/kirjat/kirja1/@@images/image" title="Kirja1"><div class="text">
+    <section id="slt-theme-top-articles"><article class="normal"><a href="http://nohost/plone/kirjat/kirja1">
+    <img src="http://nohost/plone/kirjat/kirja1/@@images/image" title="Kirja1"></a>
+    <div class="text">
     <h1>
     <a href="http://nohost/plone/kirjat/kirja1">Kirja1</a>
     </h1>
