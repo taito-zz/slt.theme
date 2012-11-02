@@ -1,12 +1,12 @@
 <section
   id="slt-theme-top-articles"
-  i18n:domain="slt.theme"
+  i18n:domain="collective.cart.shopping"
   tal:condition="viewlet/articles">
   <article tal:repeat="item viewlet/articles" tal:attributes="class item/class">
     <a tal:attributes="href item/url">
-    <img tal:attributes="
-      src string:${item/url}/@@images/image;
-      title item/title" />
+      <img tal:attributes="
+        src string:${item/url}/@@images/image;
+        title item/title" />
     </a>
     <div tal:condition="python: item['class'] == 'discount'" class="discount" i18n:translate="">Discount</div>
     <div class="text">
