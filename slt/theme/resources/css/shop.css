@@ -1,3 +1,7 @@
+#collective-cart-shopping td {
+  vertical-align: top;
+}
+
 input#quantity {
   text-align: right;
 }
@@ -18,6 +22,7 @@ dl.portletCart dd.portletItem {
 
 #go-to-cart a {
   color: white;
+  border: none;
 }
 
 #article-count {
@@ -46,43 +51,49 @@ section.checkout-content {
   width: 90%;
 }
 
+section#collective-cart-shopping-article,
 section#cart-articles {
   border-bottom: 2px #cccccc solid;
 }
 
+section#articles-in-article table,
 section#cart-articles table,
 section#cart-total,
 section#confirmation-total {
   width: 100%;
 }
 
+section#articles-in-article table,
 section#cart-articles table
  {
   margin: 0;
 }
 
+section#articles-in-article tr,
 section#cart-articles tr {
   border-bottom: 2px #cccccc solid;
 }
 
+section#articles-in-article td,
 section#cart-articles td {
   padding: 1em 0;
 }
 
+section#articles-in-article td.name,
 section#cart-articles td.name {
   padding: 1em 0.3em 1em 0.7em;
 }
-
+section#articles-in-article td.name h3,
 section#cart-articles td.name h3 {
   font-weight: normal;
   margin: 0.1em 0;
 }
-
+section#articles-in-article td.name h3 a,
 section#cart-articles td.name h3 a {
   color: #575757;
 }
-
-section#cart-articles td.name p{
+section#articles-in-article td.name p,
+section#cart-articles td.name p {
   margin: 0;
 }
 
@@ -172,10 +183,17 @@ section#collective-cart-shopping-article-container-articles article {
   margin: 0 3% 3% 0;
   width: 30%;
 }
+section#articles-in-article td.image,
+section#cart-articles td.image {
+  width: 20%;
+}
+
 
 section#slt-theme-top-articles article img,
 section#collective-cart-shopping-article-container-articles article img,
-section#collective-cart-shopping-article section#articles td#representative-image img {
+section#collective-cart-shopping-article section#articles td#representative-image img,
+section#articles-in-article td img,
+section#cart-articles td img {
   width: 100%;
 }
 section#slt-theme-top-articles article div.text,
@@ -244,7 +262,11 @@ section#collective-cart-shopping-article-container-articles article div.text p s
 }
 
 /*Article*/
-section#collective-cart-shopping-article table {
+section#collective-cart-shopping-article {
+  width: 90%;
+}
+
+section#articles-in-article table {
   width: 100%;
 }
 
@@ -257,7 +279,7 @@ section#collective-cart-shopping-article td#information {
   width: 55%;
 }
 section#collective-cart-shopping-article td#information section#money p,
-section#collective-cart-shopping-article td#information section#discount p{
+section#discount p{
   margin: 0;
 }
 section#collective-cart-shopping-article td#information section#money {
@@ -268,7 +290,7 @@ section#collective-cart-shopping-article td#information section#discount p{
   font-size: 0.8em;
   line-height: 1.1em;
 }
-section#collective-cart-shopping-article td#information section#discount p#normal-price{
+#normal-price{
   text-decoration: line-through;
 }
 
@@ -298,4 +320,10 @@ td#article-images {
 
 section#collective-cart-shopping-article section#articles td#representative-image {
   width: 15%;
+}
+
+/* Add To Cart */
+section#add-to-cart {
+  color: #666666;
+  line-height: 1.2em;
 }
