@@ -7,10 +7,11 @@ This package contains theme related files for SLT shopping site.
 Change log
 ----------
 
-0.2 (2012-11-XX)
-==================
+0.2 (2012-11-04)
+================
 
 - Added TTW editable footer. [taito]
+- Added fallback image. [taito]
 
 
 0.1.1 (2012-10-15)

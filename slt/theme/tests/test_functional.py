@@ -80,4 +80,4 @@ def test_suite():
     return unittest.TestSuite([
         DocFileSuite('functional/browser.txt'),
         DocFileSuite('functional/footer.txt'),
-        ])
+    ])
