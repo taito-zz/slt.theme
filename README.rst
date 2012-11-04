@@ -12,6 +12,7 @@ Change log
 
 - Added TTW editable footer. [taito]
 - Added fallback image. [taito]
+- Tested with Plone-4.2.2. [taito]
 
 
 0.1.1 (2012-10-15)
