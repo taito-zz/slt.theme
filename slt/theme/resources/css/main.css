@@ -17,8 +17,7 @@ body{
     clear: both;
 }
 #portal-header,
-#portal-columns,
-#portal-footer {
+#portal-columns {
     margin: 0 10%;
     width: 80%;
 }
@@ -30,6 +29,8 @@ body{
 }
 #portal-footer {
     background: transparent;
+    color: white;
+    margin: 0 10%;
 }
 
 a:link, a:visited {
