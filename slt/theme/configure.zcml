@@ -29,4 +29,10 @@
   <include package=".browser" />
   <include file="upgrades.zcml"/>
 
+  <adapter
+    provides="slt.theme.userdataschema.IUserDataSchema"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    factory="slt.theme.browser.personalpreferences.UserDataPanelAdapter"
+    />
+
 </configure>
