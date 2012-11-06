@@ -2,6 +2,11 @@
   vertical-align: top;
 }
 
+#collective-cart-shopping button,
+#collective-cart-shopping-article button {
+  cursor: pointer;
+}
+
 input#quantity {
   text-align: right;
 }
@@ -184,7 +189,8 @@ section#collective-cart-shopping-article-container-articles article {
   width: 30%;
 }
 section#articles-in-article td.image,
-section#cart-articles td.image {
+section#cart-articles td.image,
+td.price-and-quantity {
   width: 20%;
 }
 
