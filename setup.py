@@ -31,7 +31,8 @@ setup(
         'plone.browserlayer',
         'setuptools',
         'slt.content',
-        'z3c.autoinclude'],
+        'z3c.autoinclude',
+        'zope.i18nmessageid'],
     entry_points="""
     # -*- Entry points: -*-
 
