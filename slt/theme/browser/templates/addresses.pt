@@ -9,7 +9,7 @@
     <metal:main fill-slot="main">
       <section class="collective-cart-shopping slt-theme-addresses">
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-        <h1 class="documentFirstHeading" i18n:translate="">Osoitteet</h1>
+        <h1 class="documentFirstHeading" i18n:translate="">Addresses</h1>
         <div tal:replace="structure provider:plone.belowcontenttitle" />
       </section>
     </metal:main>

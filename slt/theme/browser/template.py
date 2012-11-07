@@ -3,6 +3,7 @@ from five import grok
 from slt.theme.browser.interfaces import ISltThemeLayer
 from slt.content.schema import IMemberArea
 
+
 grok.templatedir('templates')
 
 
@@ -20,8 +21,15 @@ class ShopView(BaseView):
     grok.template('shop')
 
 
-class AddressListView(grok.View):
+class AddressListView(BaseView):
     """View for listing addresses for MemberArea."""
     grok.context(IMemberArea)
     grok.name('addresses')
     grok.template('addresses')
+
+
+class OrderListView(BaseView):
+    """View for listing orders for MemberArea."""
+    grok.context(IMemberArea)
+    grok.name('orders')
+    grok.template('orders')
