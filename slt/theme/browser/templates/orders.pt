@@ -1,5 +1,5 @@
 <html
-  i18n:domain="slt.policy"
+  i18n:domain="slt.theme"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -7,10 +7,33 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal">
   <body>
     <metal:main fill-slot="main">
-      <section class="collective-cart-shopping slt-theme-addresses">
+      <section class="collective-cart-shopping slt-theme-orders">
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-        <h1 class="documentFirstHeading" i18n:translate="">Orders</h1>
+        <h1 class="documentFirstHeading" i18n:domain="slt.policy" i18n:translate="">Orders</h1>
         <div tal:replace="structure provider:plone.belowcontenttitle" />
+        <p
+          i18n:translate="no_orders"
+          tal:condition="not: view/carts">You haven't tried to order anything yet.</p>
+        <table class="listing" tal:condition="view/carts">
+          <thead>
+            <tr>
+              <th i18n:translate="">Order Number</th>
+              <th i18n:domain="collective.cart.core" i18n:translate="">State</th>
+              <th i18n:translate="">On</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr tal:repeat="item view/carts">
+              <td class="cart-id">
+                <a
+                  tal:attributes="href item/url"
+                  tal:content="item/id" />
+              </td>
+              <td class="cart-state" tal:content="item/review_state" />
+              <td class="cart-modified" tal:content="item/modified" />
+            </tr>
+          </tbody>
+        </table>
       </section>
     </metal:main>
   </body>

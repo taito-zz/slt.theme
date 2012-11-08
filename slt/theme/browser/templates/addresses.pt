@@ -1,5 +1,5 @@
 <html
-  i18n:domain="slt.policy"
+  i18n:domain="slt.theme"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -9,8 +9,16 @@
     <metal:main fill-slot="main">
       <section class="collective-cart-shopping slt-theme-addresses">
         <div tal:replace="structure provider:plone.abovecontenttitle" />
-        <h1 class="documentFirstHeading" i18n:translate="">Addresses</h1>
+        <h1 class="documentFirstHeading" i18n:domain="slt.policy" i18n:translate="">Addresses</h1>
         <div tal:replace="structure provider:plone.belowcontenttitle" />
+        <p
+          i18n:translate="add_addresses"
+          tal:condition="not: view/addresses">Add commonly used addresses to make your order easier.</p>
+        <a
+          class="shopping-button"
+          i18n:translate=""
+          tal:attributes="href string: ${context/absolute_url}/++add++collective.cart.shopping.CustomerInfo"
+          >Add New Address</a>
       </section>
     </metal:main>
   </body>
