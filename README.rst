@@ -10,7 +10,8 @@ Change log
 0.3 (2012-11-XX)
 ================
 
--Added template for order listing and address listing. [taito]
+- Added template for order listing and address listing. [taito]
+- Added viewlet for address. [taito]
 
 0.2 (2012-11-04)
 ================

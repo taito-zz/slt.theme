@@ -63,3 +63,55 @@ class ShopTopArticlesViewlet(grok.Viewlet):
                 'url': item.getURL(),
             })
         return res
+
+
+class AddressesViewletManager(OrderedViewletManager, grok.ViewletManager):
+    """Viewlet manager for listing addresses."""
+    grok.context(Interface)
+    grok.layer(ISltThemeLayer)
+    grok.name('slt.theme.addresses.viewletmanager')
+
+
+class AssressViewlet(grok.Viewlet):
+    """Viewlet to show address."""
+    grok.context(Interface)
+    grok.layer(ISltThemeLayer)
+    grok.name('slt.theme.address')
+    grok.require('zope2.View')
+    grok.template('address')
+    grok.viewletmanager(AddressesViewletManager)
+
+    def addresses(self):
+        result = []
+        for item in IContentListing(self.view.addresses):
+            res = {
+                'name': self._name(item),
+                'organization': self._organization(item),
+                'street': item.street,
+                'city': self._city(item),
+                'email': item.email,
+                'phone': item.phone,
+                'edit_url': '{}/edit'.format(item.getURL()),
+            }
+            result.append(res)
+        return result
+
+    def _name(self, item):
+        return u'{} {}'.format(item.first_name, item.last_name)
+
+    def _organization(self, item):
+        org = item.organization
+        if org:
+            if item.vat:
+                org = u'{} {}'.format(item.organization, item.vat)
+            return org.strip()
+
+    def _city(self, item):
+        if item.post:
+            city = u'{} {}'.format(item.city, item.post)
+            return city.strip()
+
+    def class_collapsible(self):
+        if len(self.view.addresses) > 4:
+            return 'collapsible collapsedOnLoad'
+        return 'collapsible'

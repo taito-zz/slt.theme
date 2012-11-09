@@ -1,0 +1,18 @@
+<section id="addresses" i18n:domain="plone">
+  <tal:block tal:repeat="item viewlet/addresses">
+    <dl tal:attributes="class viewlet/class_collapsible">
+      <dt class="collapsibleHeader">
+        <span tal:replace="item/name" />
+      </dt>
+      <dd class="collapsibleContent">
+        <p tal:content="item/name" />
+        <p tal:condition="item/organization" tal:content="item/organization" />
+        <p tal:content="item/street" />
+        <p tal:content="item/city" />
+        <p tal:content="item/email" />
+        <p tal:content="item/phone" />
+        <a tal:attributes="href item/edit_url" i18n:translate="">Edit</a>
+      </dd>
+    </dl>
+  </tal:block>
+</section>

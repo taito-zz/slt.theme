@@ -1,7 +1,9 @@
+from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from collective.cart.core.browser.base import BaseListingObject
 from collective.cart.shopping.interfaces import ICart
+from collective.cart.shopping.interfaces import ICustomerInfo
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from slt.theme.browser.interfaces import ISltThemeLayer
@@ -30,18 +32,24 @@ class BaseListView(BaseView):
     grok.baseclass()
     grok.context(IMemberArea)
 
-    def update(self):
-        self.request.set('disable_plone.leftcolumn', True)
-        self.request.set('disable_plone.rightcolumn', True)
-
 
 class AddressListView(BaseListView):
     """View for listing addresses for MemberArea."""
     grok.name('addresses')
     grok.template('addresses')
 
+    @property
     def addresses(self):
-        return []
+        context = aq_inner(self.context)
+        catalog = getToolByName(context, 'portal_catalog')
+        query = {
+            'object_provides': ICustomerInfo.__identifier__,
+            'path': {
+                'query': '/'.join(context.getPhysicalPath()),
+                'depth': 1,
+            }
+        }
+        return catalog(query)
 
 
 class OrderListView(BaseListView, BaseListingObject):
