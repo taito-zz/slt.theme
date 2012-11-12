@@ -1,13 +1,12 @@
-from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from collective.cart.core.browser.base import BaseListingObject
 from collective.cart.shopping.interfaces import ICart
-from collective.cart.shopping.interfaces import ICustomerInfo
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
-from slt.theme.browser.interfaces import ISltThemeLayer
+from slt.content.interfaces import IMember
 from slt.content.schema import IMemberArea
+from slt.theme.browser.interfaces import ISltThemeLayer
 
 
 grok.templatedir('templates')
@@ -40,16 +39,7 @@ class AddressListView(BaseListView):
 
     @property
     def addresses(self):
-        context = aq_inner(self.context)
-        catalog = getToolByName(context, 'portal_catalog')
-        query = {
-            'object_provides': ICustomerInfo.__identifier__,
-            'path': {
-                'query': '/'.join(context.getPhysicalPath()),
-                'depth': 1,
-            }
-        }
-        return catalog(query)
+        return IMember(self.context).infos
 
 
 class OrderListView(BaseListView, BaseListingObject):

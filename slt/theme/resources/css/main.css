@@ -33,6 +33,15 @@ body{
     margin: 0 10%;
 }
 
+#portal-footer h1,
+#portal-footer h2,
+#portal-footer h3,
+#portal-footer h4,
+#portal-footer h5,
+#portal-footer h6 {
+    color: white;
+}
+
 a:link, a:visited {
     color: #00a2c0;
 }
