@@ -30,6 +30,7 @@ setup(
         'plone.app.themingplugins',
         'plone.browserlayer',
         'setuptools',
+        'slt.carousel',
         'slt.content',
         'z3c.autoinclude',
         'zope.i18nmessageid'],

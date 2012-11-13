@@ -2,6 +2,7 @@
 <metadata>
   <version>1</version>
   <dependencies>
+    <dependency>profile-slt.carousel:default</dependency>
     <dependency>profile-slt.content:default</dependency>
     <dependency>profile-plone.app.theming:default</dependency>
   </dependencies>

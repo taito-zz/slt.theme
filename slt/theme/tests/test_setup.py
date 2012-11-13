@@ -280,6 +280,14 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(
             setup.getVersionForProfile('profile-slt.theme:default'), u'1')
 
+    def test_metadata__installed__slt_carousel(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('slt.carousel'))
+
+    def test_metadata__installed__slt_carousel(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('slt.content'))
+
     def test_metadata__installed__plone_app_theming(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('plone.app.theming'))
