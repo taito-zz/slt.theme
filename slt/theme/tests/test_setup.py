@@ -284,7 +284,7 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('slt.carousel'))
 
-    def test_metadata__installed__slt_carousel(self):
+    def test_metadata__installed__slt_content(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('slt.content'))
 
