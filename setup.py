@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='slt.theme',
-    version='0.3',
+    version='0.3.1',
     description="Turns plone them into SLT shopping theme.",
     long_description=open("README.rst").read(),
     # Get more strings from
@@ -12,7 +12,6 @@ setup(
     classifiers=[
         "Framework :: Plone",
         "Framework :: Plone :: 4.2",
-        "Framework :: Plone :: 4.3",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.7"],
     keywords='',
