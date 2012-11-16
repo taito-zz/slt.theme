@@ -14,26 +14,44 @@
         <p
           i18n:translate="no_orders"
           tal:condition="not: view/carts">You haven't tried to order anything yet.</p>
-        <table class="listing" tal:condition="view/carts">
-          <thead>
-            <tr>
-              <th i18n:translate="">Order Number</th>
-              <th i18n:domain="collective.cart.core" i18n:translate="">State</th>
-              <th i18n:translate="">On</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr tal:repeat="item view/carts">
-              <td class="cart-id">
-                <a
-                  tal:attributes="href item/url"
-                  tal:content="item/id" />
-              </td>
-              <td class="cart-state" tal:content="item/review_state" />
-              <td class="cart-modified" tal:content="item/modified" />
-            </tr>
-          </tbody>
-        </table>
+
+        <dl tal:attributes="class view/class_collapsible" tal:repeat="cart view/carts">
+          <dt class="collapsibleHeader">
+            <span tal:replace="cart/id" /> <span tal:replace="cart/review_state" /> <span tal:replace="cart/modified" /> <span tal:replace="cart/total" />
+          </dt>
+          <dd class="collapsibleContent">
+            <table class="listing">
+              <thead>
+                <tr>
+                  <th i18n:translate="">ID</th>
+                  <th i18n:translate="">Ordered Article</th>
+                  <th i18n:translate="">Price</th>
+                  <th i18n:translate="">Pcs</th>
+                  <th i18n:translate="">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr tal:repeat="item cart/articles">
+                  <td tal:content="item/sku" />
+                  <td>
+                    <a
+                      tal:attributes="href item/url"
+                      tal:condition="item/url"
+                      tal:content="item/title" />
+                    <span
+                      tal:condition="not: item/url"
+                      tal:replace="item/title" />
+                  </td>
+                  <td tal:content="item/gross" />
+                  <td tal:content="item/quantity" />
+                  <td tal:content="item/gross_subtotal" />
+                </tr>
+              </tbody>
+            </table>
+          </dd>
+        </dl>
+
+
       </section>
     </metal:main>
   </body>
