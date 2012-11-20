@@ -1,5 +1,5 @@
 <html
-  i18n:domain="slt.theme"
+  i18n:domain="collective.cart.core"
   lang="en"
   metal:use-macro="context/main_template/macros/master"
   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
@@ -17,17 +17,17 @@
 
         <dl tal:attributes="class view/class_collapsible" tal:repeat="cart view/carts">
           <dt class="collapsibleHeader">
-            <span tal:replace="cart/id" /> <span tal:replace="cart/review_state" /> <span tal:replace="cart/modified" /> <span tal:replace="cart/total" />
+            <span tal:replace="cart/id" />&#32;<span i18n:translate="" tal:replace="cart/state_title" />&#32;<span tal:replace="cart/modified" />&#32;<span tal:replace="cart/total" />
           </dt>
           <dd class="collapsibleContent">
             <table class="listing">
               <thead>
                 <tr>
                   <th i18n:translate="">ID</th>
-                  <th i18n:translate="">Ordered Article</th>
+                  <th i18n:translate="">Name</th>
                   <th i18n:translate="">Price</th>
-                  <th i18n:translate="">Pcs</th>
-                  <th i18n:translate="">Subtotal</th>
+                  <th i18n:domain="slt.theme" i18n:translate="">Pcs</th>
+                  <th i18n:domain="slt.theme" i18n:translate="">Subtotal</th>
                 </tr>
               </thead>
               <tbody>

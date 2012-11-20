@@ -88,7 +88,9 @@ input.searchButton {
     color: white;
     padding: 0.05em 0.2em;
 }
-
+.searchSection {
+  display: none;
+}
 /*Portlet: Navigation*/
 dl.portlet ul.navTreeLevel0 > .navTreeItem {
     background: #29A2BF;
@@ -105,13 +107,19 @@ dl.portlet ul.navTree li a:hover {
 }
 
 dl.portlet ul.navTree li.navTreeCurrentNode {
-    background: #ca2464;
+    /*background: #ca2464;*/
+    background: white;
+}
+dl.portlet ul.navTree li.navTreeItemInPath {
+    background: white;
 }
 
 dl.portlet ul.navTree .navTreeCurrentItem {
-    background: transparent;
+    background: #ca2464;
     border: none;
-    padding-left: 1em;
+    border-radius: 5px;
+    /*padding-left: 1em;*/
+    padding: 0.25em 1em;
 }
 
 #viewlet-below-content {

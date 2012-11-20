@@ -56,14 +56,15 @@ class OrderListView(BaseListView):
         base = IBaseAdapter(self.context)
         res = []
         creator = getMultiAdapter((self.context, self.request), name="plone_portal_state").member().id
-        for item in base.get_content_listing(ICart, Creator=creator, path='/'):
+        workflow = getToolByName(self.context, 'portal_workflow')
+        for item in base.get_content_listing(ICart, Creator=creator, path='/', sort_on="modified", sort_order="descending"):
             obj = item.getObject()
             cart = ICartAdapter(obj)
             res.append({
                 'articles': cart.articles,
                 'id': item.getId(),
                 'modified': base.localized_time(item),
-                'review_state': item.review_state(),
+                'state_title': workflow.getTitleForStateOnType(item.review_state(), item.portal_type),
                 'title': item.Title(),
                 'total': cart.total,
                 'url': item.getURL(),

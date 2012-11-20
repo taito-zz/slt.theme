@@ -7,6 +7,11 @@
   cursor: pointer;
 }
 
+#collective-cart-shopping section.description,
+#collective-cart-shopping section.text {
+  margin: 2em 0em 2em 0;
+}
+
 input#quantity {
   text-align: right;
 }
@@ -125,21 +130,21 @@ section#confirmation-total {
   font-size: 80%;
 }
 
-section.buttons {
+.buttons {
   margin: 0.3em 0 0 0;
 }
 
-.shopping-button {
+.shopping-button, #form-buttons-update {
   padding: 0.3em 0.5em;
 }
 
-.update, .remove, .checkout, .clear {
+.update, .remove, .checkout, .clear, #form-buttons-update {
   border: 0;
   border-radius: 5px;
   color: white;
 }
 
-.update, .remove, .checkout {
+.update, .remove, .checkout, #form-buttons-update {
   background: #CA2464;
 }
 
@@ -332,4 +337,14 @@ section#collective-cart-shopping-article section#articles td#representative-imag
 section#add-to-cart {
   color: #666666;
   line-height: 1.2em;
+}
+
+#terms {
+  height: 10em;
+  overflow-y: scroll;
+}
+
+section#shipping-method-form #formfield-form-widgets-shipping_method,
+section#shipping-method-form .formControls {
+  display: inline;
 }
