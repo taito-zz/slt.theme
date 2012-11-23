@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Change log
 ----------
 
+0.4 (2012-11-XX)
+================
+
+- Added testing integration to Travis CI. [taito]
+
 0.3.2 (2012-11-21)
 ==================
 
