@@ -19,7 +19,6 @@ setup(
     author_email='taito.horiuchi@abita.fi',
     url='http://www.sll.fi/kauppa',
     license='None-free',
-    # packages=find_packages(exclude=['ez_setup']),
     packages=find_packages('src', exclude=['ez_setup']),
     package_dir={'': 'src'},
     namespace_packages=['slt'],
