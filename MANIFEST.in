@@ -1,5 +1,8 @@
+recursive-include src *
+include *
+exclude .gitignore
 exclude .travis.yml
+exclude MANIFEST.in
 exclude bootstrap.py
 exclude travis.cfg
-recursive-include docs *
-include *
+global-exclude *.pyc
