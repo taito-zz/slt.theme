@@ -19,20 +19,22 @@ setup(
     author_email='taito.horiuchi@abita.fi',
     url='http://www.sll.fi/kauppa',
     license='None-free',
-    packages=find_packages(exclude=['ez_setup']),
+    # packages=find_packages(exclude=['ez_setup']),
+    packages=find_packages('src', exclude=['ez_setup']),
+    package_dir={'': 'src'},
     namespace_packages=['slt'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'Products.CMFPlone>=4.2',
+        'five.pt',
         'hexagonit.testing',
         'plone.app.theming',
         'plone.app.themingplugins',
         'plone.browserlayer',
         'setuptools',
         'slt.carousel',
-        'slt.content',
-        'z3c.autoinclude',
-        'zope.i18nmessageid'],
+        'slt.content'],
     entry_points="""
     # -*- Entry points: -*-
 

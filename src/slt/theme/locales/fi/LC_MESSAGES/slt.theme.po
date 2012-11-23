@@ -1,10 +1,7 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-20 19:44+0000\n"
+"POT-Creation-Date: 2012-11-23 08:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,49 +9,49 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Code: fi\n"
+"Language-Name: Finnish\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: slt.theme\n"
 
 #: ./browser/templates/addresses.pt:16
 msgid "Add New Address"
-msgstr ""
+msgstr "Lisää uusi osoite"
 
 #: ./browser/viewlets/info.pt:19
 msgid "Change Info"
-msgstr ""
+msgstr "Vaihda tieto"
 
 #: ./browser/viewlets/info.pt:26
 msgid "Change to this address"
-msgstr ""
+msgstr "Vaihda tähän osoitteeseen"
 
 #: ./profiles/default/actions.xml
 msgid "Feed to Shop Top"
-msgstr ""
+msgstr "Syöte kaupan etusivulle"
 
 #: ./browser/templates/orders.pt:29
 msgid "Pcs"
-msgstr ""
+msgstr "Kpl"
 
 #: ./userdataschema.py:24
 msgid "Registration Number"
-msgstr ""
+msgstr "Jäsennumero"
 
 #: ./browser/templates/orders.pt:30
 msgid "Subtotal"
-msgstr ""
+msgstr "Summa"
 
 #: ./profiles/default/actions.xml
 msgid "Unfeed from Shop Top"
-msgstr ""
+msgstr "Ota syöte poist kaupan etusivusta"
 
 #: ./browser/viewlets/info.pt:49
 msgid "Update Info"
-msgstr ""
+msgstr "Päivitä tietoa"
 
 #. Default: "Add commonly used addresses to make your order easier."
 #: ./browser/templates/addresses.pt:13
 msgid "add_addresses"
-msgstr ""
+msgstr "Lisää oma osoitteet, että pääset tilaamaan helpommin."
 

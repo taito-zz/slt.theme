@@ -1,0 +1,5 @@
+exclude .travis.yml
+exclude bootstrap.py
+exclude travis.cfg
+recursive-include docs *
+include *
