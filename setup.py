@@ -7,8 +7,6 @@ setup(
     version='0.4',
     description="Turns plone them into SLT shopping theme.",
     long_description=open("README.rst").read(),
-    # Get more strings from
-    # http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
         "Framework :: Plone",
         "Framework :: Plone :: 4.2",
@@ -30,7 +28,6 @@ setup(
         'hexagonit.testing',
         'plone.app.theming',
         'plone.app.themingplugins',
-        'plone.browserlayer',
         'setuptools',
         'slt.carousel',
         'slt.content'],
