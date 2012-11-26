@@ -7,7 +7,19 @@ class TestCase(IntegrationTestCase):
     def setUp(self):
         self.portal = self.layer['portal']
 
-    def test_update_viewlets(self):
+    def test_reimport_registry(self):
+        from zope.component import getUtility
+        from plone.registry.interfaces import IRegistry
+        registry = getUtility(IRegistry)
+        registry['slt.theme.articles_feed_on_top_page'] = 4
+        self.assertEqual(registry['slt.theme.articles_feed_on_top_page'], 4)
+
+        from slt.theme.upgrades import reimport_registry
+        reimport_registry(self.portal)
+
+        self.assertEqual(registry['slt.theme.articles_feed_on_top_page'], 0)
+
+    def test_reimport_viewlets(self):
         from zope.component import getUtility
         from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
         storage = getUtility(IViewletSettingsStorage)
@@ -17,7 +29,7 @@ class TestCase(IntegrationTestCase):
 
         self.assertEqual(len(storage.getHidden(manager, skinname)), 0)
 
-        from slt.theme.upgrades import update_viewlets
-        update_viewlets(self.portal)
+        from slt.theme.upgrades import reimport_viewlets
+        reimport_viewlets(self.portal)
 
         self.assertEqual(storage.getHidden(manager, skinname), (u'collective.cart.core.add.to.cart',))

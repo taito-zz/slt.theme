@@ -4,13 +4,23 @@
   xmlns="http://namespaces.zope.org/zope">
 
   <genericsetup:upgradeStep
-    description=""
+    description="Hide viewlet: collective.cart.core.add.to.cart from plone.abovecontenttitle."
     destination="1"
-    handler="slt.theme.upgrades.update_viewlets"
+    handler="slt.theme.upgrades.reimport_viewlets"
     profile="slt.theme:default"
     sortkey="1"
     source="0"
-    title="Hide viewlet: collective.cart.core.add.to.cart from plone.abovecontenttitle."
+    title="Reimport viewlets"
+    />
+
+  <genericsetup:upgradeStep
+    description="Update slt.theme.articles_feed_on_top_page min to 0 so that you can show unlimited number of feed on top page."
+    destination="2"
+    handler="slt.theme.upgrades.reimport_registry"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="1"
+    title="Reimport registry"
     />
 
 </configure>

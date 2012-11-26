@@ -53,14 +53,18 @@ class ShopTopArticlesViewlet(grok.Viewlet):
     def articles(self):
         context = aq_inner(self.context)
         catalog = getToolByName(context, 'portal_catalog')
-        limit = getUtility(IRegistry)['slt.theme.articles_feed_on_top_page']
         query = {
             'path': '/'.join(context.getPhysicalPath()),
             'object_provides': IFeedToShopTop.__identifier__,
-            'sort_limit': limit,
         }
+        limit = getUtility(IRegistry)['slt.theme.articles_feed_on_top_page']
+        if limit:
+            query['sort_limit'] = limit
+            listing = IContentListing(catalog(query)[:limit])
+        else:
+            listing = IContentListing(catalog(query))
         res = []
-        for item in IContentListing(catalog(query)[:limit]):
+        for item in listing:
             style_class = 'normal'
             if IArticleAdapter(item.getObject()).discount_available:
                 style_class = 'discount'

@@ -278,7 +278,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'1')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'2')
 
     def test_metadata__installed__slt_carousel(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -309,11 +309,11 @@ class TestCase(IntegrationTestCase):
 
     def test_registry_record__slt_theme_articles_feed_on_top_page__field__min(self):
         record = self.get_record('slt.theme.articles_feed_on_top_page')
-        self.assertEqual(record.field.min, 1)
+        self.assertEqual(record.field.min, 0)
 
     def test_registry_record__slt_theme_articles_feed_on_top_page(self):
         record = self.get_record('slt.theme.articles_feed_on_top_page')
-        self.assertEqual(record.value, 4)
+        self.assertEqual(record.value, 0)
 
     def get_theme(self):
         from plone.app.theming.interfaces import IThemeSettings

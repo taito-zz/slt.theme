@@ -3,8 +3,8 @@
   <record name="slt.theme.articles_feed_on_top_page">
     <field type="plone.registry.field.Int">
       <title>Articles feed on top page</title>
-      <min>1</min>
+      <min>0</min>
     </field>
-    <value>4</value>
+    <value>0</value>
   </record>
 </registry>
