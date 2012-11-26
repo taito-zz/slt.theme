@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Change log
 ----------
 
+0.5 (2012-11-xx)
+================
+
+- Added upgrade step to update registry: slt.theme.articles_feed_on_top_page. [taito]
+
 0.4 (2012-11-23)
 ================
 
