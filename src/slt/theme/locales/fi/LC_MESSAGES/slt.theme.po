@@ -20,7 +20,7 @@ msgstr "Lisää uusi osoite"
 
 #: ./browser/viewlets/info.pt:19
 msgid "Change Info"
-msgstr "Vaihda tieto"
+msgstr "Vaihda osoite"
 
 #: ./browser/viewlets/info.pt:26
 msgid "Change to this address"
@@ -48,7 +48,7 @@ msgstr "Ota syöte poist kaupan etusivusta"
 
 #: ./browser/viewlets/info.pt:49
 msgid "Update Info"
-msgstr "Päivitä tietoa"
+msgstr "Päivitä osoitetta"
 
 #. Default: "Add commonly used addresses to make your order easier."
 #: ./browser/templates/addresses.pt:13

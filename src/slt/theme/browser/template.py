@@ -3,6 +3,7 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from collective.cart.core.interfaces import IBaseAdapter
 from collective.cart.shopping.interfaces import ICart
 from collective.cart.shopping.interfaces import ICartAdapter
+from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
 from slt.content.interfaces import IMember
 from slt.content.schema import IMemberArea
@@ -50,12 +51,23 @@ class OrderListView(BaseListView):
     grok.name('view')
     grok.template('orders')
 
+    @property
     def carts(self):
         base = IBaseAdapter(self.context)
         res = []
         creator = getMultiAdapter((self.context, self.request), name="plone_portal_state").member().id
         workflow = getToolByName(self.context, 'portal_workflow')
-        for item in base.get_content_listing(ICart, Creator=creator, path='/', sort_on="modified", sort_order="descending"):
+        shop = IShoppingSite(self.context).shop
+        query = {
+            'Creator': creator,
+            'path': '/'.join(shop.getPhysicalPath()),
+            'sort_on': 'modified',
+            'sort_order': 'descending',
+        }
+        order_number = self.request.form.get('order_number')
+        if order_number:
+            query['id'] = order_number
+        for item in base.get_content_listing(ICart, **query):
             obj = item.getObject()
             cart = ICartAdapter(obj)
             res.append({
@@ -70,4 +82,7 @@ class OrderListView(BaseListView):
         return res
 
     def class_collapsible(self):
-        return getUtility(ICollapsedOnLoad)()
+        utility = getUtility(ICollapsedOnLoad)
+        if len(self.carts) == 1:
+            return utility(collapsed=False)
+        return utility()

@@ -98,6 +98,10 @@ dl.portlet ul.navTreeLevel0 > .navTreeItem {
     border-radius: 5px;
 }
 
+dl.portlet ul.navTreeLevel1 li.navTreeItem a.state-published {
+    color: #333333 !important;
+}
+
 dl.portlet ul.navTree li a.state-published {
     color: white !important;
 }
@@ -107,7 +111,6 @@ dl.portlet ul.navTree li a:hover {
 }
 
 dl.portlet ul.navTree li.navTreeCurrentNode {
-    /*background: #ca2464;*/
     background: white;
 }
 dl.portlet ul.navTree li.navTreeItemInPath {
@@ -118,7 +121,6 @@ dl.portlet ul.navTree .navTreeCurrentItem {
     background: #ca2464;
     border: none;
     border-radius: 5px;
-    /*padding-left: 1em;*/
     padding: 0.25em 1em;
 }
 
