@@ -102,12 +102,19 @@ dl.portlet ul.navTreeLevel1 li.navTreeItem a.state-published {
     color: #333333 !important;
 }
 
+/*dl.portlet ul.navTree li.navTreeItemInPath li.navTreeCurrentNode a.navTreeCurrentItem,*/
+dl.portlet ul.navTree li.navTreeItemInPath li.navTreeCurrentNode > a.state-published,
 dl.portlet ul.navTree li a.state-published {
     color: white !important;
 }
 
-dl.portlet ul.navTree li a:hover {
+dl.portlet ul.navTree li.navTreeItemInPath a.state-published {
     color: #333333 !important;
+}
+
+dl.portlet ul.navTree li.navTreeItemInPath li.navTreeCurrentNode a.navTreeCurrentItem:hover,
+dl.portlet ul.navTree li a.state-published:hover {
+    color: #75ad0a !important;
 }
 
 dl.portlet ul.navTree li.navTreeCurrentNode {
