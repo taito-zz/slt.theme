@@ -11,6 +11,7 @@ Change log
 ==================
 
 - Updated styles for navigation and dependencies. [taito]
+- Moved footer message to sll.basetheme package. [taito]
 
 0.5 (2012-11-26)
 ================
