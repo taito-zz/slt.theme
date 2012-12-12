@@ -363,8 +363,12 @@ class TestCase(IntegrationTestCase):
         from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
         storage = getUtility(IViewletSettingsStorage)
         manager = "plone.portalfooter"
-        skinname = "Plone Default"
-        self.assertEqual(storage.getHidden(manager, skinname), (u'plone.colophon', u'plone.site_actions'))
+        skinname = "*"
+        self.assertEqual(storage.getHidden(manager, skinname), (
+            u'plone.colophon',
+            u'plone.site_actions',
+            u'sll.basetheme.footer.info',
+            u'sll.basetheme.footer.subfolders'))
 
     def test_viewlets__hidden__plone_abovecontenttitle(self):
         from zope.component import getUtility
@@ -373,6 +377,20 @@ class TestCase(IntegrationTestCase):
         manager = "plone.abovecontenttitle"
         skinname = "Plone Default"
         self.assertEqual(storage.getHidden(manager, skinname), (u'collective.cart.core.add.to.cart',))
+
+    def test_viewlets__order__plone_portalfooter(self):
+        from zope.component import getUtility
+        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+        storage = getUtility(IViewletSettingsStorage)
+        manager = "plone.portalfooter"
+        skinname = "*"
+        self.assertEqual(storage.getOrder(manager, skinname), (
+            u'plone.footer',
+            u'plone.colophon',
+            u'plone.site_actions',
+            u'sll.basetheme.footer.info',
+            u'sll.basetheme.footer.subfolders',
+            u'sll.basetheme.footer.message'))
 
     def uninstall_package(self):
         """Uninstall package: slt.theme."""

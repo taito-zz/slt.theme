@@ -7,7 +7,6 @@ from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
-from plone.app.layout.viewlets.interfaces import IPortalFooter
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.registry.interfaces import IRegistry
 from slt.content.interfaces import ICartAdapter
