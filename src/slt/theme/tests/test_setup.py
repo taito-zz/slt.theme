@@ -280,9 +280,13 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(
             setup.getVersionForProfile('profile-slt.theme:default'), u'2')
 
-    def test_metadata__installed__slt_carousel(self):
+    def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('slt.carousel'))
+        self.failUnless(installer.isProductInstalled('sll.basetheme'))
+
+    def test_metadata__installed__sll_carousel(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('sll.carousel'))
 
     def test_metadata__installed__slt_content(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')

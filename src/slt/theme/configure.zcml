@@ -8,9 +8,12 @@
   xmlns="http://namespaces.zope.org/zope">
 
   <include package="five.pt"/>
-  <include package="slt.carousel"/>
+  <include package="sll.basetheme"/>
+  <include package="sll.carousel"/>
   <include package="slt.content"/>
   <include package="plone.app.theming"/>
+  <include package=".browser" />
+  <include file="upgrades.zcml"/>
   <grok:grok package="." />
   <i18n:registerTranslations directory="locales" />
 
@@ -28,9 +31,6 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
     title="slt.theme"
     />
-
-  <include package=".browser" />
-  <include file="upgrades.zcml"/>
 
   <adapter
     provides="slt.theme.userdataschema.IUserDataSchema"

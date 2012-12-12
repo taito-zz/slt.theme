@@ -244,6 +244,10 @@ section#collective-cart-shopping-article-container-articles article div.text h1 
   letter-spacing: 0;
   line-height: 1.2em;
 }
+section#slt-theme-top-articles article div.text {
+  padding: 0 0 0.5em;
+}
+
 section#slt-theme-top-articles article div.text h1 {
   font-size: 1.2em;
   margin: 0.3em 20px 0;
@@ -259,7 +263,7 @@ section#collective-cart-shopping-article-container-articles article div.text p {
   line-height: 1.1em;
 }
 section#slt-theme-top-articles article div.text p {
-  margin: 0 20px 0.5em;
+  margin: 0 20px;
 }
 section#collective-cart-shopping-article-container-articles article div.text p {
   font-size: 1.3em;
@@ -347,4 +351,17 @@ section#add-to-cart {
 section#shipping-method-form #formfield-form-widgets-shipping_method,
 section#shipping-method-form .formControls {
   display: inline;
+}
+
+@media screen and (max-width: 900px) {
+  .text p {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  section#slt-theme-top-articles article {
+    float: none;
+    width: 100%;
+  }
 }

@@ -24,15 +24,6 @@ from zope.interface import Interface
 grok.templatedir('viewlets')
 
 
-class FooterViewlet(grok.Viewlet):
-    grok.context(Interface)
-    grok.layer(ISltThemeLayer)
-    grok.name('plone.footer')
-    grok.require('zope2.View')
-    grok.template('footer')
-    grok.viewletmanager(IPortalFooter)
-
-
 class ShopTopViewletManager(OrderedViewletManager, grok.ViewletManager):
     """Viewlet manager for shop top page."""
     grok.context(IPloneSiteRoot)
