@@ -32,7 +32,8 @@ setup(
         'setuptools',
         'sll.basetheme',
         'sll.carousel',
-        'slt.content'],
+        'slt.content',
+        'slt.portlet'],
     entry_points="""
     # -*- Entry points: -*-
 

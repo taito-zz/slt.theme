@@ -280,6 +280,10 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(
             setup.getVersionForProfile('profile-slt.theme:default'), u'2')
 
+    def test_metadata__installed__plone_app_theming(self):
+        installer = getToolByName(self.portal, 'portal_quickinstaller')
+        self.failUnless(installer.isProductInstalled('plone.app.theming'))
+
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('sll.basetheme'))
@@ -292,9 +296,9 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.failUnless(installer.isProductInstalled('slt.content'))
 
-    def test_metadata__installed__plone_app_theming(self):
+    def test_metadata__installed__slt_portlet(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('plone.app.theming'))
+        self.failUnless(installer.isProductInstalled('slt.portlet'))
 
     def get_record(self, name):
         """Get registry record based on """

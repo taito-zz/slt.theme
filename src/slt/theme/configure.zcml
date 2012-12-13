@@ -8,10 +8,11 @@
   xmlns="http://namespaces.zope.org/zope">
 
   <include package="five.pt"/>
+  <include package="plone.app.theming"/>
   <include package="sll.basetheme"/>
   <include package="sll.carousel"/>
   <include package="slt.content"/>
-  <include package="plone.app.theming"/>
+  <include package="slt.portlet"/>
   <include package=".browser" />
   <include file="upgrades.zcml"/>
   <grok:grok package="." />

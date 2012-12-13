@@ -2,9 +2,10 @@
 <metadata>
   <version>2</version>
   <dependencies>
+    <dependency>profile-plone.app.theming:default</dependency>
     <dependency>profile-sll.basetheme:default</dependency>
     <dependency>profile-sll.carousel:default</dependency>
     <dependency>profile-slt.content:default</dependency>
-    <dependency>profile-plone.app.theming:default</dependency>
+    <dependency>profile-slt.portlet:default</dependency>
   </dependencies>
 </metadata>

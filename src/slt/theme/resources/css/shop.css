@@ -15,21 +15,24 @@
 input#quantity {
   text-align: right;
 }
-
+dl.portletMember dd.portletItem{
+  padding: 0;
+}
+.portletMember li,
 .portletCart {
   background: #29A2BF;
   border-radius: 5px;
   color: #29A2BF;
 }
-
+.portletMember li,
 dl.portletCart dd.portletItem {
   padding: 0.7em 1em;
 }
-
 .portletCart table{
   width: 100%;
 }
-
+.portletMember li a:link,
+.portletMember li a:visited,
 #go-to-cart a {
   color: white;
   border: none;
