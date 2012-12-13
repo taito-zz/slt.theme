@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-23 08:02+0000\n"
+"POT-Creation-Date: 2012-12-13 07:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,4 +54,9 @@ msgstr "Päivitä osoitetta"
 #: ./browser/templates/addresses.pt:13
 msgid "add_addresses"
 msgstr "Lisää oma osoitteet, että pääset tilaamaan helpommin."
+
+#. Default: "You need to be registered and logged in to buy products from our shopping site."
+#: ./browser/register.py:8
+msgid "help_registration_form"
+msgstr "Verkkokaupasta ostaminen edellyttää rekisteröitymistä. Anna nimesi ja sähköpostiosoitteesi ja paina rekisteröidy. Tämän jälkeen antamaasi sähköpostiosoitteeseen tulee linkki, jota kautta pääset vahvistamaan rekisteröitymisesi ja täyttämään loput tarvittavat tiedot."
 

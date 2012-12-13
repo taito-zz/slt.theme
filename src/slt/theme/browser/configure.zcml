@@ -4,6 +4,7 @@
   xmlns:five="http://namespaces.zope.org/five"
   xmlns="http://namespaces.zope.org/zope">
 
+  <!-- Feeds -->
   <permission
     id="slt.theme.ManageFeedForShopTop"
     title="slt.theme: Manage feed for shop top"
@@ -45,6 +46,8 @@
     permission="slt.theme.ManageFeedForShopTop"
     />
 
+  <!-- Preferences -->
+
   <permission
     id="slt.theme.ViewPersonalPreferences"
     title="slt.theme: View Personal Preferences"
@@ -71,5 +74,16 @@
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     factory="plone.app.users.browser.personalpreferences.UserDataPanelAdapter"
     />
+
+  <!-- Registration form -->
+  <browser:page
+    class=".register.RegistrationForm"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="register"
+    permission="cmf.AddPortalMember"
+    />
+
+
 
 </configure>

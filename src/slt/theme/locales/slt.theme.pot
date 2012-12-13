@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-11-23 08:02+0000\n"
+"POT-Creation-Date: 2012-12-13 07:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,5 +56,10 @@ msgstr ""
 #. Default: "Add commonly used addresses to make your order easier."
 #: ./browser/templates/addresses.pt:13
 msgid "add_addresses"
+msgstr ""
+
+#. Default: "You need to be registered and logged in to buy products from our shopping site."
+#: ./browser/register.py:8
+msgid "help_registration_form"
 msgstr ""
 

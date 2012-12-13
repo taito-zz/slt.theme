@@ -1,0 +1,4 @@
+#login-forgotten-password strong,
+#login-new-user strong {
+    display: none;
+}
