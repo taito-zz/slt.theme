@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Change log
 ----------
 
+0.6 (2012-12-13)
+================
+
+- Added dependency to slt.portlet. [taito]
+
 0.5.1 (2012-12-12)
 ==================
 
