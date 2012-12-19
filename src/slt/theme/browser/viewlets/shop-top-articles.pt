@@ -14,6 +14,11 @@
         <a
           tal:attributes="href item/url"
           tal:content="item/title" />
+        <span class="feed-order" tal:condition="item/feed_order">
+          &#40;<a
+            tal:attributes="href string: ${item/url}/edit"
+            tal:content="item/feed_order" />&#41;
+        </span>
       </h1>
       <p>
         <a

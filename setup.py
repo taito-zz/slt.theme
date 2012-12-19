@@ -15,7 +15,7 @@ setup(
     keywords='',
     author='Taito Horiuchi',
     author_email='taito.horiuchi@abita.fi',
-    url='https://www.sll.fi/kauppa',
+    url='https://github.com/taito/slt.theme',
     license='None-free',
     packages=find_packages('src', exclude=['ez_setup']),
     package_dir={'': 'src'},
@@ -33,7 +33,8 @@ setup(
         'sll.basetheme',
         'sll.carousel',
         'slt.content',
-        'slt.portlet'],
+        'slt.portlet',
+        'z3c.jbot'],
     entry_points="""
     # -*- Entry points: -*-
 

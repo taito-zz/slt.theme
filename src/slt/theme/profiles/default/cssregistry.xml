@@ -65,4 +65,36 @@
     applyPrefix="True"
     />
 
+  <stylesheet
+    title=""
+    authenticated="False"
+    cacheable="True"
+    compression="safe"
+    conditionalcomment=""
+    cookable="True"
+    enabled="on"
+    expression=""
+    id="++resource++slt.theme/css/main.css"
+    media=""
+    rel="stylesheet"
+    rendering="link"
+    applyPrefix="True"
+    />
+
+  <stylesheet
+    title=""
+    authenticated="False"
+    cacheable="True"
+    compression="safe"
+    conditionalcomment=""
+    cookable="True"
+    enabled="on"
+    expression=""
+    id="++resource++slt.theme/css/shop.css"
+    media=""
+    rel="stylesheet"
+    rendering="link"
+    applyPrefix="True"
+    />
+
 </object>

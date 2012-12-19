@@ -46,6 +46,7 @@ class ShopTopArticlesViewlet(grok.Viewlet):
         query = {
             'path': '/'.join(context.getPhysicalPath()),
             'object_provides': IFeedToShopTop.__identifier__,
+            'sort_on': 'feed_order',
         }
         limit = getUtility(IRegistry)['slt.theme.articles_feed_on_top_page']
         if limit:
@@ -54,6 +55,7 @@ class ShopTopArticlesViewlet(grok.Viewlet):
         else:
             listing = IContentListing(catalog(query))
         res = []
+        context_state = getMultiAdapter((context, self.request), name=u'plone_context_state')
         for item in listing:
             style_class = 'normal'
             if IArticleAdapter(item.getObject()).discount_available:
@@ -61,6 +63,7 @@ class ShopTopArticlesViewlet(grok.Viewlet):
             res.append({
                 'description': item.Description(),
                 'class': style_class,
+                'feed_order': context_state.is_editable() and item.feed_order,
                 'title': item.Title(),
                 'url': item.getURL(),
             })

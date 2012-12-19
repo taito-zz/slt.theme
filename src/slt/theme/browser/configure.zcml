@@ -84,6 +84,10 @@
     permission="cmf.AddPortalMember"
     />
 
+  <include package="z3c.jbot" file="meta.zcml" />
 
+  <browser:jbot
+    directory="overrides"
+    layer=".interfaces.ISltThemeLayer" />
 
 </configure>

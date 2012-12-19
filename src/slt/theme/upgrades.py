@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from abita.utils.utils import reimport_profile
 
 import logging
 
@@ -22,3 +23,7 @@ def reimport_viewlets(context, logger=None):
     setup = getToolByName(context, 'portal_setup')
     logger.info('Reimporting viewlets.')
     setup.runImportStepFromProfile(PROFILE_ID, 'viewlets', run_dependencies=False, purge_old=False)
+
+
+def reimport_cssregistry(context):
+    reimport_profile(context, PROFILE_ID, 'cssregistry')

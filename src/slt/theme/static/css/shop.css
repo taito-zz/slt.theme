@@ -141,7 +141,7 @@ section#confirmation-total {
   padding: 0.3em 0.5em;
 }
 
-.update, .remove, .checkout, .clear, #form-buttons-update {
+.update, .remove, .checkout, .clear, .back, #form-buttons-update {
   border: 0;
   border-radius: 5px;
   color: white;
@@ -151,10 +151,10 @@ section#confirmation-total {
   background: #CA2464;
 }
 
-.checkout, .clear {
+.checkout, .clear, .back {
   padding: 0.5em 0.7em;
 }
-
+.back,
 .clear {
   background: #989898;
 }

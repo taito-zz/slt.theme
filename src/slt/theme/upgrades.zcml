@@ -23,4 +23,14 @@
     title="Reimport registry"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="3"
+    handler="slt.theme.upgrades.reimport_cssregistry"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="2"
+    title="Reimport cssregistry"
+    />
+
 </configure>
