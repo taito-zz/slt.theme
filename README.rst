@@ -7,11 +7,12 @@ This package contains theme related files for SLT shopping site.
 Change log
 ----------
 
-0.6 (2012-12-xx)
+0.6 (2012-12-20)
 ================
 
 - Added dependency to slt.portlet. [taito]
 - Added registration form to override default one. [taito]
+- Removed dependency to plone.app.theming. [taito]
 
 0.5.1 (2012-12-12)
 ==================
