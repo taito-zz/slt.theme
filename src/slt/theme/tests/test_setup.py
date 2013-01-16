@@ -368,11 +368,12 @@ class TestCase(IntegrationTestCase):
         storage = getUtility(IViewletSettingsStorage)
         manager = "plone.portalfooter"
         skinname = "*"
-        self.assertEqual(storage.getHidden(manager, skinname), (
+        for viewlet in (
             u'plone.colophon',
             u'plone.site_actions',
             u'sll.basetheme.footer.info',
-            u'sll.basetheme.footer.subfolders'))
+            u'sll.basetheme.footer.subfolders'):
+            self.assertIn(viewlet, storage.getHidden(manager, skinname))
 
     def test_viewlets__hidden__plone_abovecontenttitle(self):
         from zope.component import getUtility

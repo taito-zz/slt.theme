@@ -6,7 +6,7 @@
   <hidden manager="plone.abovecontenttitle" skinname="*">
     <viewlet name="collective.cart.core.add.to.cart" />
   </hidden>
-  <hidden manager="plone.belowcontenttitle" skinname="">
+  <hidden manager="plone.belowcontenttitle" skinname="*">
     <viewlet name="collective.cart.core.add.to.cart" />
   </hidden>
   <hidden manager="plone.portalfooter" skinname="*">
