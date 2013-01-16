@@ -47,6 +47,7 @@ class ShopTopArticlesViewlet(grok.Viewlet):
             'path': '/'.join(context.getPhysicalPath()),
             'object_provides': IFeedToShopTop.__identifier__,
             'sort_on': 'feed_order',
+            'sort_order': 'descending',
         }
         limit = getUtility(IRegistry)['slt.theme.articles_feed_on_top_page']
         if limit:
