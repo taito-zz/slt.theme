@@ -15,4 +15,9 @@
     <viewlet name="sll.basetheme.footer.info" />
     <viewlet name="sll.basetheme.footer.subfolders" />
   </hidden>
+  <hidden manager="collective.cart.shopping.billing.shipping.manager" skinname="*">
+    <viewlet name="collective.cart.shopping.billing.info" />
+    <viewlet name="collective.cart.shopping.shipping.info" />
+    <viewlet name="collective.cart.shopping.shipping.method" />
+  </hidden>
 </object>

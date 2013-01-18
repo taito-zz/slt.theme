@@ -278,11 +278,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'3')
-
-    def test_metadata__installed__plone_app_theming(self):
-        installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('plone.app.theming'))
+            setup.getVersionForProfile('profile-slt.theme:default'), u'4')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -322,24 +318,6 @@ class TestCase(IntegrationTestCase):
     def test_registry_record__slt_theme_articles_feed_on_top_page(self):
         record = self.get_record('slt.theme.articles_feed_on_top_page')
         self.assertEqual(record.value, 0)
-
-    def get_theme(self):
-        from plone.app.theming.interfaces import IThemeSettings
-        from plone.registry.interfaces import IRegistry
-        from zope.component import getUtility
-        return getUtility(IRegistry).forInterface(IThemeSettings)
-
-    def test_them__currentTheme(self):
-        theme = self.get_theme()
-        self.assertEqual(theme.currentTheme, u'slt.theme')
-
-    def test_theme__doctype(self):
-        theme = self.get_theme()
-        self.assertEqual(theme.doctype, '<!DOCTYPE html>')
-
-    def test_theme__enabled(self):
-        theme = self.get_theme()
-        self.assertTrue(theme.enabled)
 
     def get_ctype(self, name):
         """Returns content type info.
@@ -430,21 +408,6 @@ class TestCase(IntegrationTestCase):
         self.uninstall_package()
         resources = set(getToolByName(self.portal, 'portal_css').getResourceIds())
         self.assertNotIn('++theme++slt.theme/css/shop.css', resources)
-
-    def test_uninstall__metadata__installed__plone_app_theming(self):
-        self.uninstall_package()
-        installer = getToolByName(self.portal, 'portal_quickinstaller')
-        self.failUnless(installer.isProductInstalled('plone.app.theming'))
-
-    def test_uninstall__them__currentTheme(self):
-        self.uninstall_package()
-        theme = self.get_theme()
-        self.assertEqual(theme.currentTheme, u'slt.theme')
-
-    def test_unintall__theme__enabled(self):
-        self.uninstall_package()
-        theme = self.get_theme()
-        self.assertTrue(theme.enabled)
 
     def test_unintall__types__Plone_Site__immediate_view(self):
         self.uninstall_package()

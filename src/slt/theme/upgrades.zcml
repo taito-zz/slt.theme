@@ -33,4 +33,14 @@
     title="Reimport cssregistry"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="4"
+    handler="slt.theme.upgrades.reimport_viewlets"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="3"
+    title="Hide default viewlets from billing-and-shipping"
+    />
+
 </configure>

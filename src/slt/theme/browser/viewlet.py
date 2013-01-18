@@ -2,6 +2,7 @@ from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from collective.cart import shopping
+from collective.cart.shopping.browser.viewlet import BillingAndShippingViewletManager
 from collective.cart.shopping.interfaces import IArticleAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
@@ -23,6 +24,13 @@ from zope.interface import Interface
 grok.templatedir('viewlets')
 
 
+class BaseViewlet(grok.Viewlet):
+    """Base class for all the viewlet"""
+    grok.baseclass()
+    grok.layer(ISltThemeLayer)
+    grok.require('zope2.View')
+
+
 class ShopTopViewletManager(OrderedViewletManager, grok.ViewletManager):
     """Viewlet manager for shop top page."""
     grok.context(IPloneSiteRoot)
@@ -30,12 +38,10 @@ class ShopTopViewletManager(OrderedViewletManager, grok.ViewletManager):
     grok.name('slt.theme.shop.top.viewletmanager')
 
 
-class ShopTopArticlesViewlet(grok.Viewlet):
+class ShopTopArticlesViewlet(BaseViewlet):
     """Viewlet to show articles."""
     grok.context(IPloneSiteRoot)
-    grok.layer(ISltThemeLayer)
     grok.name('slt.theme.shop.top.articles')
-    grok.require('zope2.View')
     grok.template('shop-top-articles')
     grok.view(IViewView)
     grok.viewletmanager(ShopTopViewletManager)
@@ -78,12 +84,10 @@ class AddressesViewletManager(OrderedViewletManager, grok.ViewletManager):
     grok.name('slt.theme.addresses.viewletmanager')
 
 
-class AssressViewlet(grok.Viewlet):
+class AssressViewlet(BaseViewlet):
     """Viewlet to show address."""
     grok.context(Interface)
-    grok.layer(ISltThemeLayer)
     grok.name('slt.theme.address')
-    grok.require('zope2.View')
     grok.template('address')
     grok.viewletmanager(AddressesViewletManager)
 
@@ -170,16 +174,23 @@ class BaseCustomerInfoViewlet(grok.Viewlet):
         return 'form.buttons.Change{}Address'.format(self._name.capitalize())
 
 
-class BillingInfoViewlet(shopping.browser.viewlet.BillingInfoViewlet, BaseCustomerInfoViewlet):
-    grok.layer(ISltThemeLayer)
+# class BillingInfoViewlet(shopping.browser.viewlet.BillingInfoViewlet, BaseCustomerInfoViewlet):
+#     grok.layer(ISltThemeLayer)
 
-    _name = 'billing'
+#     _name = 'billing'
 
 
-class ShippingInfoViewlet(shopping.browser.viewlet.ShippingInfoViewlet, BaseCustomerInfoViewlet):
-    grok.layer(ISltThemeLayer)
+# class ShippingInfoViewlet(shopping.browser.viewlet.ShippingInfoViewlet, BaseCustomerInfoViewlet):
+#     grok.layer(ISltThemeLayer)
 
-    _name = 'shipping'
+#     _name = 'shipping'
+
+# class ShippingInfoViewlet(BaseViewlet):
+#     """Viewlet class to show form to update shipping address ."""
+#     grok.context(IPloneSiteRoot)
+#     grok.layer(ISltThemeLayer)
+#     grok.name('slt.theme.shipping.info')
+#     grok.viewletmanager(BillingAndShippingViewletManager)
 
 
 class CheckOutViewlet(shopping.browser.viewlet.CheckOutViewlet):

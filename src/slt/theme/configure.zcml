@@ -8,7 +8,6 @@
   xmlns="http://namespaces.zope.org/zope">
 
   <include package="five.pt"/>
-  <include package="plone.app.theming"/>
   <include package="sll.basetheme"/>
   <include package="sll.carousel"/>
   <include package="slt.content"/>
@@ -17,13 +16,6 @@
   <include file="upgrades.zcml"/>
   <grok:grok package="." />
   <i18n:registerTranslations directory="locales" />
-
-  <!-- Container for all static theme related files -->
-  <plone:static
-    directory="resources"
-    name="slt.theme"
-    type="theme"
-    />
 
   <genericsetup:registerProfile
     description="Installs the slt.theme package"
