@@ -1,6 +1,8 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from collective.cart.core.interfaces import IBaseAdapter
+from collective.cart.shopping.browser.base import Message
+from collective.cart.shopping.browser.template import BaseCheckoutView
 from collective.cart.shopping.interfaces import ICart
 from collective.cart.shopping.interfaces import ICartAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
@@ -14,6 +16,12 @@ from zope.component import getUtility
 
 
 grok.templatedir('templates')
+
+
+class BillingInfoView(BaseCheckoutView, Message):
+    """View for editing billing info which checkout"""
+    grok.name('billing-info')
+    grok.template('billing-info')
 
 
 class BaseView(grok.View):

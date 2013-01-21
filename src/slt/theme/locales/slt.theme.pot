@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-12-13 07:35+0000\n"
+"POT-Creation-Date: 2013-01-21 18:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,24 +21,48 @@ msgstr ""
 msgid "Add New Address"
 msgstr ""
 
-#: ./browser/viewlets/info.pt:19
-msgid "Change Info"
+#: ./browser/viewlets/shipping-info.pt:83
+msgid "Billing address is same as shipping address."
 msgstr ""
 
-#: ./browser/viewlets/info.pt:26
-msgid "Change to this address"
+#: ./browser/viewlet.py:269
+msgid "City is missing."
 msgstr ""
 
 #: ./profiles/default/actions.xml
 msgid "Feed to Shop Top"
 msgstr ""
 
+#: ./browser/viewlet.py:248
+msgid "First name is missing."
+msgstr ""
+
+#: ./browser/viewlet.py:259
+msgid "Invalid e-mail address."
+msgstr ""
+
+#: ./browser/viewlet.py:253
+msgid "Last name is missing."
+msgstr ""
+
 #: ./browser/templates/orders.pt:29
 msgid "Pcs"
 msgstr ""
 
+#: ./browser/viewlet.py:274
+msgid "Phone number is missing."
+msgstr ""
+
 #: ./userdataschema.py:24
 msgid "Registration Number"
+msgstr ""
+
+#: ./browser/viewlet.py:279
+msgid "Select one shipping method."
+msgstr ""
+
+#: ./browser/viewlet.py:264
+msgid "Street address is missing."
 msgstr ""
 
 #: ./browser/templates/orders.pt:30
@@ -47,10 +71,6 @@ msgstr ""
 
 #: ./profiles/default/actions.xml
 msgid "Unfeed from Shop Top"
-msgstr ""
-
-#: ./browser/viewlets/info.pt:49
-msgid "Update Info"
 msgstr ""
 
 #. Default: "Add commonly used addresses to make your order easier."

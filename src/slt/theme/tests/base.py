@@ -13,8 +13,15 @@ class SltThemeLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
-
+        # Required by Products.CMFPlone:plone-content to setup defaul plone site.
+        z2.installProduct(app, 'Products.PythonScripts')
         z2.installProduct(app, 'Products.ATCountryWidget')
+
+        # Load ZCML
+        import collective.cart.shopping
+        self.loadZCML(package=collective.cart.shopping)
+        z2.installProduct(app, 'collective.cart.shopping')
+        z2.installProduct(app, 'collective.cart.shipping')
 
         # Load ZCML
         import slt.theme
@@ -23,11 +30,15 @@ class SltThemeLayer(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         """Set up Plone."""
         # Install into Plone site using portal_setup
+
         self.applyProfile(portal, 'slt.theme:default')
 
     def tearDownZope(self, app):
         """Tear down Zope."""
-        z2.uninstallProduct(app, 'ATCountryWidget')
+        z2.uninstallProduct(app, 'collective.cart.shipping')
+        z2.uninstallProduct(app, 'collective.cart.shopping')
+        z2.uninstallProduct(app, 'Products.ATCountryWidget')
+        z2.uninstallProduct(app, 'Products.PythonScripts')
 
 
 FIXTURE = SltThemeLayer()
