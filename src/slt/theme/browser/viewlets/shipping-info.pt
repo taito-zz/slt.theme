@@ -1,12 +1,15 @@
 <section id="shipping-info" i18n:domain="collective.cart.shopping">
-  <form method="post" tal:attributes="action context/@@plone_context_state/current_base_url">
+  <form
+    method="post"
+    tal:attributes="action context/@@plone_context_state/current_base_url"
+    tal:define="info viewlet/shipping_info">
     <dl class="field">
       <dt>
         <tal:label i18n:translate="">First Name</tal:label>
         <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
       </dt>
       <dd>
-        <input name="first-name" type="text" required="required" />
+        <input name="first-name" type="text" required="required" tal:attributes="value info/first_name" />
       </dd>
     </dl>
     <dl class="field">
@@ -15,7 +18,7 @@
         <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
       </dt>
       <dd>
-        <input name="last-name" type="text" required="required" />
+        <input name="last-name" type="text" required="required" tal:attributes="value info/last_name" />
       </dd>
     </dl>
     <dl class="field">
@@ -23,7 +26,7 @@
         <tal:label i18n:translate="">Organization</tal:label>
       </dt>
       <dd>
-        <input name="organization" type="text" />
+        <input name="organization" type="text" tal:attributes="value info/organization" />
       </dd>
     </dl>
     <dl class="field">
@@ -31,7 +34,7 @@
         <tal:label i18n:translate="">VAT Number</tal:label>
       </dt>
       <dd>
-        <input name="vat" type="text" placeholder="FI" />
+        <input name="vat" type="text" placeholder="FI" tal:attributes="value info/vat" />
       </dd>
     </dl>
     <dl class="field">
@@ -40,7 +43,7 @@
         <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
       </dt>
       <dd>
-        <input name="email" type="email" required="required" />
+        <input name="email" type="email" required="required" tal:attributes="value info/email" />
       </dd>
     </dl>
     <dl class="field">
@@ -49,7 +52,7 @@
         <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
       </dt>
       <dd>
-        <input name="street" type="text" required="required" />
+        <input name="street" type="text" required="required" tal:attributes="value info/street" />
       </dd>
     </dl>
     <dl class="field">
@@ -57,7 +60,7 @@
         <tal:label i18n:translate="">Post Code</tal:label>
       </dt>
       <dd>
-        <input name="post" type="text" />
+        <input name="post" type="text" tal:attributes="value info/post" />
       </dd>
     </dl>
     <dl class="field">
@@ -66,7 +69,7 @@
         <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
       </dt>
       <dd>
-        <input name="city" type="text" required="required" />
+        <input name="city" type="text" required="required" tal:attributes="value info/city" />
       </dd>
     </dl>
     <dl class="field">
@@ -75,11 +78,15 @@
         <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
       </dt>
       <dd>
-        <input name="phone" type="tel" required="required" />
+        <input name="phone" type="tel" required="required" tal:attributes="value info/phone" />
       </dd>
     </dl>
     <p id="billing-same-as-shipping">
-      <input name="billing-same-as-shipping" value="same" type="checkbox" checked="checked" />
+      <input
+        name="billing-same-as-shipping"
+        tal:attributes="checked viewlet/billing_same_as_shipping"
+        type="checkbox"
+        value="same" />
       <span i18n:domain="slt.theme" i18n:translate="">Billing address is same as shipping address.</span>
     </p>
     <dl class="field shipping-methods" tal:condition="viewlet/shipping_methods">

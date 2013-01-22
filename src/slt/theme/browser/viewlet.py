@@ -181,17 +181,6 @@ class BaseCustomerInfoViewlet(grok.Viewlet):
         return 'form.buttons.Change{}Address'.format(self._name.capitalize())
 
 
-# class BillingInfoViewlet(shopping.browser.viewlet.BillingInfoViewlet, BaseCustomerInfoViewlet):
-#     grok.layer(ISltThemeLayer)
-
-#     _name = 'billing'
-
-
-# class ShippingInfoViewlet(shopping.browser.viewlet.ShippingInfoViewlet, BaseCustomerInfoViewlet):
-#     grok.layer(ISltThemeLayer)
-
-#     _name = 'shipping'
-
 class ShippingInfoViewlet(BaseViewlet):
     """Viewlet class to show form to update shipping address"""
     grok.context(IPloneSiteRoot)
@@ -200,12 +189,34 @@ class ShippingInfoViewlet(BaseViewlet):
     grok.template('shipping-info')
     grok.viewletmanager(BillingAndShippingViewletManager)
 
-    # def shipping_info(self):
-    #     shopping_site = IShoppingSite(self.context)
-    #     cart = shopping_site.cart
-    #     shipping = cart.get('shipping')
-    #     if shipping:
-    #         return
+    def shipping_info(self):
+        shopping_site = IShoppingSite(self.context)
+        cart = shopping_site.cart
+        shipping = cart.get('shipping')
+        if shipping:
+            return {
+                'first_name': shipping.first_name,
+                'last_name': shipping.last_name,
+                'organization': shipping.organization,
+                'vat': shipping.vat,
+                'email': shipping.email,
+                'street': shipping.street,
+                'post': shipping.post,
+                'city': shipping.city,
+                'phone': shipping.phone,
+            }
+        else:
+            return {
+                'first_name': '',
+                'last_name': '',
+                'organization': '',
+                'vat': '',
+                'email': '',
+                'street': '',
+                'post': '',
+                'city': '',
+                'phone': '',
+            }
 
     @property
     def shipping_methods(self):
@@ -232,6 +243,11 @@ class ShippingInfoViewlet(BaseViewlet):
     @property
     def single_shipping_method(self):
         return len(self.shipping_methods) == 1
+
+    def billing_same_as_shipping(self):
+        shopping_site = IShoppingSite(self.context)
+        cart = shopping_site.cart
+        return getattr(cart, 'billing_same_as_shipping', True)
 
     def update(self):
         form = self.request.form
@@ -314,22 +330,11 @@ class ShippingInfoViewlet(BaseViewlet):
                 if form.get('billing-same-as-shipping') == 'same':
                     cart.billing_same_as_shipping = True
                     url = '{}/@@order-confirmation'.format(shop_url)
-                    # return self.request.response.redirect(url)
                 else:
+                    cart.billing_same_as_shipping = False
                     url = '{}/@@billing-info'.format(shop_url)
 
                 return self.request.response.redirect(url)
-                    # billing = cart.get('billing')
-                    # if billing is None:
-                    #     billing = createContentInContainer(
-                    #         cart, 'collective.cart.shopping.CustomerInfo', id='billing',
-                    #         checkConstraints=False, **data)
-                    # else:
-                    #     for key in data:
-                    #         if getattr(billing, key) != data[key]:
-                    #             setattr(billing, key, data[key])
-
-                    # modified(billing)
 
 
 class CheckOutViewlet(shopping.browser.viewlet.CheckOutViewlet):
