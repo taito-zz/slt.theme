@@ -359,19 +359,16 @@ section#shipping-method-form .formControls {
 }
 
 /** billing-and-shipping **/
-/*section#shipping-info dl.field {
-
-}*/
-section#shipping-info dt,
-section#shipping-info dd {
+section#customer-info dt,
+section#customer-info dd {
   display: inline-block;
 }
-section#shipping-info dt {
+section#customer-info dt {
   font-size: 110%;
   font-weight: normal;
   width: 17%;
 }
-section#shipping-info dd {
+section#customer-info dd {
   margin: 0;
   width: 30%;
 }
@@ -379,21 +376,25 @@ dl.field span.required:after {
     color: #CA2464;
     content: "*";
 }
-section#shipping-info dd input {
+section#customer-info dd input {
   height: 1.8em;
   padding: 0 0.5em;
   width: 100%;
 }
-section#shipping-info p#billing-same-as-shipping {
+section#customer-info dd input[type="radio"] {
+  height: 1em;
+  width: auto;
+}
+section#customer-info p#billing-same-as-shipping {
   border-bottom: 1px solid #CCCCCC;
 }
-section#shipping-info p span {
+section#customer-info p span {
   margin: 0 0.5em;
 }
-section#shipping-info dl.shipping-methods dt {
+section#customer-info dl.shipping-methods dt {
   vertical-align: top;
 }
-section#shipping-info dl.shipping-methods dd {
+section#customer-info dl.shipping-methods dd {
   width: 80%;
 }
 

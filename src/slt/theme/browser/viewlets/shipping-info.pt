@@ -1,4 +1,4 @@
-<section id="shipping-info" i18n:domain="collective.cart.shopping">
+<section id="customer-info" i18n:domain="collective.cart.shopping">
   <form
     method="post"
     tal:attributes="action context/@@plone_context_state/current_base_url"
@@ -48,7 +48,7 @@
     </dl>
     <dl class="field">
       <dt>
-        <tal:label i18n:translate="">Street</tal:label>
+        <tal:label i18n:translate="">Street Address</tal:label>
         <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
       </dt>
       <dd>
