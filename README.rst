@@ -12,6 +12,7 @@ Change log
 
 - Updated color of article number within cart at portlet. [taito]
 - Added billing-info page for different infos against shipping info. [taito]
+- Updated color of link on footer. [taito]
 
 0.6.1 (2013-01-16)
 ==================

@@ -2,3 +2,6 @@
 #login-new-user strong {
     display: none;
 }
+#portal-footer-wrapper a:link, #portal-footer-wrapper a:visited {
+    color: #0084A7;
+}
