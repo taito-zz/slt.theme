@@ -334,6 +334,10 @@ class ShippingInfoViewlet(BaseViewlet):
                     cart.billing_same_as_shipping = False
                     url = '{}/@@billing-info'.format(shop_url)
 
+                cadapter = ICartAdapter(cart)
+                if cadapter.shipping_method.orig_uuid != shipping_method:
+                    cadapter.update_shipping_method(shipping_method)
+
                 return self.request.response.redirect(url)
 
 
