@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from abita.utils.utils import get_roles
 from slt.theme.tests.base import IntegrationTestCase
 
 
@@ -278,7 +279,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'4')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'5')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -318,6 +319,16 @@ class TestCase(IntegrationTestCase):
     def test_registry_record__slt_theme_articles_feed_on_top_page(self):
         record = self.get_record('slt.theme.articles_feed_on_top_page')
         self.assertEqual(record.value, 0)
+
+    def test_rolemap__slt_theme_Show_byline__rolesOfPermission(self):
+        permission = "slt.theme: Show byline"
+        self.assertEqual(get_roles(self.portal, permission), [
+            'Manager',
+            'Site Administrator'])
+
+    def test_rolemap__slt_theme_Show_byline__acquiredRolesAreUsedBy(self):
+        permission = "slt.theme: Show byline"
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
 
     def get_ctype(self, name):
         """Returns content type info.

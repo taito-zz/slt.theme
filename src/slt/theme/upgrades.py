@@ -27,3 +27,7 @@ def reimport_viewlets(context, logger=None):
 
 def reimport_cssregistry(context):
     reimport_profile(context, PROFILE_ID, 'cssregistry')
+
+
+def reimport_rolemap(context):
+    reimport_profile(context, PROFILE_ID, 'rolemap')

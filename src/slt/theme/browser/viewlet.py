@@ -1,4 +1,5 @@
 from Acquisition import aq_inner
+from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
@@ -12,6 +13,7 @@ from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
+from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.dexterity.utils import createContentInContainer
 from plone.registry.interfaces import IRegistry
@@ -29,6 +31,13 @@ from zope.lifecycleevent import modified
 
 
 grok.templatedir('viewlets')
+
+
+class DocumentBylineViewlet(BaseDocumentBylineViewlet):
+    """Document byline shown only for Site Admin and Manager."""
+    def show(self):
+        if _checkPermission('slt.theme: Show byline', self.context):
+            return True
 
 
 class BaseViewlet(grok.Viewlet):

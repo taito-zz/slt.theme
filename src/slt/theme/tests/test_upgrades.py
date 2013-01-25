@@ -1,5 +1,7 @@
 from slt.theme.tests.base import IntegrationTestCase
 
+import mock
+
 
 class TestCase(IntegrationTestCase):
     """TestCase for Plone setup."""
@@ -33,3 +35,15 @@ class TestCase(IntegrationTestCase):
         reimport_viewlets(self.portal)
 
         self.assertEqual(storage.getHidden(manager, skinname), (u'collective.cart.core.add.to.cart',))
+
+    @mock.patch('slt.theme.upgrades.reimport_profile')
+    def test_reimport_cssregistry(self, reimport_profile):
+        from slt.theme.upgrades import reimport_cssregistry
+        reimport_cssregistry(self.portal)
+        reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'cssregistry')
+
+    @mock.patch('slt.theme.upgrades.reimport_profile')
+    def test_reimport_rolemap(self, reimport_profile):
+        from slt.theme.upgrades import reimport_rolemap
+        reimport_rolemap(self.portal)
+        reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'rolemap')

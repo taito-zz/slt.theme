@@ -10,6 +10,11 @@
     title="slt.theme: Manage feed for shop top"
     />
 
+  <permission
+    id="slt.theme.ShowBylone"
+    title="slt.theme: Show byline"
+    />
+
   <browser:page
     attribute="feedable_to_shop_top"
     class=".miscellaneous.Miscellaneous"
@@ -89,5 +94,14 @@
   <browser:jbot
     directory="overrides"
     layer=".interfaces.ISltThemeLayer" />
+
+  <!-- Render the document byline -->
+  <browser:viewlet
+    class=".viewlet.DocumentBylineViewlet"
+    layer=".interfaces.ISltThemeLayer"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+    name="plone.belowcontenttitle.documentbyline"
+    permission="zope2.View"
+    />
 
 </configure>

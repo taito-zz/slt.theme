@@ -43,4 +43,14 @@
     title="Hide default viewlets from billing-and-shipping"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="5"
+    handler="slt.theme.upgrades.reimport_rolemap"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="4"
+    title="Show byline only for Site Admin and Manager roles."
+    />
+
 </configure>

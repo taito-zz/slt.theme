@@ -1,7 +1,19 @@
+/* portal status message */
+dl.portalMessage {
+    border-radius: 5px;
+}
+dl.portalMessage dt {
+    background-color: #CA2464;
+}
 #login-forgotten-password strong,
 #login-new-user strong {
     display: none;
 }
+/* content */
+#content .documentDescription, #content #description {
+    font: normal 1em "Helvetica Neue",Arial,FreeSans,sans-serif;
+}
+/* footer */
 #portal-footer-wrapper a:link, #portal-footer-wrapper a:visited {
     color: #0084A7;
 }

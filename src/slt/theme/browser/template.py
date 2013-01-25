@@ -18,6 +18,10 @@ from slt.theme.interfaces import ICollapsedOnLoad
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.lifecycleevent import modified
+from zope.i18nmessageid import MessageFactory
+
+
+PasswordResetToolMessageFactory = MessageFactory("passwordresettool")
 
 
 grok.templatedir('templates')
@@ -137,6 +141,18 @@ class BaseView(grok.View):
     grok.baseclass()
     grok.layer(ISltThemeLayer)
     grok.require('zope2.View')
+
+
+class PwresetFinishView(BaseView):
+    grok.context(IPloneSiteRoot)
+    grok.name('pwreset_finish')
+
+    def render(self):
+        portal_url = self.context.absolute_url()
+        message = PasswordResetToolMessageFactory('message_pwreset_success')
+        IStatusMessage(self.request).addStatusMessage(message, type='info')
+        url = '{0}/login_form?came_from={0}'.format(portal_url)
+        return self.request.response.redirect(url)
 
 
 class ShopView(BaseView):
