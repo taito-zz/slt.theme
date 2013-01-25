@@ -7,12 +7,13 @@ This package contains theme related files for SLT shopping site.
 Change log
 ----------
 
-0.7 (2013-01-xx)
+0.7 (2013-01-25)
 ================
 
 - Updated color of article number within cart at portlet. [taito]
 - Added billing-info page for different infos against shipping info. [taito]
 - Updated color of link on footer. [taito]
+- Show byline only to Manager and Site Admin roles. [taito]
 
 0.6.1 (2013-01-16)
 ==================

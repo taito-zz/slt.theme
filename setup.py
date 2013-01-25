@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='slt.theme',
-    version='0.6.1',
+    version='0.7',
     description="Turns plone them into SLT shopping theme.",
     long_description=open("README.rst").read(),
     classifiers=[
@@ -27,8 +27,6 @@ setup(
         'five.grok',
         'five.pt',
         'hexagonit.testing',
-        'plone.app.theming',
-        'plone.app.themingplugins',
         'setuptools',
         'sll.basetheme',
         'sll.carousel',
