@@ -47,3 +47,37 @@ class TestCase(IntegrationTestCase):
         from slt.theme.upgrades import reimport_rolemap
         reimport_rolemap(self.portal)
         reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'rolemap')
+
+    def test_clean_viewlets(self):
+        from zope.component import getUtility
+        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+        storage = getUtility(IViewletSettingsStorage)
+        manager = 'collective.cart.shopping.billing.shipping.manager'
+        skinname = 'Plone Default'
+        storage.setHidden(manager, skinname, [u'viewlet1'])
+        storage.setOrder(manager, skinname, [u'viewlet2'])
+
+        self.assertEqual(storage.getHidden(manager, skinname), (u'viewlet1',))
+        self.assertEqual(storage.getOrder(manager, skinname), (u'viewlet2',))
+
+        from slt.theme.upgrades import clean_viewlets
+        clean_viewlets(manager, skinname)
+
+        self.assertEqual(storage.getHidden(manager, skinname), ())
+        self.assertEqual(storage.getOrder(manager, skinname), (u'collective.cart.shopping.billing.info',))
+
+        skinname = u'*'
+        storage.setHidden(manager, skinname, [u'viewlet3'])
+        storage.setOrder(manager, skinname, [u'viewlet4'])
+
+        self.assertEqual(storage.getHidden(manager, skinname), (u'viewlet3',))
+        self.assertEqual(storage.getOrder(manager, skinname), (u'viewlet4',))
+
+    @mock.patch('slt.theme.upgrades.clean_viewlets')
+    def test_clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self, clean_viewlets):
+        from slt.theme.upgrades import clean_viewlets_from_collective_cart_shopping_billing_shipping_manager
+        clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self.portal)
+        self.assertEqual(clean_viewlets.call_args_list, [
+            [(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')],
+            [(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')],
+            [(u'collective.cart.shopping.billing.shipping.manager', u'*')]])

@@ -342,6 +342,12 @@ section#collective-cart-shopping-article section#articles td#representative-imag
   width: 15%;
 }
 
+/* Member Area */
+.portaltype-slt-content-memberarea .contentActions,
+.portaltype-collective-cart-shopping-customerinfo .contentActions {
+  display: none;
+}
+
 /* Add To Cart */
 section#add-to-cart {
   color: #666666;
@@ -385,9 +391,6 @@ section#customer-info dd input[type="radio"] {
   height: 1em;
   width: auto;
 }
-section#customer-info p#billing-same-as-shipping {
-  border-bottom: 1px solid #CCCCCC;
-}
 section#customer-info p span {
   margin: 0 0.5em;
 }
@@ -396,6 +399,13 @@ section#customer-info dl.shipping-methods dt {
 }
 section#customer-info dl.shipping-methods dd {
   width: 80%;
+}
+section#customer-info p#billing-and-shipping-same-or-different span {
+  font-size: 100%;
+  margin: 0;
+}
+section#customer-info p#billing-and-shipping-same-or-different select {
+  font-size: 80%;
 }
 
 /* Please log in */

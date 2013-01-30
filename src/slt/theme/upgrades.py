@@ -31,3 +31,21 @@ def reimport_cssregistry(context):
 
 def reimport_rolemap(context):
     reimport_profile(context, PROFILE_ID, 'rolemap')
+
+
+def clean_viewlets(manager, skinname):
+    from zope.component import getUtility
+    from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+    storage = getUtility(IViewletSettingsStorage)
+    message = 'Cleaning viewlets from {} for {}'.format(manager, skinname)
+    logger = logging.getLogger(__name__)
+    logger.info(message)
+    storage.setHidden(manager, skinname, [])
+    storage.setOrder(manager, skinname, [])
+
+
+def clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(context):
+    """Clean viewlets from collective.cart.shopping.billing.shipping.manager"""
+    clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')
+    clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')
+    clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'*')

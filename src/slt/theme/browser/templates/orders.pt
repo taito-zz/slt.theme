@@ -16,8 +16,11 @@
           tal:condition="not: view/carts">You haven't tried to order anything yet.</p>
 
         <dl tal:attributes="class view/class_collapsible" tal:repeat="cart view/carts">
-          <dt class="collapsibleHeader">
-            <span tal:replace="cart/id" />&#32;<span i18n:translate="" tal:replace="cart/state_title" />&#32;<span tal:replace="cart/modified" />&#32;<span tal:replace="cart/total" />
+          <dt class="collapsibleHeader" i18n:domain="slt.theme">
+            <span i18n:translate="order-number">Order Number: <tal:name i18n:name="order_number" tal:replace="cart/id" /></span>
+            <span i18n:translate="order-state">State: <tal:name i18n:name="order_state" tal:replace="cart/state_title" /></span>
+            <span i18n:translate="order-date">Date: <tal:name i18n:name="order_date" tal:replace="cart/modified" /></span>
+            <span i18n:translate="order-total">Total: <tal:name i18n:name="order-total" tal:replace="cart/total" /></span>
           </dt>
           <dd class="collapsibleContent">
             <table class="listing">

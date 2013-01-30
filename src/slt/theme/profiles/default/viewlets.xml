@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <object>
+  <order manager="collective.cart.shopping.billing.shipping.manager" skinname="*">
+    <viewlet name="collective.cart.shopping.billing.info" />
+  </order>
   <order manager="plone.portalfooter" skinname="*">
     <viewlet name="sll.basetheme.footer.message" />
   </order>
@@ -14,11 +17,5 @@
     <viewlet name="plone.site_actions" />
     <viewlet name="sll.basetheme.footer.info" />
     <viewlet name="sll.basetheme.footer.subfolders" />
-  </hidden>
-  <hidden manager="collective.cart.shopping.billing.shipping.manager" skinname="*">
-    <viewlet name="collective.cart.shopping.billing.info" />
-    <viewlet name="collective.cart.shopping.shipping.info" />
-    <viewlet name="collective.cart.shopping.shipping.method" />
-    <viewlet name="collective.cart.shopping.billing.shipping.method.checkout" />
   </hidden>
 </object>

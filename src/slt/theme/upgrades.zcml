@@ -53,4 +53,24 @@
     title="Show byline only for Site Admin and Manager roles."
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="6"
+    handler="slt.theme.upgrades.clean_viewlets_from_collective_cart_shopping_billing_shipping_manager"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="5"
+    title="Clean viewlets from collective.cart.shopping.billing.shipping.manager"
+    />
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="7"
+    handler="slt.theme.upgrades.reimport_viewlets"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="6"
+    title="Reimport viewlets"
+    />
+
 </configure>

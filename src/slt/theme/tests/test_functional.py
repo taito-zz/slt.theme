@@ -48,22 +48,22 @@ def setUp(self):
     # Set title and description for the plone site.
     portal.manage_changeProperties(title='Luonnonsuojelukauppa', description='Suomen Luonnonsuojelun Tuki Oy')
 
-    # Make portal shipping site.
-    from collective.cart.core.interfaces import IShoppingSiteRoot
-    from zope.interface import alsoProvides
-    alsoProvides(portal, IShoppingSiteRoot)
-    portal.reindexObject(idxs=['object_provides'])
+    # # Make portal shipping site.
+    # from collective.cart.core.interfaces import IShoppingSiteRoot
+    # from zope.interface import alsoProvides
+    # alsoProvides(portal, IShoppingSiteRoot)
+    # portal.reindexObject(idxs=['object_provides'])
 
-    from plone.dexterity.utils import createContentInContainer
-    from zope.lifecycleevent import modified
+    # from plone.dexterity.utils import createContentInContainer
+    # from zope.lifecycleevent import modified
 
-    container = createContentInContainer(portal, 'collective.cart.core.CartContainer',
-        id='cart-container', title='Cart Container', checkConstraints=False)
-    modified(container)
+    # container = createContentInContainer(portal, 'collective.cart.core.CartContainer',
+    #     id='cart-container', title='Cart Container', checkConstraints=False)
+    # modified(container)
 
-    container = createContentInContainer(portal, 'collective.cart.shipping.ShippingMethodContainer',
-        id='shipping-methods', title='Shipping Methods', checkConstraints=False)
-    modified(container)
+    # container = createContentInContainer(portal, 'collective.cart.shipping.ShippingMethodContainer',
+    #     id='shipping-methods', title='Shipping Methods', checkConstraints=False)
+    # modified(container)
 
     transaction.commit()
 
@@ -94,4 +94,4 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 
 
 def test_suite():
-    return unittest.TestSuite([DocFileSuite('functional/browser.txt'), DocFileSuite('functional/billing-and-shipping.txt')])
+    return unittest.TestSuite([DocFileSuite('functional/browser.txt')])
