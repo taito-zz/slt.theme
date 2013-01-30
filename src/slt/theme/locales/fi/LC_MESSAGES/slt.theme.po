@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-21 18:32+0000\n"
+"POT-Creation-Date: 2013-01-30 13:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,51 +18,19 @@ msgstr ""
 msgid "Add New Address"
 msgstr "Lisää uusi osoite"
 
-#: ./browser/viewlets/shipping-info.pt:83
-msgid "Billing address is same as shipping address."
-msgstr "Laskutusosoite on sama kuin toimitusosoite."
-
-#: ./browser/viewlet.py:269
-msgid "City is missing."
-msgstr "Kaupunki puuttuu."
-
 #: ./profiles/default/actions.xml
 msgid "Feed to Shop Top"
 msgstr "Syöte kaupan etusivulle"
 
-#: ./browser/viewlet.py:248
-msgid "First name is missing."
-msgstr "Etunimi puuttuu."
-
-#: ./browser/viewlet.py:259
-msgid "Invalid e-mail address."
-msgstr "Ei oikea sähköpostiosoite."
-
-#: ./browser/viewlet.py:253
-msgid "Last name is missing."
-msgstr "Sukunimi puuttuu."
-
-#: ./browser/templates/orders.pt:29
+#: ./browser/templates/orders.pt:32
 msgid "Pcs"
 msgstr "Kpl"
-
-#: ./browser/viewlet.py:274
-msgid "Phone number is missing."
-msgstr "Puhelinnumero puuttuu."
 
 #: ./userdataschema.py:24
 msgid "Registration Number"
 msgstr "Jäsennumero"
 
-#: ./browser/viewlet.py:279
-msgid "Select one shipping method."
-msgstr "Valitse yksi toimitustapa."
-
-#: ./browser/viewlet.py:264
-msgid "Street address is missing."
-msgstr "Katuosoite puuttuu."
-
-#: ./browser/templates/orders.pt:30
+#: ./browser/templates/orders.pt:33
 msgid "Subtotal"
 msgstr "Summa"
 
@@ -79,4 +47,24 @@ msgstr "Lisää oma osoitteet, että pääset tilaamaan helpommin."
 #: ./browser/register.py:8
 msgid "help_registration_form"
 msgstr "Verkkokaupasta ostaminen edellyttää rekisteröitymistä. Anna nimesi ja sähköpostiosoitteesi ja paina rekisteröidy. Tämän jälkeen antamaasi sähköpostiosoitteeseen tulee linkki, jota kautta pääset vahvistamaan rekisteröitymisesi ja täyttämään loput tarvittavat tiedot."
+
+#. Default: "Date: ${order_date}"
+#: ./browser/templates/orders.pt:22
+msgid "order-date"
+msgstr ""
+
+#. Default: "Order Number: ${order_number}"
+#: ./browser/templates/orders.pt:20
+msgid "order-number"
+msgstr ""
+
+#. Default: "State: ${order_state}"
+#: ./browser/templates/orders.pt:21
+msgid "order-state"
+msgstr ""
+
+#. Default: "Total: ${order-total}"
+#: ./browser/templates/orders.pt:23
+msgid "order-total"
+msgstr ""
 

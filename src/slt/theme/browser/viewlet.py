@@ -143,15 +143,3 @@ class CheckOutViewlet(shopping.browser.viewlet.CheckOutViewlet):
             # Update addresses.
             ICartAdapter(cart).add_address('billing')
         super(CheckOutViewlet, self).update()
-
-
-class BillingInfoViewlet(BaseBillingInfoViewlet):
-    grok.layer(ISltThemeLayer)
-
-    def update(self):
-        form = self.request.form
-        if form.get('form.to.confirmation') is not None:
-            if form.get('billing-and-shipping-same-or-different') == 'different':
-                cart = IShoppingSite(self.context).cart
-                ICartAdapter(cart).add_address('shipping')
-        super(BillingInfoViewlet, self).update()
