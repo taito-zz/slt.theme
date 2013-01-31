@@ -415,6 +415,24 @@ section.please-login p a {
   padding: 0.5em;
 }
 
+/* Orders */
+#content section.slt-theme-orders dt span {
+  background: #E3E3E3;
+  border-radius: 0.5em;
+  color: #0084A7;
+  padding: 0.25em 0.5em;
+}
+
+
+#content section.slt-theme-orders dd {
+  margin: 0 2em 1em;
+}
+
+section.slt-theme-orders section#cart-articles td {
+  vertical-align: top;
+}
+
+
 @media screen and (max-width: 900px) {
   .text p {
     display: none;

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-30 13:29+0000\n"
+"POT-Creation-Date: 2013-01-31 05:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,17 +22,13 @@ msgstr "Lisää uusi osoite"
 msgid "Feed to Shop Top"
 msgstr "Syöte kaupan etusivulle"
 
-#: ./browser/templates/orders.pt:32
-msgid "Pcs"
-msgstr "Kpl"
-
 #: ./userdataschema.py:24
 msgid "Registration Number"
 msgstr "Jäsennumero"
 
-#: ./browser/templates/orders.pt:33
-msgid "Subtotal"
-msgstr "Summa"
+#: ./browser/templates/orders.pt:20
+msgid "State:"
+msgstr "Tila:"
 
 #: ./profiles/default/actions.xml
 msgid "Unfeed from Shop Top"
@@ -48,23 +44,18 @@ msgstr "Lisää oma osoitteet, että pääset tilaamaan helpommin."
 msgid "help_registration_form"
 msgstr "Verkkokaupasta ostaminen edellyttää rekisteröitymistä. Anna nimesi ja sähköpostiosoitteesi ja paina rekisteröidy. Tämän jälkeen antamaasi sähköpostiosoitteeseen tulee linkki, jota kautta pääset vahvistamaan rekisteröitymisesi ja täyttämään loput tarvittavat tiedot."
 
+#. Default: "You haven't tried to order anything yet."
+#: ./browser/templates/orders.pt:12
+msgid "no_orders"
+msgstr "Ei ole tilausta."
+
 #. Default: "Date: ${order_date}"
-#: ./browser/templates/orders.pt:22
+#: ./browser/templates/orders.pt:23
 msgid "order-date"
-msgstr ""
+msgstr "Viimeksi päivitetty: ${order_date}"
 
 #. Default: "Order Number: ${order_number}"
-#: ./browser/templates/orders.pt:20
+#: ./browser/templates/orders.pt:18
 msgid "order-number"
-msgstr ""
-
-#. Default: "State: ${order_state}"
-#: ./browser/templates/orders.pt:21
-msgid "order-state"
-msgstr ""
-
-#. Default: "Total: ${order-total}"
-#: ./browser/templates/orders.pt:23
-msgid "order-total"
-msgstr ""
+msgstr "Tilausnumero: ${order_number}"
 

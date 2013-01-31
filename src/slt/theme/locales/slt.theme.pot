@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-30 13:29+0000\n"
+"POT-Creation-Date: 2013-01-31 05:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,16 +25,12 @@ msgstr ""
 msgid "Feed to Shop Top"
 msgstr ""
 
-#: ./browser/templates/orders.pt:32
-msgid "Pcs"
-msgstr ""
-
 #: ./userdataschema.py:24
 msgid "Registration Number"
 msgstr ""
 
-#: ./browser/templates/orders.pt:33
-msgid "Subtotal"
+#: ./browser/templates/orders.pt:20
+msgid "State:"
 msgstr ""
 
 #: ./profiles/default/actions.xml
@@ -51,23 +47,18 @@ msgstr ""
 msgid "help_registration_form"
 msgstr ""
 
+#. Default: "You haven't tried to order anything yet."
+#: ./browser/templates/orders.pt:12
+msgid "no_orders"
+msgstr ""
+
 #. Default: "Date: ${order_date}"
-#: ./browser/templates/orders.pt:22
+#: ./browser/templates/orders.pt:23
 msgid "order-date"
 msgstr ""
 
 #. Default: "Order Number: ${order_number}"
-#: ./browser/templates/orders.pt:20
+#: ./browser/templates/orders.pt:18
 msgid "order-number"
-msgstr ""
-
-#. Default: "State: ${order_state}"
-#: ./browser/templates/orders.pt:21
-msgid "order-state"
-msgstr ""
-
-#. Default: "Total: ${order-total}"
-#: ./browser/templates/orders.pt:23
-msgid "order-total"
 msgstr ""
 

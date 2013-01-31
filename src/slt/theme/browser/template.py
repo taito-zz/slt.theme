@@ -91,6 +91,7 @@ class OrderListView(BaseListView):
                 'articles': cart.articles,
                 'id': item.getId(),
                 'modified': base.localized_time(item),
+                'shipping_method': cart.shipping_method,
                 'state_title': workflow.getTitleForStateOnType(item.review_state(), item.portal_type),
                 'title': item.Title(),
                 'total': cart.total,

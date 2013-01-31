@@ -3,7 +3,6 @@ from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from collective.cart import shopping
-from collective.cart.shopping.browser.viewlet import BillingInfoViewlet as BaseBillingInfoViewlet
 from collective.cart.shopping.interfaces import IArticleAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
