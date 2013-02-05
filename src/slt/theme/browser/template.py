@@ -49,7 +49,9 @@ class ShopView(BaseView):
 
     def update(self):
         # Clear created carts older than 10 minutes after their final modification time.
-        ICartContainerAdapter(IShoppingSite(self.context).cart_container).clear_created(10)
+        container = IShoppingSite(self.context).cart_container
+        if container:
+            ICartContainerAdapter(container).clear_created(10)
 
 
 class BaseListView(BaseView):
