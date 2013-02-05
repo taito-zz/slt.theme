@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='slt.theme',
-    version='0.9',
+    version='0.10',
     description="Turns plone them into SLT shopping theme.",
     long_description=open("README.rst").read(),
     classifiers=[
@@ -23,7 +23,6 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Products.CMFPlone',
         'five.grok',
         'five.pt',
         'hexagonit.testing',
