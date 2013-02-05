@@ -19,8 +19,8 @@
             <span class="order-state">
               <tal:translate i18n:translate="">State:</tal:translate>
               <span i18n:domain="collective.cart.core" i18n:translate="" tal:replace="cart/state_title" /></span>
-            <span class="order-date" i18n:translate="order-date">
-              Date: <tal:name i18n:name="order_date" tal:replace="cart/modified" /></span>
+            <span class="order-updated" i18n:translate="order-updated">
+              Updated: <tal:name i18n:name="order_updated" tal:replace="cart/modified" /></span>
           </dt>
           <dd class="collapsibleContent">
             <section

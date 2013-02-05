@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-31 05:16+0000\n"
+"POT-Creation-Date: 2013-02-05 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,13 +49,13 @@ msgstr "Verkkokaupasta ostaminen edellyttää rekisteröitymistä. Anna nimesi j
 msgid "no_orders"
 msgstr "Ei ole tilausta."
 
-#. Default: "Date: ${order_date}"
-#: ./browser/templates/orders.pt:23
-msgid "order-date"
-msgstr "Viimeksi päivitetty: ${order_date}"
-
 #. Default: "Order Number: ${order_number}"
 #: ./browser/templates/orders.pt:18
 msgid "order-number"
 msgstr "Tilausnumero: ${order_number}"
+
+#. Default: "Updated: ${order_updated}"
+#: ./browser/templates/orders.pt:23
+msgid "order-updated"
+msgstr "Päivitetty: ${order_updated}"
 

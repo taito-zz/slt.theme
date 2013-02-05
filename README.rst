@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Change log
 ----------
 
+0.10 (2013-02-05)
+=================
+
+- Clear created but not processed cart when visiting shop top. [taito]
+
 0.9 (2013-01-31)
 ================
 
