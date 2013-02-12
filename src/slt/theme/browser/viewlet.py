@@ -113,18 +113,18 @@ class AssressViewlet(BaseViewlet):
         return result
 
     def _name(self, item):
-        return u'{} {}'.format(item.first_name, item.last_name)
+        return '{} {}'.format(item.first_name, item.last_name)
 
     def _organization(self, item):
         org = item.organization
         if org:
             if item.vat:
-                org = u'{} {}'.format(item.organization, item.vat)
+                org = '{} {}'.format(item.organization, item.vat)
             return org.strip()
 
     def _city(self, item):
         if item.post:
-            city = u'{} {}'.format(item.city, item.post)
+            city = '{} {}'.format(item.city, item.post)
             return city.strip()
 
     def class_collapsible(self):

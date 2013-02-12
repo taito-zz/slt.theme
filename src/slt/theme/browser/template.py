@@ -103,6 +103,8 @@ class OrderListView(BaseListView):
                 'title': item.Title(),
                 'total': cart.total,
                 'url': item.getURL(),
+                'billing_info': cart.billing_info,
+                'shipping_info': cart.shipping_info,
             })
         return res
 

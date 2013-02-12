@@ -416,7 +416,7 @@ section.please-login p a {
 }
 
 /* Orders */
-#content section.slt-theme-orders dt span {
+/*#content section.slt-theme-orders dt span {
   background: #E3E3E3;
   border-radius: 0.5em;
   color: #0084A7;
@@ -430,7 +430,7 @@ section.please-login p a {
 
 section.slt-theme-orders section#cart-articles td {
   vertical-align: top;
-}
+}*/
 
 
 @media screen and (max-width: 900px) {

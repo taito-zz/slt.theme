@@ -7,7 +7,7 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal">
   <body>
     <metal:main fill-slot="main">
-      <section class="collective-cart-shopping slt-theme-orders">
+      <section id="collective-cart-shopping-order">
         <h1 class="documentFirstHeading" i18n:domain="slt.policy" i18n:translate="">Orders</h1>
         <div class="documentDescription"
           i18n:translate="no_orders"
@@ -96,6 +96,28 @@
               <span i18n:translate="">Total</span>&nbsp;&nbsp;
               <span id="total" tal:content="cart/total" />
             </section>
+
+            <section id="addresses">
+              <dl>
+                <dt i18n:translate="">Billing Address</dt>
+                <dd tal:define="item cart/billing_info">
+                  <span tal:replace="item/first_name" />&nbsp;<span tal:replace="item/last_name" />&nbsp;&nbsp;<span tal:replace="item/organization" />&nbsp;&nbsp;<span tal:replace="item/vat" /><br />
+                  <span tal:replace="item/post" />&nbsp;<span tal:replace="item/city" /><br />
+                  <span tal:replace="item/phone" /><br />
+                  <span tal:replace="item/email" /><br />
+                </dd>
+              </dl>
+              <dl>
+                <dt i18n:translate="">Shipping Address</dt>
+                <dd tal:define="item cart/shipping_info">
+                  <span tal:replace="item/first_name" />&nbsp;<span tal:replace="item/last_name" />&nbsp;&nbsp;<span tal:replace="item/organization" />&nbsp;&nbsp;<span tal:replace="item/vat" /><br />
+                  <span tal:replace="item/post" />&nbsp;<span tal:replace="item/city" /><br />
+                  <span tal:replace="item/phone" /><br />
+                  <span tal:replace="item/email" /><br />
+                </dd>
+              </dl>
+            </section>
+
           </dd>
         </dl>
       </section>
