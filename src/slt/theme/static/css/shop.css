@@ -2,8 +2,7 @@
   vertical-align: top;
 }
 
-#collective-cart-shopping button,
-#collective-cart-shopping-article button {
+#collective-cart-shopping button {
   cursor: pointer;
 }
 
@@ -64,7 +63,6 @@ section.checkout-content {
   width: 90%;
 }
 
-section#collective-cart-shopping-article,
 section#cart-articles {
   border-bottom: 2px #cccccc solid;
 }
@@ -204,7 +202,6 @@ td.price-and-quantity {
 
 section#slt-theme-top-articles article img,
 section#collective-cart-shopping-article-container-articles article img,
-section#collective-cart-shopping-article section#articles td#representative-image img,
 section#articles-in-article td img,
 section#cart-articles td img {
   width: 100%;
@@ -282,41 +279,21 @@ section#collective-cart-shopping-article-container-articles article div.text p s
 }
 
 /*Article*/
-section#collective-cart-shopping-article {
-  width: 90%;
-}
 
 section#articles-in-article table {
   width: 100%;
 }
 
-section#collective-cart-shopping-article td {
-  vertical-align: top;
-}
-section#collective-cart-shopping-article td#information {
-  color: #666666;
-  padding: 0 1em;
-  width: 55%;
-}
-section#collective-cart-shopping-article td#information section#money p,
 section#discount p{
   margin: 0;
-}
-section#collective-cart-shopping-article td#information section#money {
-  float: left;
-  margin: 0 2em 0.5em 0;
-}
-section#collective-cart-shopping-article td#information section#discount p{
-  font-size: 0.8em;
-  line-height: 1.1em;
 }
 #normal-price{
   text-decoration: line-through;
 }
 
-td#article-images {
+/*td#article-images {
   width: 45%;
-}
+}*/
 
 #image_wrap {
   opacity: 1;
@@ -338,10 +315,6 @@ td#article-images {
   display: none;
 }
 
-section#collective-cart-shopping-article section#articles td#representative-image {
-  width: 15%;
-}
-
 /* Member Area */
 .portaltype-slt-content-memberarea .contentActions,
 .portaltype-collective-cart-shopping-customerinfo .contentActions {
@@ -349,10 +322,10 @@ section#collective-cart-shopping-article section#articles td#representative-imag
 }
 
 /* Add To Cart */
-section#add-to-cart {
+/*section#add-to-cart {
   color: #666666;
   line-height: 1.2em;
-}
+}*/
 
 #terms {
   height: 10em;

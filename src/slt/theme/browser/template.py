@@ -2,7 +2,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
 from collective.cart.core.interfaces import IBaseAdapter
-from collective.cart.core.interfaces import ICartContainerAdapter
 from collective.cart.shopping.interfaces import ICart
 from collective.cart.shopping.interfaces import ICartAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
@@ -47,11 +46,11 @@ class ShopView(BaseView):
     grok.name('slt-view')
     grok.template('shop')
 
-    def update(self):
-        # Clear created carts older than 10 minutes after their final modification time.
-        container = IShoppingSite(self.context).cart_container
-        if container:
-            ICartContainerAdapter(container).clear_created(10)
+    # def update(self):
+    #     # Clear created carts older than 10 minutes after their final modification time.
+    #     container = IShoppingSite(self.context).cart_container
+    #     if container:
+    #         ICartContainerAdapter(container).clear_created(10)
 
 
 class BaseListView(BaseView):

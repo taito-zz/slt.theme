@@ -4,14 +4,12 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from collective.cart import shopping
 from collective.cart.shopping.interfaces import IArticleAdapter
-from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
 from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
 from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.registry.interfaces import IRegistry
-from slt.content.interfaces import ICartAdapter
 from slt.theme.browser.interfaces import ISltThemeLayer
 from slt.theme.interfaces import ICollapsedOnLoad
 from slt.theme.interfaces import IFeedToShopTop
@@ -135,10 +133,10 @@ class CheckOutViewlet(shopping.browser.viewlet.CheckOutViewlet):
     """Viewlet to display check out buttons."""
     grok.layer(ISltThemeLayer)
 
-    def update(self):
-        form = self.request.form
-        if form.get('form.checkout') is not None:
-            cart = IShoppingSite(self.context).cart
-            # Update addresses.
-            ICartAdapter(cart).add_address('billing')
-        super(CheckOutViewlet, self).update()
+    # def update(self):
+    #     form = self.request.form
+    #     if form.get('form.checkout') is not None:
+    #         cart = IShoppingSite(self.context).cart
+    #         # Update addresses.
+    #         ICartAdapter(cart).add_address('billing')
+    #     super(CheckOutViewlet, self).update()

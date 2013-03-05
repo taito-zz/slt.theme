@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-02-05 17:34+0000\n"
+"POT-Creation-Date: 2013-03-05 17:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,10 @@ msgstr ""
 msgid "Add New Address"
 msgstr "Lisää uusi osoite"
 
+#: ./browser/templates/orders.pt:102
+msgid "Billing Address"
+msgstr "Laskutusosoite"
+
 #: ./profiles/default/actions.xml
 msgid "Feed to Shop Top"
 msgstr "Syöte kaupan etusivulle"
@@ -25,6 +29,10 @@ msgstr "Syöte kaupan etusivulle"
 #: ./userdataschema.py:24
 msgid "Registration Number"
 msgstr "Jäsennumero"
+
+#: ./browser/templates/orders.pt:111
+msgid "Shipping Address"
+msgstr "Toimitusosoite"
 
 #: ./browser/templates/orders.pt:20
 msgid "State:"
