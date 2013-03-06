@@ -1,0 +1,11 @@
+Log in as Manager::
+
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+    >>> browser.open('/@@personal-information')
+    >>> browser.getControl(name="form.fullname").value = 'First Läst'
+    >>> browser.getControl(name="form.email").value ='first.last@email.com'
+    >>> browser.getControl(name="form.registration_number").value = 'REGISTRÄTIÖN NUMBER'
+    >>> browser.getControl(name="form.actions.save").click()
+
+    >>> browser.openBrowser()

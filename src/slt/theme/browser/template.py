@@ -46,12 +46,6 @@ class ShopView(BaseView):
     grok.name('slt-view')
     grok.template('shop')
 
-    # def update(self):
-    #     # Clear created carts older than 10 minutes after their final modification time.
-    #     container = IShoppingSite(self.context).cart_container
-    #     if container:
-    #         ICartContainerAdapter(container).clear_created(10)
-
 
 class BaseListView(BaseView):
     """Base view for listing for MemberArea."""

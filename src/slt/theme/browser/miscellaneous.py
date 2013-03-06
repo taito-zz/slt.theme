@@ -9,12 +9,10 @@ from zope.lifecycleevent import modified
 class Miscellaneous(BrowserView):
 
     def feedable_to_shop_top(self):
-        return IArticle.providedBy(
-            self.context) and not IFeedToShopTop.providedBy(self.context)
+        return IArticle.providedBy(self.context) and not IFeedToShopTop.providedBy(self.context)
 
     def unfeedable_from_shop_top(self):
-        return IArticle.providedBy(
-            self.context) and IFeedToShopTop.providedBy(self.context)
+        return IArticle.providedBy(self.context) and IFeedToShopTop.providedBy(self.context)
 
     def feed_to_shop_top(self):
         alsoProvides(self.context, IFeedToShopTop)
