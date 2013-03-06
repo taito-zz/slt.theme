@@ -74,11 +74,11 @@
     permission="cmf.SetOwnProperties"
     />
 
-  <adapter
+  <!-- <adapter
     provides="slt.theme.userdataschema.IUserDataSchema"
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     factory="plone.app.users.browser.personalpreferences.UserDataPanelAdapter"
-    />
+    /> -->
 
   <!-- Registration form -->
   <browser:page

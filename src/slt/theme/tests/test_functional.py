@@ -1,3 +1,4 @@
+from Products.CMFCore.utils import getToolByName
 from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
@@ -47,6 +48,10 @@ def setUp(self):
 
     # Set title and description for the plone site.
     portal.manage_changeProperties(title='Luonnonsuojelukauppa', description='Suomen Luonnonsuojelun Tuki Oy')
+
+    regtool = getToolByName(portal, 'portal_registration')
+    regtool.addMember('member1', 'member1')
+    setRoles(portal, 'member1', ['Member'])
 
     transaction.commit()
 

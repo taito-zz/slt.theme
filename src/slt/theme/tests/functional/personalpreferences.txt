@@ -1,11 +1,40 @@
-Log in as Manager::
+Log in as member1::
 
-    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+    >>> browser.login('member1', 'member1')
+
+Got to @@personal-information::
 
     >>> browser.open('/@@personal-information')
-    >>> browser.getControl(name="form.fullname").value = 'First Läst'
-    >>> browser.getControl(name="form.email").value ='first.last@email.com'
-    >>> browser.getControl(name="form.registration_number").value = 'REGISTRÄTIÖN NUMBER'
-    >>> browser.getControl(name="form.actions.save").click()
 
-    >>> browser.openBrowser()
+    >>> 'Member One' in browser.contents
+    False
+    >>> 'member1@member.one' in browser.contents
+    False
+    >>> 'REGNUMBER' in browser.contents
+    False
+
+    >>> browser.getControl(name="form.fullname").value = 'Member Öne'
+    >>> browser.getControl(name="form.email").value = 'member1@member.one'
+    >>> browser.getControl(name="form.registration_number").value = 'R€GNUMB€R'
+    >>> browser.getControl(name="form.actions.save").click()
+    >>> browser.reload()
+
+    >>> 'Member Öne' in browser.contents
+    True
+    >>> 'member1@member.one' in browser.contents
+    True
+    >>> 'R€GNUMB€R' in browser.contents
+    True
+
+    >>> browser.getControl(name="form.fullname").value = ''
+    >>> browser.getControl(name="form.email").value = ''
+    >>> browser.getControl(name="form.registration_number").value = ''
+    >>> browser.getControl(name="form.actions.save").click()
+    >>> browser.reload()
+
+    >>> 'Member One' in browser.contents
+    False
+    >>> 'member1@member.one' in browser.contents
+    False
+    >>> 'REGNUMBER' in browser.contents
+    False
