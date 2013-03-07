@@ -4,13 +4,13 @@ from zope import schema
 from zope.interface import Interface
 
 
-# class UserDataSchemaProvider(userdataschema.UserDataSchemaProvider):
-#     """"""
+class UserDataSchemaProvider(userdataschema.UserDataSchemaProvider):
+    """"""
 
-#     def getSchema(self):
-#         """
-#         """
-#         return IUserDataSchema
+    def getSchema(self):
+        """
+        """
+        return IUserDataSchema
 
 
 class IUserDataSchema(Interface):
