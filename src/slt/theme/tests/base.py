@@ -1,18 +1,10 @@
-from Testing import ZopeTestCase as ztc
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import setRoles
-from plone.dexterity.utils import createContentInContainer
 from plone.testing import z2
-from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.interface import directlyProvides
-from zope.lifecycleevent import modified
-from zope.publisher.browser import TestRequest
+from collective.cart.shopping.tests.base import IntegrationTestCase as BaseIntegrationTestCase
 
-import mock
 import unittest
 
 
@@ -57,30 +49,10 @@ FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,), name="SltThemeLayer:Functional")
 
 
-class IntegrationTestCase(unittest.TestCase):
+class IntegrationTestCase(BaseIntegrationTestCase):
     """Base class for integration tests."""
 
     layer = INTEGRATION_TESTING
-
-    def setUp(self):
-        ztc.utils.setupCoreSessions(self.layer['app'])
-        self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-
-    def create_content(self, ctype, parent=None, **kwargs):
-        if parent is None:
-            parent = self.portal
-        content = createContentInContainer(parent, ctype, checkConstraints=False, **kwargs)
-        modified(content)
-        return content
-
-    def create_view(self, view, context=None):
-        if context is None:
-            context = self.portal
-        request = TestRequest()
-        directlyProvides(request, IAttributeAnnotatable)
-        request.set = mock.Mock()
-        return view(context, request)
 
 
 class FunctionalTestCase(unittest.TestCase):

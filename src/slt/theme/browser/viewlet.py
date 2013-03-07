@@ -1,9 +1,7 @@
-from Acquisition import aq_inner
 from Products.CMFCore.utils import _checkPermission
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from collective.cart import shopping
 from collective.cart.shopping.interfaces import IArticleAdapter
+from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.globals.interfaces import IViewView
@@ -23,9 +21,16 @@ grok.templatedir('viewlets')
 
 class DocumentBylineViewlet(BaseDocumentBylineViewlet):
     """Document byline shown only for Site Admin and Manager."""
+
     def show(self):
         if _checkPermission('slt.theme: Show byline', self.context):
             return True
+
+
+class BaseViewletManager(OrderedViewletManager, grok.ViewletManager):
+    """Base class for all the viewlet manager"""
+    grok.baseclass()
+    grok.layer(ISltThemeLayer)
 
 
 class BaseViewlet(grok.Viewlet):
@@ -35,10 +40,9 @@ class BaseViewlet(grok.Viewlet):
     grok.require('zope2.View')
 
 
-class ShopTopViewletManager(OrderedViewletManager, grok.ViewletManager):
+class ShopTopViewletManager(BaseViewletManager):
     """Viewlet manager for shop top page."""
     grok.context(IPloneSiteRoot)
-    grok.layer(ISltThemeLayer)
     grok.name('slt.theme.shop.top.viewletmanager')
 
 
@@ -50,24 +54,18 @@ class ShopTopArticlesViewlet(BaseViewlet):
     grok.view(IViewView)
     grok.viewletmanager(ShopTopViewletManager)
 
+    @property
     def articles(self):
-        context = aq_inner(self.context)
-        catalog = getToolByName(context, 'portal_catalog')
         query = {
-            'path': '/'.join(context.getPhysicalPath()),
-            'object_provides': IFeedToShopTop.__identifier__,
             'sort_on': 'feed_order',
             'sort_order': 'descending',
         }
         limit = getUtility(IRegistry)['slt.theme.articles_feed_on_top_page']
         if limit:
             query['sort_limit'] = limit
-            listing = IContentListing(catalog(query)[:limit])
-        else:
-            listing = IContentListing(catalog(query))
         res = []
-        context_state = getMultiAdapter((context, self.request), name=u'plone_context_state')
-        for item in listing:
+        context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        for item in IShoppingSite(self.context).get_content_listing(IFeedToShopTop, **query):
             style_class = 'normal'
             if IArticleAdapter(item.getObject()).discount_available:
                 style_class = 'discount'
@@ -81,20 +79,20 @@ class ShopTopArticlesViewlet(BaseViewlet):
         return res
 
 
-class AddressesViewletManager(OrderedViewletManager, grok.ViewletManager):
+class AddressesViewletManager(BaseViewletManager):
     """Viewlet manager for listing addresses."""
     grok.context(Interface)
-    grok.layer(ISltThemeLayer)
     grok.name('slt.theme.addresses.viewletmanager')
 
 
-class AssressViewlet(BaseViewlet):
+class AddressViewlet(BaseViewlet):
     """Viewlet to show address."""
     grok.context(Interface)
     grok.name('slt.theme.address')
     grok.template('address')
     grok.viewletmanager(AddressesViewletManager)
 
+    @property
     def addresses(self):
         result = []
         for item in IContentListing(self.view.addresses):
@@ -111,7 +109,7 @@ class AssressViewlet(BaseViewlet):
         return result
 
     def _name(self, item):
-        return '{} {}'.format(item.first_name, item.last_name)
+        return '{} {}'.format(item.first_name, item.last_name).strip()
 
     def _organization(self, item):
         org = item.organization
@@ -121,17 +119,19 @@ class AssressViewlet(BaseViewlet):
             return org.strip()
 
     def _city(self, item):
+        city = item.city
         if item.post:
-            city = '{} {}'.format(item.city, item.post)
-            return city.strip()
+            city = '{} {}'.format(city, item.post)
+        return city.strip()
 
+    @property
     def class_collapsible(self):
         return getUtility(ICollapsedOnLoad)(len(self.view.addresses) > 4)
 
 
-class CheckOutViewlet(shopping.browser.viewlet.CheckOutViewlet):
-    """Viewlet to display check out buttons."""
-    grok.layer(ISltThemeLayer)
+# class CheckOutViewlet(BaseCheckOutViewlet):
+#     """Viewlet to display check out buttons."""
+#     grok.layer(ISltThemeLayer)
 
     # def update(self):
     #     form = self.request.form
