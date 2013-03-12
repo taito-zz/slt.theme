@@ -40,7 +40,7 @@ msgstr "Tila:"
 
 #: ./profiles/default/actions.xml
 msgid "Unfeed from Shop Top"
-msgstr "Ota syöte poist kaupan etusivusta"
+msgstr "Ota syöte pois kaupan etusivusta"
 
 #. Default: "Add commonly used addresses to make your order easier."
 #: ./browser/templates/addresses.pt:13
