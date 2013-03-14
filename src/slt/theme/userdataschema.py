@@ -23,3 +23,8 @@ class IUserDataSchema(Interface):
     registration_number = schema.TextLine(
         title=_('Registration Number'),
         required=False)
+
+    allow_direct_marketing = schema.Bool(
+        title=_(u'allow_direct_marketing_title', default=u'Allow Direct Marketing'),
+        description=_(u'allow_direct_marketing_description', u'Check this box to allow direct marketing from this site.'),
+        required=False)

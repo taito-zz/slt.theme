@@ -16,6 +16,7 @@ Got to @@personal-information::
     >>> browser.getControl(name="form.fullname").value = 'Member Öne'
     >>> browser.getControl(name="form.email").value = 'member1@member.one'
     >>> browser.getControl(name="form.registration_number").value = 'R€GNUMB€R'
+    >>> browser.getControl(name="form.allow_direct_marketing").value = True
     >>> browser.getControl(name="form.actions.save").click()
     >>> browser.reload()
 
@@ -25,10 +26,14 @@ Got to @@personal-information::
     True
     >>> 'R€GNUMB€R' in browser.contents
     True
+    >>> print browser.bycss('.checkboxType')
+    --- 1 ---
+    <input class="checkboxType" checked id="form.allow_direct_marketing" name="form.allow_direct_marketing" type="checkbox" value="on">
 
     >>> browser.getControl(name="form.fullname").value = ''
     >>> browser.getControl(name="form.email").value = ''
     >>> browser.getControl(name="form.registration_number").value = ''
+    >>> browser.getControl(name="form.allow_direct_marketing").value = False
     >>> browser.getControl(name="form.actions.save").click()
     >>> browser.reload()
 
@@ -38,3 +43,6 @@ Got to @@personal-information::
     False
     >>> 'REGNUMBER' in browser.contents
     False
+    >>> print browser.bycss('.checkboxType')
+    --- 1 ---
+    <input class="checkboxType" id="form.allow_direct_marketing" name="form.allow_direct_marketing" type="checkbox" value="on">
