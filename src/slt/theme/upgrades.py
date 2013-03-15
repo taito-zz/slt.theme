@@ -29,6 +29,10 @@ def reimport_cssregistry(context):
     reimport_profile(context, PROFILE_ID, 'cssregistry')
 
 
+def reimport_memberdata_properties(context):
+    reimport_profile(context, PROFILE_ID, 'memberdata-properties')
+
+
 def reimport_rolemap(context):
     reimport_profile(context, PROFILE_ID, 'rolemap')
 

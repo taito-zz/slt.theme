@@ -73,4 +73,14 @@
     title="Reimport viewlets"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="8"
+    handler="slt.theme.upgrades.reimport_memberdata_properties"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="7"
+    title="Reimport memberdata_properties"
+    />
+
 </configure>

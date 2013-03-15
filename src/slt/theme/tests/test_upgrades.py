@@ -43,6 +43,12 @@ class TestCase(IntegrationTestCase):
         reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'cssregistry')
 
     @mock.patch('slt.theme.upgrades.reimport_profile')
+    def test_reimport_memberdata_properties(self, reimport_profile):
+        from slt.theme.upgrades import reimport_memberdata_properties
+        reimport_memberdata_properties(self.portal)
+        reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'memberdata-properties')
+
+    @mock.patch('slt.theme.upgrades.reimport_profile')
     def test_reimport_rolemap(self, reimport_profile):
         from slt.theme.upgrades import reimport_rolemap
         reimport_rolemap(self.portal)
