@@ -1,5 +1,8 @@
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
+from collective.cart.core.interfaces import IShoppingSiteRoot
+from collective.cart.shopping.browser.viewlet import ThanksBelowContentViewletManager
 from collective.cart.shopping.interfaces import IArticleAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
 from five import grok
@@ -38,6 +41,19 @@ class BaseViewlet(grok.Viewlet):
     grok.baseclass()
     grok.layer(ISltThemeLayer)
     grok.require('zope2.View')
+
+
+class LinkToOrderViewlet(BaseViewlet):
+    """Viewlet to show link to order in thanks view."""
+    grok.context(IShoppingSiteRoot)
+    grok.name('slt.theme.link.to.order')
+    grok.template('link-to-order')
+    grok.viewletmanager(ThanksBelowContentViewletManager)
+
+    @property
+    def order_url(self):
+        membership = getToolByName(self.context, 'portal_membership')
+        return '{}?order_number={}'.format(membership.getHomeUrl(), self.view.cart_id)
 
 
 class ShopTopViewletManager(BaseViewletManager):

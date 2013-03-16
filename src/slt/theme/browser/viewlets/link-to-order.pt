@@ -1,0 +1,7 @@
+<a
+  i18n:domain="slt.theme"
+  i18n:translate=""
+  id="order-to-link"
+  tal:attributes="href viewlet/order_url"
+  tal:condition="not: context/@@plone_portal_state/anonymous"
+  >Check the order</a>
