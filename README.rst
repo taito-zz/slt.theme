@@ -4,15 +4,15 @@ slt.theme
 
 This package contains theme related files for SLT shopping site.
 
-Change log
-----------
+Changelog
+---------
 
-
-0.14 (2013-03-xx)
+0.14 (2013-03-18)
 =================
 
 - Added field allow_direct_marketing to personal preferences. [taito]
 - Redirect to personal preferences after first time login. [taito]
+- Tested with Plone-4.2.5. [taito]
 
 0.13 (2013-03-12)
 =================
