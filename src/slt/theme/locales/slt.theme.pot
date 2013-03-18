@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-03-05 17:08+0000\n"
+"POT-Creation-Date: 2013-03-18 08:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr ""
 
 #: ./browser/templates/orders.pt:102
 msgid "Billing Address"
+msgstr ""
+
+#: ./browser/viewlets/link-to-order.pt:1
+msgid "Check the order"
 msgstr ""
 
 #: ./profiles/default/actions.xml
@@ -48,6 +52,21 @@ msgstr ""
 #. Default: "Add commonly used addresses to make your order easier."
 #: ./browser/templates/addresses.pt:13
 msgid "add_addresses"
+msgstr ""
+
+#. Default: "Check this box to allow direct marketing from this site."
+#: ./userdataschema.py:29
+msgid "allow_direct_marketing_description"
+msgstr ""
+
+#. Default: "Allow Direct Marketing"
+#: ./userdataschema.py:28
+msgid "allow_direct_marketing_title"
+msgstr ""
+
+#. Default: "Please fill your personal information."
+#: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_initial.cpy:17
+msgid "first-time-login"
 msgstr ""
 
 #. Default: "You need to be registered and logged in to buy products from our shopping site."
