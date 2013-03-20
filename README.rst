@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.16 (2013-03-20)
+=================
+
+- Applied localization for money. [taito]
+
 0.15 (2013-03-18)
 =================
 
