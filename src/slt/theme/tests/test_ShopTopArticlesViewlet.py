@@ -40,7 +40,7 @@ class ShopTopArticlesViewletTestCase(IntegrationTestCase):
         self.assertEqual(len(instance.articles), 0)
 
         article1 = self.create_content('collective.cart.core.Article', title='Ärticle1', description='Descriptiön of Ärticle1',
-            feed_order=2, money=self.money('12.40'), vat=self.decimal('24.00'))
+            feed_order=2, money=self.money('12.40'), vat_rate=self.decimal('24.00'))
         self.assertEqual(len(instance.articles), 0)
 
         from slt.theme.interfaces import IFeedToShopTop
@@ -49,7 +49,7 @@ class ShopTopArticlesViewletTestCase(IntegrationTestCase):
         self.assertEqual(len(instance.articles), 1)
 
         article2 = self.create_content('collective.cart.core.Article', title='Ärticle2', description='Descriptiön of Ärticle2',
-            feed_order=1, money=self.money('12.40'), vat=self.decimal('24.00'))
+            feed_order=1, money=self.money('12.40'), vat_rate=self.decimal('24.00'))
         alsoProvides(article2, IFeedToShopTop)
         modified(article2)
         self.assertEqual(len(instance.articles), 2)

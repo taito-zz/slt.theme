@@ -2,6 +2,11 @@ button {
     cursor: pointer;
 }
 
+/* Logo */
+#portal-logo img {
+    margin: 0.7em 0 0;
+}
+
 /* portal status message */
 dl.portalMessage {
     border-radius: 5px;
