@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.18.1 (2013-04-11)
+===================
+
+- Added upgrade step to enable only viewlet: sll.basetheme.footer.info to viewletmanager: plone.portalfooter. [taito]
+
 0.18 (2013-04-11)
 =================
 

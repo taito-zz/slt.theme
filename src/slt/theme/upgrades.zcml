@@ -86,9 +86,19 @@
   <genericsetup:upgradeStep
     description=""
     destination="9"
-    handler="slt.theme.upgrades.reimport_viewlets"
+    handler="slt.theme.upgrades.clean_viewlets_from_plone_portalfooter"
     profile="slt.theme:default"
     sortkey="1"
+    source="8"
+    title="Reimport viewlets"
+    />
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="9"
+    handler="slt.theme.upgrades.reimport_viewlets"
+    profile="slt.theme:default"
+    sortkey="2"
     source="8"
     title="Reimport viewlets"
     />
