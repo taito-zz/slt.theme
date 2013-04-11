@@ -18,7 +18,7 @@
 <span tal:omit-tag="" i18n:translate="order-number">Order Number: <span i18n:name="number" tal:replace="item/number" />
 </span>
 
-<span tal:condition="python:item.get('registration_number')" tal:omit-tag="" i18n:translate="registration-number">Registration Number: <span i18n:name="number" tal:replace="item/registration_number" />
+<span i18n:domain="slt.theme" tal:condition="python:item.get('registration_number')" tal:omit-tag="" i18n:translate="registration-number">Registration Number: <span i18n:name="number" tal:replace="item/registration_number" />
 </span>
 
 <span tal:omit-tag="" i18n:translate="">Billing Address</span>

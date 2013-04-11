@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-11 07:53+0000\n"
+"POT-Creation-Date: 2013-04-11 11:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,4 +87,9 @@ msgstr "Tilausnumero: ${order_number}"
 #: ./browser/templates/orders.pt:23
 msgid "order-updated"
 msgstr "Päivitetty: ${order_updated}"
+
+#. Default: "Registration Number: ${number}"
+#: ./browser/templates/order-mail-template.pt:21
+msgid "registration-number"
+msgstr "Jäsennumero: ${number}"
 
