@@ -22,7 +22,6 @@ from zope.component import getUtility
 from zope.interface import Interface
 
 
-
 grok.templatedir('viewlets')
 
 
@@ -155,6 +154,7 @@ class OrderConfirmationRegistrationNumberViewlet(BaseOrderConfirmationViewlet):
     grok.name('slt.theme.confirmation-registration-number')
     grok.template('registration-number')
 
+    @property
     def registration_number(self):
         cart = IShoppingSite(self.context).cart
         if cart:
