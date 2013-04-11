@@ -7,6 +7,12 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.18 (2013-04-11)
+=================
+
+- Moved test packages to extras_require. [taito]
+- Overrides templates to add registration number. [taito]
+
 0.17 (2013-03-26)
 =================
 

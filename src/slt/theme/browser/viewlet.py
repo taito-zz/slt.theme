@@ -1,7 +1,10 @@
-from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import _checkPermission
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from collective.cart.core.interfaces import IShoppingSiteRoot
+from collective.cart.shopping.browser.viewlet import BaseOrderConfirmationViewlet
+from collective.cart.shopping.browser.viewlet import BaseShoppingSiteRootViewlet
+from collective.cart.shopping.browser.viewlet import BillingAndShippingViewletManager
 from collective.cart.shopping.browser.viewlet import ThanksBelowContentViewletManager
 from collective.cart.shopping.interfaces import IArticleAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
@@ -17,6 +20,7 @@ from slt.theme.interfaces import IFeedToShopTop
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.interface import Interface
+
 
 
 grok.templatedir('viewlets')
@@ -145,14 +149,30 @@ class AddressViewlet(BaseViewlet):
         return getUtility(ICollapsedOnLoad)(len(self.view.addresses) > 4)
 
 
-# class CheckOutViewlet(BaseCheckOutViewlet):
-#     """Viewlet to display check out buttons."""
-#     grok.layer(ISltThemeLayer)
+class OrderConfirmationRegistrationNumberViewlet(BaseOrderConfirmationViewlet):
+    """Shipping Method Viewlet for OrderConfirmationViewletManager."""
+    grok.layer(ISltThemeLayer)
+    grok.name('slt.theme.confirmation-registration-number')
+    grok.template('registration-number')
 
-    # def update(self):
-    #     form = self.request.form
-    #     if form.get('form.checkout') is not None:
-    #         cart = IShoppingSite(self.context).cart
-    #         # Update addresses.
-    #         ICartAdapter(cart).add_address('billing')
-    #     super(CheckOutViewlet, self).update()
+    def registration_number(self):
+        cart = IShoppingSite(self.context).cart
+        if cart:
+            return cart.get('registration_number')
+
+
+class BillingAndShippingRegistrationNumberViewlet(BaseShoppingSiteRootViewlet):
+    """Viewlet class to show form to update billing address"""
+    grok.name('slt.theme.billing-and-shipping-registration-number')
+    grok.template('billing-and-shipping-registration-number')
+    grok.viewletmanager(BillingAndShippingViewletManager)
+
+    @property
+    def registration_number(self):
+        return IShoppingSite(self.context).cart.get('registration_number') or self.context.restrictedTraverse(
+            '@@plone_portal_state').member().getProperty('registration_number')
+
+    def update(self):
+        form = self.request.form
+        if form.get('form.to.confirmation') is not None and form.get('registration_number') is not None:
+            IShoppingSite(self.context).update_cart('registration_number', form.get('registration_number').strip())

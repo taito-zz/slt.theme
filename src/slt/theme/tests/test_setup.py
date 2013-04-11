@@ -285,7 +285,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'8')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'9')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -356,6 +356,33 @@ class TestCase(IntegrationTestCase):
     def test_types__Plone_Site__view_methods(self):
         ctype = self.get_ctype('Plone Site')
         self.assertEqual(ctype.view_methods, ('slt-view',))
+
+    def test_viewlets__order__collective_cart_shopping_billing_shipping_manager(self):
+        from zope.component import getUtility
+        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+        storage = getUtility(IViewletSettingsStorage)
+        manager = "collective.cart.shopping.billing.shipping.manager"
+        skinname = "*"
+        for viewlet in (
+            u'collective.cart.shopping.billing-and-shipping-billing-address',
+            u'collective.cart.shopping.billing-and-shipping-shipping-address',
+            u'collective.cart.shopping.billing-and-shipping-shipping-methods',
+            u'collective.cart.shopping.billing-and-shipping-check-out'):
+            self.assertIn(viewlet, storage.getOrder(manager, skinname))
+
+    def test_viewlets__order__collective_cart_shopping_order_confirmation_manager(self):
+        from zope.component import getUtility
+        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+        storage = getUtility(IViewletSettingsStorage)
+        manager = "collective.cart.shopping.order.confirmation.manager"
+        skinname = "*"
+        for viewlet in (
+            u'collective.cart.shopping.confirmation-articles',
+            u'collective.cart.shopping.confirmation-shipping-method',
+            u'slt.theme.confirmation-registration-number',
+            u'collective.cart.shopping.confirmation-total',
+            u'collective.cart.shopping.confirmation-checkout'):
+            self.assertIn(viewlet, storage.getOrder(manager, skinname))
 
     def test_viewlets__hidden__plone_portalfooter(self):
         from zope.component import getUtility

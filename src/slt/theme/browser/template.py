@@ -1,6 +1,8 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.statusmessages.interfaces import IStatusMessage
+from collective.cart.shopping.browser.template import ToCustomerOrderMailTemplateView as BaseToCustomerOrderMailTemplateView
+from collective.cart.shopping.browser.template import ToShopOrderMailTemplateView as BaseToShopOrderMailTemplateView
 from collective.cart.shopping.interfaces import ICart
 from collective.cart.shopping.interfaces import ICartAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
@@ -97,6 +99,7 @@ class OrdersView(BaseMemberAreaView):
                 'url': item.getURL(),
                 'billing_info': cart.get_address('billing'),
                 'shipping_info': cart.get_address('shipping'),
+                'registration_number': obj.registration_number,
             })
         return res
 
@@ -106,3 +109,15 @@ class OrdersView(BaseMemberAreaView):
         if len(self.carts) == 1:
             return utility(collapsed=False)
         return utility()
+
+
+class ToCustomerOrderMailTemplateView(BaseToCustomerOrderMailTemplateView):
+    """Mail template used to send e-mail to customer"""
+    grok.layer(ISltThemeLayer)
+    grok.template('order-mail-template')
+
+
+class ToShopOrderMailTemplateView(BaseToShopOrderMailTemplateView):
+    """Mail template used to send email to shop"""
+    grok.layer(ISltThemeLayer)
+    grok.template('order-mail-template')

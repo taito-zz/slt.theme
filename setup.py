@@ -25,13 +25,13 @@ setup(
     install_requires=[
         'five.grok',
         'five.pt',
-        'hexagonit.testing',
         'setuptools',
         'sll.basetheme',
         'sll.carousel',
         'slt.content',
         'slt.portlet',
         'z3c.jbot'],
+    extras_require={'test': ['hexagonit.testing']},
     entry_points="""
     # -*- Entry points: -*-
 

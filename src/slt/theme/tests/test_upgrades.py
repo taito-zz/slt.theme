@@ -70,7 +70,12 @@ class TestCase(IntegrationTestCase):
         clean_viewlets(manager, skinname)
 
         self.assertEqual(storage.getHidden(manager, skinname), ())
-        self.assertEqual(storage.getOrder(manager, skinname), (u'collective.cart.shopping.billing.info',))
+        self.assertEqual(storage.getOrder(manager, skinname), (
+            u'collective.cart.shopping.billing-and-shipping-billing-address',
+            u'collective.cart.shopping.billing-and-shipping-shipping-address',
+            u'collective.cart.shopping.billing-and-shipping-shipping-methods',
+            u'slt.theme.billing-and-shipping-registration-number',
+            u'collective.cart.shopping.billing-and-shipping-check-out'))
 
         skinname = u'*'
         storage.setHidden(manager, skinname, [u'viewlet3'])
