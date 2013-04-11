@@ -92,3 +92,12 @@ class TestCase(IntegrationTestCase):
             [(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')],
             [(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')],
             [(u'collective.cart.shopping.billing.shipping.manager', u'*')]])
+
+    @mock.patch('slt.theme.upgrades.clean_viewlets')
+    def test_clean_viewlets_from_plone_portalfooter(self, clean_viewlets):
+        from slt.theme.upgrades import clean_viewlets_from_plone_portalfooter
+        clean_viewlets_from_plone_portalfooter(self.portal)
+        self.assertEqual(clean_viewlets.call_args_list, [
+            [(u'plone.portalfooter', u'Plone Default')],
+            [(u'plone.portalfooter', u'Sunburst Theme')],
+            [(u'plone.portalfooter', u'*')]])
