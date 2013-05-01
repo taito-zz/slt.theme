@@ -1,6 +1,6 @@
-<section id="addresses" i18n:domain="plone">
-  <tal:block tal:repeat="item viewlet/addresses">
-    <dl tal:attributes="class viewlet/class_collapsible">
+<section id="address-listing" i18n:domain="plone">
+  <tal:block tal:repeat="item view/addresses">
+    <dl tal:attributes="class view/class_collapsible">
       <dt class="collapsibleHeader">
         <span tal:replace="item/name" />
       </dt>

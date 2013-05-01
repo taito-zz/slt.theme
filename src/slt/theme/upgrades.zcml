@@ -53,7 +53,7 @@
     title="Show byline only for Site Admin and Manager roles."
     />
 
-  <genericsetup:upgradeStep
+  <!-- <genericsetup:upgradeStep
     description=""
     destination="6"
     handler="slt.theme.upgrades.clean_viewlets_from_collective_cart_shopping_billing_shipping_manager"
@@ -61,7 +61,7 @@
     sortkey="1"
     source="5"
     title="Clean viewlets from collective.cart.shopping.billing.shipping.manager"
-    />
+    /> -->
 
   <genericsetup:upgradeStep
     description=""
@@ -83,7 +83,7 @@
     title="Reimport memberdata_properties"
     />
 
-  <genericsetup:upgradeStep
+  <!-- <genericsetup:upgradeStep
     description=""
     destination="9"
     handler="slt.theme.upgrades.clean_viewlets_from_plone_portalfooter"
@@ -91,7 +91,7 @@
     sortkey="1"
     source="8"
     title="Reimport viewlets"
-    />
+    /> -->
 
   <genericsetup:upgradeStep
     description=""

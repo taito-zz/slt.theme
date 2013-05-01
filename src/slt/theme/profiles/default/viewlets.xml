@@ -1,28 +1,26 @@
 <?xml version="1.0"?>
 <object>
-  <order manager="collective.cart.shopping.billing.shipping.manager" skinname="*">
-    <viewlet name="collective.cart.shopping.billing-and-shipping-billing-address" />
-    <viewlet name="collective.cart.shopping.billing-and-shipping-shipping-address" />
-    <viewlet name="collective.cart.shopping.billing-and-shipping-shipping-methods" />
-    <viewlet name="slt.theme.billing-and-shipping-registration-number" />
-    <viewlet name="collective.cart.shopping.billing-and-shipping-check-out" />
+
+  <order manager="collective.base.viewlet-manager.base-form" skinname="*">
+    <!-- @@billing-and-shipping -->
+    <viewlet
+      insert-after="collective.cart.shopping.viewlet.billing-and-shipping-shipping-methods"
+      name="slt.theme.viewlet.billing-and-shipping-registration-number" />
+    <!-- @@order-confirmation -->
+    <viewlet
+      insert-after="collective.cart.shopping.viewlet.order-confirmation-total"
+      name="slt.theme.viewlet.order-confirmation-registration-number" />
+    <!-- @@address-listing -->
+    <viewlet name="slt.theme.viewlet.add-address" />
+    <viewlet name="slt.theme.viewlet.address-listing" />
+    <!-- @@order-listing -->
+    <viewlet name="slt.theme.viewlet.order-listing" />
   </order>
-  <order manager="collective.cart.shopping.order.confirmation.manager" skinname="*">
-    <viewlet name="collective.cart.shopping.confirmation-articles" />
-    <viewlet name="collective.cart.shopping.confirmation-shipping-method" />
-    <viewlet name="collective.cart.shopping.confirmation-total" />
-    <viewlet name="slt.theme.confirmation-registration-number" />
-    <viewlet name="collective.cart.shopping.confirmation-checkout" />
-  </order>
+
   <order manager="plone.portalfooter" skinname="*">
     <viewlet name="sll.basetheme.footer.info" />
   </order>
-  <hidden manager="plone.abovecontenttitle" skinname="*">
-    <viewlet name="collective.cart.core.add.to.cart" />
-  </hidden>
-  <hidden manager="plone.belowcontenttitle" skinname="*">
-    <viewlet name="collective.cart.core.add.to.cart" />
-  </hidden>
+
   <hidden manager="plone.portalfooter" skinname="*">
     <viewlet name="plone.colophon" />
     <viewlet name="plone.footer" />
@@ -30,4 +28,5 @@
     <viewlet name="sll.basetheme.footer.message" />
     <viewlet name="sll.basetheme.footer.subfolders" />
   </hidden>
+
 </object>

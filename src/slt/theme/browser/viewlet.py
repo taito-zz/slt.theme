@@ -1,80 +1,63 @@
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
-from collective.cart.core.interfaces import IShoppingSiteRoot
-from collective.cart.shopping.browser.viewlet import BaseOrderConfirmationViewlet
-from collective.cart.shopping.browser.viewlet import BaseShoppingSiteRootViewlet
-from collective.cart.shopping.browser.viewlet import BillingAndShippingViewletManager
-from collective.cart.shopping.browser.viewlet import ThanksBelowContentViewletManager
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.cart.shopping.interfaces import IArticleAdapter
+from collective.cart.shopping.interfaces import IOrderAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
-from five import grok
 from plone.app.contentlisting.interfaces import IContentListing
-from plone.app.layout.globals.interfaces import IViewView
+from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
-from plone.app.viewletmanager.manager import OrderedViewletManager
 from plone.registry.interfaces import IRegistry
-from slt.theme.browser.interfaces import ISltThemeLayer
+from slt.content.interfaces import IOrder
+from slt.theme.browser.interfaces import IAddAddressViewlet
+from slt.theme.browser.interfaces import IAddressListingViewlet
+from slt.theme.browser.interfaces import IBillingAndShippingRegistrationNumberViewlet
+from slt.theme.browser.interfaces import ILinkToOrderViewlet
+from slt.theme.browser.interfaces import IOrderConfirmationRegistrationNumberViewlet
+from slt.theme.browser.interfaces import IOrderListingViewlet
+from slt.theme.browser.interfaces import IShopArticleListingViewlet
 from slt.theme.interfaces import ICollapsedOnLoad
 from slt.theme.interfaces import IFeedToShopTop
-from zope.component import getMultiAdapter
 from zope.component import getUtility
-from zope.interface import Interface
-
-
-grok.templatedir('viewlets')
+from zope.interface import implements
 
 
 class DocumentBylineViewlet(BaseDocumentBylineViewlet):
-    """Document byline shown only for Site Admin and Manager."""
+    """Global viewlet
+    Shows document byline only for roles: Site Admin and Manager
+    """
 
     def show(self):
         if _checkPermission('slt.theme: Show byline', self.context):
             return True
 
 
-class BaseViewletManager(OrderedViewletManager, grok.ViewletManager):
-    """Base class for all the viewlet manager"""
-    grok.baseclass()
-    grok.layer(ISltThemeLayer)
+class LinkToOrderViewlet(ViewletBase):
+    """Viewlet for view: @@thanks
+    Shows link to order
+    """
+    implements(ILinkToOrderViewlet)
+    index = ViewPageTemplateFile('viewlets/link-to-order.pt')
 
-
-class BaseViewlet(grok.Viewlet):
-    """Base class for all the viewlet"""
-    grok.baseclass()
-    grok.layer(ISltThemeLayer)
-    grok.require('zope2.View')
-
-
-class LinkToOrderViewlet(BaseViewlet):
-    """Viewlet to show link to order in thanks view."""
-    grok.context(IShoppingSiteRoot)
-    grok.name('slt.theme.link.to.order')
-    grok.template('link-to-order')
-    grok.viewletmanager(ThanksBelowContentViewletManager)
-
-    @property
     def order_url(self):
-        membership = getToolByName(self.context, 'portal_membership')
-        return '{}?order_number={}'.format(membership.getHomeUrl(), self.view.cart_id)
+        """Returns URL for order
+
+        :rtype: str
+        """
+        return IShoppingSite(self.context).link_to_order(order_id=self.view.order_id)
 
 
-class ShopTopViewletManager(BaseViewletManager):
-    """Viewlet manager for shop top page."""
-    grok.context(IPloneSiteRoot)
-    grok.name('slt.theme.shop.top.viewletmanager')
+class ShopArticleListingViewlet(ViewletBase):
+    """Viewlet for view: @@slt-view
+    Shows article listing"""
+    implements(IShopArticleListingViewlet)
+    index = ViewPageTemplateFile('viewlets/shop-article-listing.pt')
 
-
-class ShopTopArticlesViewlet(BaseViewlet):
-    """Viewlet to show articles."""
-    grok.context(IPloneSiteRoot)
-    grok.name('slt.theme.shop.top.articles')
-    grok.template('shop-top-articles')
-    grok.view(IViewView)
-    grok.viewletmanager(ShopTopViewletManager)
-
-    @property
     def articles(self):
+        """Returns list of dictionary of articles
+
+        :rtype: list
+        """
         query = {
             'sort_on': 'feed_order',
             'sort_order': 'descending',
@@ -83,10 +66,10 @@ class ShopTopArticlesViewlet(BaseViewlet):
         if limit:
             query['sort_limit'] = limit
         res = []
-        context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
+        context_state = self.context.restrictedTraverse('@@plone_context_state')
         for item in IShoppingSite(self.context).get_content_listing(IFeedToShopTop, **query):
             style_class = 'normal'
-            if IArticleAdapter(item.getObject()).discount_available:
+            if IArticleAdapter(item.getObject()).discount_available():
                 style_class = 'discount'
             res.append({
                 'description': item.Description(),
@@ -98,23 +81,22 @@ class ShopTopArticlesViewlet(BaseViewlet):
         return res
 
 
-class AddressesViewletManager(BaseViewletManager):
-    """Viewlet manager for listing addresses."""
-    grok.context(Interface)
-    grok.name('slt.theme.addresses.viewletmanager')
+class AddAddressViewlet(ViewletBase):
+    """Viewlet for view: @@address-listing
+    Shows button to add new address"""
+    implements(IAddAddressViewlet)
+    index = ViewPageTemplateFile('viewlets/add-address.pt')
 
 
-class AddressViewlet(BaseViewlet):
-    """Viewlet to show address."""
-    grok.context(Interface)
-    grok.name('slt.theme.address')
-    grok.template('address')
-    grok.viewletmanager(AddressesViewletManager)
+class AddressListingViewlet(ViewletBase):
+    """Viewlet for view: @@address-listing
+    Shows address listing"""
+    implements(IAddressListingViewlet)
+    index = ViewPageTemplateFile('viewlets/address-listing.pt')
 
-    @property
     def addresses(self):
         result = []
-        for item in IContentListing(self.view.addresses):
+        for item in IContentListing(self.view.addresses()):
             res = {
                 'name': self._name(item),
                 'organization': self._organization(item),
@@ -143,36 +125,96 @@ class AddressViewlet(BaseViewlet):
             city = '{} {}'.format(city, item.post)
         return city.strip()
 
-    @property
     def class_collapsible(self):
-        return getUtility(ICollapsedOnLoad)(len(self.view.addresses) > 4)
+        return getUtility(ICollapsedOnLoad)(len(self.view.addresses()) > 4)
 
 
-class OrderConfirmationRegistrationNumberViewlet(BaseOrderConfirmationViewlet):
-    """Shipping Method Viewlet for OrderConfirmationViewletManager."""
-    grok.layer(ISltThemeLayer)
-    grok.name('slt.theme.confirmation-registration-number')
-    grok.template('registration-number')
+class OrderListingViewlet(ViewletBase):
+    """Viewlet for view: @@order-listing
+    Shows order listing"""
+    implements(IOrderListingViewlet)
+    index = ViewPageTemplateFile('viewlets/order-listing.pt')
 
-    @property
+    def orders(self):
+        """Returns list of dictionary of orders
+
+        :rtype: list
+        """
+        shopping_site = IShoppingSite(self.context)
+        res = []
+        creator = getToolByName(self.context, 'portal_membership').getAuthenticatedMember().id
+        workflow = getToolByName(self.context, 'portal_workflow')
+        query = {
+            'Creator': creator,
+            'path': shopping_site.shop_path(),
+            'sort_on': 'modified',
+            'sort_order': 'descending',
+        }
+        order_number = self.request.form.get('order_number')
+        if order_number:
+            query['id'] = order_number
+        toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
+        for item in shopping_site.get_content_listing(IOrder, **query):
+            obj = item.getObject()
+            order = IOrderAdapter(obj)
+            res.append({
+                'articles': order.articles(),
+                'id': item.getId(),
+                'modified': toLocalizedTime(item.modified),
+                'shipping_method': order.locale_shipping_method(),
+                'state_title': workflow.getTitleForStateOnType(item.review_state(), item.portal_type),
+                'title': item.Title(),
+                'total': shopping_site.format_money(order.total()),
+                'url': item.getURL(),
+                'billing_info': order.get_address('billing'),
+                'shipping_info': order.get_address('shipping'),
+                'registration_number': obj.registration_number,
+            })
+        return res
+
+    def class_collapsible(self):
+        """Returns styling values
+
+        :rtype: str
+        """
+        utility = getUtility(ICollapsedOnLoad)
+        if len(self.orders()) == 1:
+            return utility(collapsed=False)
+        return utility()
+
+
+class BillingAndShippingRegistrationNumberViewlet(ViewletBase):
+    """Viewlet for view: @@billing-and-shipping
+    Shows form to update billing address"""
+    implements(IBillingAndShippingRegistrationNumberViewlet)
+    index = ViewPageTemplateFile('viewlets/billing-and-shipping-registration-number.pt')
+
     def registration_number(self):
-        cart = IShoppingSite(self.context).cart
-        if cart:
-            return cart.get('registration_number')
+        """Returns registration number
 
-
-class BillingAndShippingRegistrationNumberViewlet(BaseShoppingSiteRootViewlet):
-    """Viewlet class to show form to update billing address"""
-    grok.name('slt.theme.billing-and-shipping-registration-number')
-    grok.template('billing-and-shipping-registration-number')
-    grok.viewletmanager(BillingAndShippingViewletManager)
-
-    @property
-    def registration_number(self):
-        return IShoppingSite(self.context).cart.get('registration_number') or self.context.restrictedTraverse(
+        :rtype: str
+        """
+        return IShoppingSite(self.context).cart().get('registration_number') or self.context.restrictedTraverse(
             '@@plone_portal_state').member().getProperty('registration_number')
 
     def update(self):
         form = self.request.form
-        if form.get('form.to.confirmation') is not None and form.get('registration_number') is not None:
-            IShoppingSite(self.context).update_cart('registration_number', form.get('registration_number').strip())
+        registration_number = form.get('registration_number')
+        if form.get('form.buttons.CheckOut') is not None and registration_number is not None:
+            IShoppingSite(self.context).update_cart('registration_number', registration_number.strip())
+
+
+class OrderConfirmationRegistrationNumberViewlet(ViewletBase):
+    """Viewlet for view: @@order-confirmation
+    Shows registration number"""
+    implements(IOrderConfirmationRegistrationNumberViewlet)
+    index = ViewPageTemplateFile('viewlets/order-confirmation-registration-number.pt')
+
+    def registration_number(self):
+        """Returns registration number
+
+        :rtype: str
+        """
+        cart = IShoppingSite(self.context).cart()
+        if cart:
+            return cart.get('registration_number')

@@ -1,3 +1,4 @@
+from slt.theme.browser.interfaces import IBillingAndShippingRegistrationNumberViewlet
 from slt.theme.browser.viewlet import BillingAndShippingRegistrationNumberViewlet
 from slt.theme.tests.base import IntegrationTestCase
 
@@ -8,32 +9,29 @@ class BillingAndShippingRegistrationNumberViewletTestCase(IntegrationTestCase):
     """TestCase for BillingAndShippingRegistrationNumberViewlet"""
 
     def test_subclass(self):
-        from collective.cart.shopping.browser.viewlet import BaseShoppingSiteRootViewlet
-        self.assertTrue(BillingAndShippingRegistrationNumberViewlet, BaseShoppingSiteRootViewlet)
+        from plone.app.layout.viewlets.common import ViewletBase as Base
+        self.assertTrue(issubclass(BillingAndShippingRegistrationNumberViewlet, Base))
+        from collective.base.interfaces import IViewlet as Base
+        self.assertTrue(issubclass(IBillingAndShippingRegistrationNumberViewlet, Base))
 
-    def test_name(self):
-        self.assertEqual(getattr(BillingAndShippingRegistrationNumberViewlet, 'grokcore.component.directive.name'), 'slt.theme.billing-and-shipping-registration-number')
-
-    def test_template(self):
-        self.assertEqual(getattr(BillingAndShippingRegistrationNumberViewlet, 'grokcore.view.directive.template'), 'billing-and-shipping-registration-number')
-
-    def test_viewletmanager(self):
-        from collective.cart.shopping.browser.viewlet import BillingAndShippingViewletManager
-        self.assertEqual(getattr(BillingAndShippingRegistrationNumberViewlet, 'grokcore.viewlet.directive.viewletmanager'), BillingAndShippingViewletManager)
+    def test_verifyObject(self):
+        from zope.interface.verify import verifyObject
+        instance = self.create_viewlet(BillingAndShippingRegistrationNumberViewlet)
+        self.assertTrue(verifyObject(IBillingAndShippingRegistrationNumberViewlet, instance))
 
     @mock.patch('slt.theme.browser.viewlet.IShoppingSite')
     def test_registration_number(self, IShoppingSite):
         instance = self.create_viewlet(BillingAndShippingRegistrationNumberViewlet)
-        IShoppingSite().cart = {}
+        IShoppingSite().cart.return_value = {}
         instance.context.restrictedTraverse = mock.Mock()
         instance.context.restrictedTraverse().member().getProperty.return_value = None
-        self.assertIsNone(instance.registration_number)
+        self.assertIsNone(instance.registration_number())
 
         instance.context.restrictedTraverse().member().getProperty.return_value = 'RN1'
-        self.assertEqual(instance.registration_number, 'RN1')
+        self.assertEqual(instance.registration_number(), 'RN1')
 
-        IShoppingSite().cart = {'registration_number': 'RN2'}
-        self.assertEqual(instance.registration_number, 'RN2')
+        IShoppingSite().cart.return_value = {'registration_number': 'RN2'}
+        self.assertEqual(instance.registration_number(), 'RN2')
 
     @mock.patch('slt.theme.browser.viewlet.IShoppingSite')
     def test_update(self, IShoppingSite):
@@ -41,11 +39,11 @@ class BillingAndShippingRegistrationNumberViewletTestCase(IntegrationTestCase):
         instance.update()
         self.assertEqual(IShoppingSite().update_cart.call_count, 0)
 
-        instance.request.form = {'form.to.confirmation': True}
+        instance.request.form = {'form.buttons.CheckOut': True}
         instance.update()
         self.assertEqual(IShoppingSite().update_cart.call_count, 0)
 
-        instance.request.form = {'form.to.confirmation': True, 'registration_number': ' RN '}
+        instance.request.form = {'form.buttons.CheckOut': True, 'registration_number': ' RN '}
         instance.update()
         self.assertEqual(IShoppingSite().update_cart.call_count, 1)
         IShoppingSite().update_cart.assert_called_with('registration_number', 'RN')

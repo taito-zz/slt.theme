@@ -1,0 +1,8 @@
+<section
+  i18n:domain="slt.theme"
+  id="add-address">
+  <a
+    class="button"
+    i18n:translate=""
+    tal:attributes="href string: ${context/absolute_url}/++add++collective.cart.shopping.CustomerInfo">Add New Address</a>
+</section>

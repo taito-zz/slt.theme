@@ -1,9 +1,8 @@
-from five import grok
 from slt.theme.interfaces import ICollapsedOnLoad
 from zope.interface import implements
 
 
-class CollapsedOnLoad(grok.GlobalUtility):
+class CollapsedOnLoad(object):
     implements(ICollapsedOnLoad)
 
     def __call__(self, collapsed=True):

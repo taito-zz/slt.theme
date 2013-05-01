@@ -1,25 +1,27 @@
+from slt.theme.tests.base import IntegrationTestCase
 from slt.theme.browser.template import BaseView
 
-import unittest
+import mock
 
 
-class BaseViewTestCase(unittest.TestCase):
+class BaseViewTestCase(IntegrationTestCase):
     """TestCase for BaseView"""
 
-    def test_templatedir(self):
-        from slt.theme.browser import template
-        self.assertEqual(getattr(template, 'grokcore.view.directive.templatedir'), 'templates')
-
     def test_subclass(self):
-        from five.grok import View
-        self.assertTrue(issubclass(BaseView, View))
+        from collective.base.view import BaseFormView
+        self.assertTrue(issubclass(BaseView, BaseFormView))
 
-    def test_baseclass(self):
-        self.assertTrue(getattr(BaseView, 'martian.martiandirective.baseclass'))
+    def test___call__(self):
+        instance = self.create_view(BaseView)
+        instance.template = mock.Mock()
+        self.assertEqual(instance(), instance.template())
 
-    def test_layer(self):
-        from slt.theme.browser.interfaces import ISltThemeLayer
-        self.assertEqual(getattr(BaseView, 'grokcore.view.directive.layer'), ISltThemeLayer)
+    def test_title(self):
+        instance = self.create_view(BaseView)
+        instance.context.Title = mock.Mock(return_value='TITLE')
+        self.assertEqual(instance.title(), 'TITLE')
 
-    def test_require(self):
-        self.assertEqual(getattr(BaseView, 'grokcore.security.directive.require'), ['zope2.View'])
+    def test_description(self):
+        instance = self.create_view(BaseView)
+        instance.context.Description = mock.Mock(return_value='DESCRIPTION')
+        self.assertEqual(instance.description(), 'DESCRIPTION')

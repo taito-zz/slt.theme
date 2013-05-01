@@ -25,16 +25,14 @@ class TestCase(IntegrationTestCase):
         from zope.component import getUtility
         from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
         storage = getUtility(IViewletSettingsStorage)
-        manager = "plone.abovecontenttitle"
-        skinname = "Plone Default"
-        storage.setHidden(manager, skinname, ())
-
-        self.assertEqual(len(storage.getHidden(manager, skinname)), 0)
+        manager = "plone.portalfooter"
+        skinname = "*"
+        storage.setHidden(manager, skinname, (u'plone.colophon',))
+        self.assertEqual(len(storage.getHidden(manager, skinname)), 1)
 
         from slt.theme.upgrades import reimport_viewlets
         reimport_viewlets(self.portal)
-
-        self.assertEqual(storage.getHidden(manager, skinname), (u'collective.cart.core.add.to.cart',))
+        self.assertEqual(len(storage.getHidden(manager, skinname)), 5)
 
     @mock.patch('slt.theme.upgrades.reimport_profile')
     def test_reimport_cssregistry(self, reimport_profile):
@@ -58,7 +56,7 @@ class TestCase(IntegrationTestCase):
         from zope.component import getUtility
         from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
         storage = getUtility(IViewletSettingsStorage)
-        manager = 'collective.cart.shopping.billing.shipping.manager'
+        manager = 'collective.base.viewlet-manager.base-form'
         skinname = 'Plone Default'
         storage.setHidden(manager, skinname, [u'viewlet1'])
         storage.setOrder(manager, skinname, [u'viewlet2'])
@@ -70,12 +68,7 @@ class TestCase(IntegrationTestCase):
         clean_viewlets(manager, skinname)
 
         self.assertEqual(storage.getHidden(manager, skinname), ())
-        self.assertEqual(storage.getOrder(manager, skinname), (
-            u'collective.cart.shopping.billing-and-shipping-billing-address',
-            u'collective.cart.shopping.billing-and-shipping-shipping-address',
-            u'collective.cart.shopping.billing-and-shipping-shipping-methods',
-            u'slt.theme.billing-and-shipping-registration-number',
-            u'collective.cart.shopping.billing-and-shipping-check-out'))
+        self.assertEqual(storage.getOrder(manager, skinname), ())
 
         skinname = u'*'
         storage.setHidden(manager, skinname, [u'viewlet3'])
@@ -84,20 +77,20 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(storage.getHidden(manager, skinname), (u'viewlet3',))
         self.assertEqual(storage.getOrder(manager, skinname), (u'viewlet4',))
 
-    @mock.patch('slt.theme.upgrades.clean_viewlets')
-    def test_clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self, clean_viewlets):
-        from slt.theme.upgrades import clean_viewlets_from_collective_cart_shopping_billing_shipping_manager
-        clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self.portal)
-        self.assertEqual(clean_viewlets.call_args_list, [
-            [(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')],
-            [(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')],
-            [(u'collective.cart.shopping.billing.shipping.manager', u'*')]])
+    # @mock.patch('slt.theme.upgrades.clean_viewlets')
+    # def test_clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self, clean_viewlets):
+    #     from slt.theme.upgrades import clean_viewlets_from_collective_cart_shopping_billing_shipping_manager
+    #     clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self.portal)
+    #     self.assertEqual(clean_viewlets.call_args_list, [
+    #         [(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')],
+    #         [(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')],
+    #         [(u'collective.cart.shopping.billing.shipping.manager', u'*')]])
 
-    @mock.patch('slt.theme.upgrades.clean_viewlets')
-    def test_clean_viewlets_from_plone_portalfooter(self, clean_viewlets):
-        from slt.theme.upgrades import clean_viewlets_from_plone_portalfooter
-        clean_viewlets_from_plone_portalfooter(self.portal)
-        self.assertEqual(clean_viewlets.call_args_list, [
-            [(u'plone.portalfooter', u'Plone Default')],
-            [(u'plone.portalfooter', u'Sunburst Theme')],
-            [(u'plone.portalfooter', u'*')]])
+    # @mock.patch('slt.theme.upgrades.clean_viewlets')
+    # def test_clean_viewlets_from_plone_portalfooter(self, clean_viewlets):
+    #     from slt.theme.upgrades import clean_viewlets_from_plone_portalfooter
+    #     clean_viewlets_from_plone_portalfooter(self.portal)
+    #     self.assertEqual(clean_viewlets.call_args_list, [
+    #         [(u'plone.portalfooter', u'Plone Default')],
+    #         [(u'plone.portalfooter', u'Sunburst Theme')],
+    #         [(u'plone.portalfooter', u'*')]])

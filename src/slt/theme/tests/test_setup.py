@@ -106,180 +106,92 @@ class TestCase(IntegrationTestCase):
     def get_css_resource(self, name):
         return getToolByName(self.portal, 'portal_css').getResource(name)
 
-    def test_cssregistry__jquery_autocomplete__title(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertIsNone(resource.getTitle())
-
-    def test_cssregistry__jquery_autocomplete__authenticated(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertFalse(resource.getAuthenticated())
-
-    def test_cssregistry__jquery_autocomplete__compression(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertEqual(resource.getCompression(), 'safe')
-
-    def test_cssregistry__jquery_autocomplete__conditionalcomment(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertEqual(resource.getConditionalcomment(), '')
-
-    def test_cssregistry__jquery_autocomplete__cookable(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertTrue(resource.getCookable())
-
-    def test_cssregistry__jquery_autocomplete__enabled(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertTrue(resource.getEnabled())
-
-    def test_cssregistry__jquery_autocomplete__expression(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertEqual(resource.getExpression(), '')
-
-    def test_cssregistry__jquery_autocomplete__media(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertEqual(resource.getMedia(), 'screen')
-
-    def test_cssregistry__jquery_autocomplete__rel(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertEqual(resource.getRel(), 'stylesheet')
-
-    def test_cssregistry__jquery_autocomplete__rendering(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertEqual(resource.getRendering(), 'link')
-
-    def test_cssregistry__jquery_autocomplete__applyPrefix(self):
-        resource = self.get_css_resource('++resource++plone.formwidget.autocomplete/jquery.autocomplete.css')
-        self.assertTrue(resource.getApplyPrefix())
-
-    def test_cssregistry__jquerytools_dateinput__title(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertIsNone(resource.getTitle())
-
-    def test_cssregistry__jquerytools_dateinput__authenticated(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertFalse(resource.getAuthenticated())
-
-    def test_cssregistry__jquerytools_dateinput__compression(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertEqual(resource.getCompression(), 'safe')
-
-    def test_cssregistry__jquerytools_dateinput__conditionalcomment(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertEqual(resource.getConditionalcomment(), '')
-
-    def test_cssregistry__jquerytools_dateinput__cookable(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertTrue(resource.getCookable())
-
-    def test_cssregistry__jquerytools_dateinput__enabled(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertTrue(resource.getEnabled())
-
-    def test_cssregistry__jquerytools_dateinput__expression(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertEqual(resource.getExpression(), '')
-
-    def test_cssregistry__jquerytools_dateinput__media(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertEqual(resource.getMedia(), 'screen')
-
-    def test_cssregistry__jquerytools_dateinput__rel(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertEqual(resource.getRel(), 'stylesheet')
-
-    def test_cssregistry__jquerytools_dateinput__rendering(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertEqual(resource.getRendering(), 'link')
-
-    def test_cssregistry__jquerytools_dateinput__applyPrefix(self):
-        resource = self.get_css_resource('++resource++plone.app.jquerytools.dateinput.css')
-        self.assertTrue(resource.getApplyPrefix())
-
     def test_cssregistry__main__title(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertIsNone(resource.getTitle())
 
     def test_cssregistry__main__authenticated(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertFalse(resource.getAuthenticated())
 
     def test_cssregistry__main__compression(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertEqual(resource.getCompression(), 'safe')
 
     def test_cssregistry__main__conditionalcomment(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertEqual(resource.getConditionalcomment(), '')
 
     def test_cssregistry__main__cookable(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertTrue(resource.getCookable())
 
     def test_cssregistry__main__enabled(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertTrue(resource.getEnabled())
 
     def test_cssregistry__main__expression(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
-        self.assertEqual(resource.getExpression(), 'request/HTTP_X_THEME_ENABLED | nothing')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
+        self.assertEqual(resource.getExpression(), '')
 
     def test_cssregistry__main__media(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertIsNone(resource.getMedia())
 
     def test_cssregistry__main__rel(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertEqual(resource.getRel(), 'stylesheet')
 
     def test_cssregistry__main__rendering(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertEqual(resource.getRendering(), 'link')
 
     def test_cssregistry__main__applyPrefix(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/main.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/main.css')
         self.assertTrue(resource.getApplyPrefix())
 
     def test_cssregistry__shop__title(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertIsNone(resource.getTitle())
 
     def test_cssregistry__shop__authenticated(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertFalse(resource.getAuthenticated())
 
     def test_cssregistry__shop__compression(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertEqual(resource.getCompression(), 'safe')
 
     def test_cssregistry__shop__conditionalcomment(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertEqual(resource.getConditionalcomment(), '')
 
     def test_cssregistry__shop__cookable(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertTrue(resource.getCookable())
 
     def test_cssregistry__shop__enabled(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertTrue(resource.getEnabled())
 
     def test_cssregistry__shop__expression(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
-        self.assertEqual(resource.getExpression(), 'request/HTTP_X_THEME_ENABLED | nothing')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
+        self.assertEqual(resource.getExpression(), '')
 
     def test_cssregistry__shop__media(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertIsNone(resource.getMedia())
 
     def test_cssregistry__shop__rel(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertEqual(resource.getRel(), 'stylesheet')
 
     def test_cssregistry__shop__rendering(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertEqual(resource.getRendering(), 'link')
 
     def test_cssregistry__shop__applyPrefix(self):
-        resource = self.get_css_resource('++theme++slt.theme/css/shop.css')
+        resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertTrue(resource.getApplyPrefix())
 
     def test_metadata__version(self):
@@ -357,32 +269,35 @@ class TestCase(IntegrationTestCase):
         ctype = self.get_ctype('Plone Site')
         self.assertEqual(ctype.view_methods, ('slt-view',))
 
-    def test_viewlets__order__collective_cart_shopping_billing_shipping_manager(self):
+    def test_viewlets__order__collective_base_viewlet_manager_base_form(self):
         from zope.component import getUtility
         from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
         storage = getUtility(IViewletSettingsStorage)
-        manager = "collective.cart.shopping.billing.shipping.manager"
+        manager = "collective.base.viewlet-manager.base-form"
         skinname = "*"
-        for viewlet in (
-            u'collective.cart.shopping.billing-and-shipping-billing-address',
-            u'collective.cart.shopping.billing-and-shipping-shipping-address',
-            u'collective.cart.shopping.billing-and-shipping-shipping-methods',
-            u'collective.cart.shopping.billing-and-shipping-check-out'):
-            self.assertIn(viewlet, storage.getOrder(manager, skinname))
-
-    def test_viewlets__order__collective_cart_shopping_order_confirmation_manager(self):
-        from zope.component import getUtility
-        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
-        storage = getUtility(IViewletSettingsStorage)
-        manager = "collective.cart.shopping.order.confirmation.manager"
-        skinname = "*"
-        for viewlet in (
-            u'collective.cart.shopping.confirmation-articles',
-            u'collective.cart.shopping.confirmation-shipping-method',
-            u'slt.theme.confirmation-registration-number',
-            u'collective.cart.shopping.confirmation-total',
-            u'collective.cart.shopping.confirmation-checkout'):
-            self.assertIn(viewlet, storage.getOrder(manager, skinname))
+        self.assertEqual(storage.getOrder(manager, skinname), (
+            u'collective.cart.shopping.viewlet.add-to-cart',
+            u'collective.cart.shopping.viewlet.body-text',
+            u'collective.cart.shopping.viewlet.articles-in-article',
+            u'collective.cart.shopping.viewlet.add-subtract-stock',
+            u'collective.cart.shopping.viewlet.stock-listing',
+            u'collective.cart.core.viewlet.cart-article-listing',
+            u'collective.cart.shopping.viewlet.cart-articles-total',
+            u'collective.cart.shopping.viewlet.cart-check-out-buttons',
+            u'collective.cart.shopping.viewlet.billing-and-shipping-billing-address',
+            u'collective.cart.shopping.viewlet.billing-and-shipping-shipping-address',
+            u'collective.cart.shopping.viewlet.billing-and-shipping-shipping-methods',
+            u'slt.theme.viewlet.billing-and-shipping-registration-number',
+            u'collective.cart.shopping.viewlet.billing-and-shipping-check-out-buttons',
+            u'collective.cart.shopping.viewlet.order-confirmation-cart-article-listing',
+            u'collective.cart.shopping.viewlet.order-confirmation-shipping-method',
+            u'collective.cart.shopping.viewlet.order-confirmation-total',
+            u'slt.theme.viewlet.order-confirmation-registration-number',
+            u'collective.cart.shopping.viewlet.order-confirmation-terms',
+            u'collective.cart.shopping.viewlet.order-confirmation-check-out-buttons',
+            u'slt.theme.viewlet.add-address',
+            u'slt.theme.viewlet.address-listing',
+            u'slt.theme.viewlet.order-listing'))
 
     def test_viewlets__hidden__plone_portalfooter(self):
         from zope.component import getUtility
@@ -397,14 +312,6 @@ class TestCase(IntegrationTestCase):
             u'sll.basetheme.footer.message',
             u'sll.basetheme.footer.subfolders'):
             self.assertIn(viewlet, storage.getHidden(manager, skinname))
-
-    def test_viewlets__hidden__plone_abovecontenttitle(self):
-        from zope.component import getUtility
-        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
-        storage = getUtility(IViewletSettingsStorage)
-        manager = "plone.abovecontenttitle"
-        skinname = "Plone Default"
-        self.assertEqual(storage.getHidden(manager, skinname), (u'collective.cart.core.add.to.cart',))
 
     def test_viewlets__order__plone_portalfooter(self):
         from zope.component import getUtility
@@ -446,12 +353,12 @@ class TestCase(IntegrationTestCase):
     def test_uninstall__cssregistry_main(self):
         self.uninstall_package()
         resources = set(getToolByName(self.portal, 'portal_css').getResourceIds())
-        self.assertNotIn('++theme++slt.theme/css/main.css', resources)
+        self.assertNotIn('++resource++slt.theme/css/main.css', resources)
 
     def test_uninstall__cssregistry_shop(self):
         self.uninstall_package()
         resources = set(getToolByName(self.portal, 'portal_css').getResourceIds())
-        self.assertNotIn('++theme++slt.theme/css/shop.css', resources)
+        self.assertNotIn('++resource++slt.theme/css/shop.css', resources)
 
     def test_unintall__types__Plone_Site__immediate_view(self):
         self.uninstall_package()

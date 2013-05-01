@@ -1,3 +1,4 @@
+from slt.theme.browser.interfaces import ILinkToOrderViewlet
 from slt.theme.browser.viewlet import LinkToOrderViewlet
 from slt.theme.tests.base import IntegrationTestCase
 
@@ -8,27 +9,18 @@ class LinkToOrderViewletTestCase(IntegrationTestCase):
     """TestCase for LinkToOrderViewlet"""
 
     def test_subclass(self):
-        from slt.theme.browser.viewlet import BaseViewlet
-        self.assertTrue(LinkToOrderViewlet, BaseViewlet)
+        from plone.app.layout.viewlets.common import ViewletBase as Base
+        self.assertTrue(issubclass(LinkToOrderViewlet, Base))
+        from collective.base.interfaces import IViewlet as Base
+        self.assertTrue(issubclass(ILinkToOrderViewlet, Base))
 
-    def test_context(self):
-        from collective.cart.core.interfaces import IShoppingSiteRoot
-        self.assertEqual(getattr(LinkToOrderViewlet, 'grokcore.component.directive.context'), IShoppingSiteRoot)
+    def test_verifyObject(self):
+        from zope.interface.verify import verifyObject
+        instance = self.create_viewlet(LinkToOrderViewlet)
+        self.assertTrue(verifyObject(ILinkToOrderViewlet, instance))
 
-    def test_name(self):
-        self.assertEqual(getattr(LinkToOrderViewlet, 'grokcore.component.directive.name'), 'slt.theme.link.to.order')
-
-    def test_template(self):
-        self.assertEqual(getattr(LinkToOrderViewlet, 'grokcore.view.directive.template'), 'link-to-order')
-
-    def test_viewletmanager(self):
-        from slt.theme.browser.viewlet import ThanksBelowContentViewletManager
-        self.assertEqual(getattr(LinkToOrderViewlet, 'grokcore.viewlet.directive.viewletmanager'), ThanksBelowContentViewletManager)
-
-    @mock.patch('slt.theme.browser.viewlet.getToolByName')
-    def test_order_url(self, getToolByName):
+    @mock.patch('slt.theme.browser.viewlet.IShoppingSite')
+    def test_order_url(self, IShoppingSite):
         view = mock.Mock()
-        view.cart_id = '2'
         instance = self.create_viewlet(LinkToOrderViewlet, view=view)
-        getToolByName().getHomeUrl.return_value = 'home_url'
-        self.assertEqual(instance.order_url, 'home_url?order_number=2')
+        self.assertEqual(instance.order_url(), IShoppingSite().link_to_order())

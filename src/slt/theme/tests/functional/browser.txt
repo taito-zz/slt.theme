@@ -2,14 +2,9 @@ Log in as Manager::
 
     >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
 
-Doctype should be <!DOCTYPE html>::
-
-    >>> print browser.contents
-    <!DOCTYPE html>
-    ...
-
 Change view for root::
 
+    >>> browser.open('/')
     >>> browser.open('/selectViewTemplate?templateId=slt-view')
 
     >>> print browser.bycss('.documentFirstHeading')
@@ -18,7 +13,7 @@ Change view for root::
 
     >>> print browser.bycss('.documentDescription')
     --- 1 ---
-    <p class="documentDescription description">Suomen Luonnonsuojelun Tuki Oy</p>
+    <div class="documentDescription">Suomen Luonnonsuojelun Tuki Oy</div>
 
 Add Article Container to Shop::
 
@@ -38,7 +33,7 @@ Add Article::
     >>> browser.getControl(name="form.buttons.save").click()
 
     >>> browser.open('/')
-    >>> print browser.bycss('#slt-theme-top-articles')
+    >>> print browser.bycss('#shop-article-listing')
 
 Feed article1 to shop top::
 
@@ -56,9 +51,9 @@ Feed article1 to shop top::
 Check shop top page::
 
     >>> browser.open('/')
-    >>> print browser.bycss('#slt-theme-top-articles')
+    >>> print browser.bycss('#shop-article-listing')
     --- 1 ---
-    <section id="slt-theme-top-articles"><article class="normal"><a href="http://nohost/plone/kirjat/kirja1">
+    <section id="shop-article-listing"><article class="normal"><a href="http://nohost/plone/kirjat/kirja1">
     <img src="http://nohost/plone/kirjat/kirja1/@@images/image" title="Kirja1"></a>
     <div class="text">
     <h1>
@@ -86,4 +81,4 @@ Unfeed article1 from shop top::
 Check shop top page::
 
     >>> browser.open('/')
-    >>> print browser.bycss('#slt-theme-top-articles')
+    >>> print browser.bycss('#shop-article-listing')

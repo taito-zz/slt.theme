@@ -48,15 +48,15 @@ def clean_viewlets(manager, skinname):
     storage.setOrder(manager, skinname, [])
 
 
-def clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(context):
-    """Clean viewlets from collective.cart.shopping.billing.shipping.manager"""
-    clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')
-    clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')
-    clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'*')
+# def clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(context):
+#     """Clean viewlets from collective.cart.shopping.billing.shipping.manager"""
+#     clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')
+#     clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')
+#     clean_viewlets(u'collective.cart.shopping.billing.shipping.manager', u'*')
 
 
-def clean_viewlets_from_plone_portalfooter(context):
-    """Clean viewlets from plone.portalfooter"""
-    clean_viewlets(u'plone.portalfooter', u'Plone Default')
-    clean_viewlets(u'plone.portalfooter', u'Sunburst Theme')
-    clean_viewlets(u'plone.portalfooter', u'*')
+# def clean_viewlets_from_plone_portalfooter(context):
+#     """Clean viewlets from plone.portalfooter"""
+#     clean_viewlets(u'plone.portalfooter', u'Plone Default')
+#     clean_viewlets(u'plone.portalfooter', u'Sunburst Theme')
+#     clean_viewlets(u'plone.portalfooter', u'*')

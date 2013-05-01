@@ -1,21 +1,18 @@
+from slt.theme.browser.interfaces import IShopView
 from slt.theme.browser.template import ShopView
+from slt.theme.tests.base import IntegrationTestCase
 
-import unittest
 
-
-class ShopViewTestCase(unittest.TestCase):
+class ShopViewTestCase(IntegrationTestCase):
     """TestCase for ShopView"""
 
     def test_subclass(self):
         from slt.theme.browser.template import BaseView
         self.assertTrue(issubclass(ShopView, BaseView))
+        from collective.base.interfaces import IBaseFormView
+        self.assertTrue(issubclass(IShopView, IBaseFormView))
 
-    def test_context(self):
-        from Products.CMFPlone.interfaces import IPloneSiteRoot
-        self.assertEqual(getattr(ShopView, 'grokcore.component.directive.context'), IPloneSiteRoot)
-
-    def test_name(self):
-        self.assertEqual(getattr(ShopView, 'grokcore.component.directive.name'), 'slt-view')
-
-    def test_template(self):
-        self.assertEqual(getattr(ShopView, 'grokcore.view.directive.template'), 'shop')
+    def test_verifyObject(self):
+        from zope.interface.verify import verifyObject
+        instance = self.create_view(ShopView)
+        self.assertTrue(verifyObject(IShopView, instance))

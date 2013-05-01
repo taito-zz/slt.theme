@@ -1,8 +1,8 @@
 <section
-  id="slt-theme-top-articles"
+  id="shop-article-listing"
   i18n:domain="collective.cart.shopping"
-  tal:condition="viewlet/articles">
-  <article tal:repeat="item viewlet/articles" tal:attributes="class item/class">
+  tal:condition="view/articles">
+  <article tal:repeat="item view/articles" tal:attributes="class item/class">
     <a tal:attributes="href item/url">
       <img tal:attributes="
         src string:${item/url}/@@images/image;

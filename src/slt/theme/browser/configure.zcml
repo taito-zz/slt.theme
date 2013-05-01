@@ -1,8 +1,19 @@
 <configure
   i18n_domain="slt.theme"
   xmlns:browser="http://namespaces.zope.org/browser"
-  xmlns:five="http://namespaces.zope.org/five"
   xmlns="http://namespaces.zope.org/zope">
+
+  <browser:resourceDirectory
+    name="slt.theme"
+    directory="static"
+    layer=".interfaces.ISltThemeLayer"
+    />
+
+  <include package="z3c.jbot" file="meta.zcml" />
+
+  <browser:jbot
+    directory="overrides"
+    layer=".interfaces.ISltThemeLayer" />
 
   <!-- Feeds -->
   <permission
@@ -74,12 +85,6 @@
     permission="cmf.SetOwnProperties"
     />
 
-  <!-- <adapter
-    provides="slt.theme.userdataschema.IUserDataSchema"
-    for="plone.app.layout.navigation.interfaces.INavigationRoot"
-    factory="plone.app.users.browser.personalpreferences.UserDataPanelAdapter"
-    /> -->
-
   <!-- Registration form -->
   <browser:page
     class=".register.RegistrationForm"
@@ -89,12 +94,6 @@
     permission="cmf.AddPortalMember"
     />
 
-  <include package="z3c.jbot" file="meta.zcml" />
-
-  <browser:jbot
-    directory="overrides"
-    layer=".interfaces.ISltThemeLayer" />
-
   <!-- Render the document byline -->
   <browser:viewlet
     class=".viewlet.DocumentBylineViewlet"
@@ -102,6 +101,128 @@
     manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
     name="plone.belowcontenttitle.documentbyline"
     permission="zope2.View"
+    />
+
+  <!-- View -->
+
+  <browser:page
+    class=".template.PwresetFinishView"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="pwreset_finish"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    class=".template.ShopView"
+    for="collective.cart.shopping.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="slt-view"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    class=".template.AddressListingView"
+    for="slt.content.interfaces.IMemberArea"
+    layer=".interfaces.ISltThemeLayer"
+    name="address-listing"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    class=".template.OrderListingView"
+    for="slt.content.interfaces.IMemberArea"
+    layer=".interfaces.ISltThemeLayer"
+    name="view"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    class=".template.ToCustomerOrderMailTemplateView"
+    for="slt.content.interfaces.IOrder"
+    layer=".interfaces.ISltThemeLayer"
+    name="to-customer-order-mail-template"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    class=".template.ToShopOrderMailTemplateView"
+    for="slt.content.interfaces.IOrder"
+    layer=".interfaces.ISltThemeLayer"
+    name="to-shop-order-mail-template"
+    permission="zope2.View"
+    />
+
+  <!-- Viewlet -->
+
+  <browser:viewlet
+    class=".viewlet.LinkToOrderViewlet"
+    for="collective.cart.core.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+    name="slt.theme.viewlet.link-to-order"
+    permission="zope2.View"
+    view="collective.cart.shopping.browser.interfaces.IThanksView"
+    />
+
+  <browser:viewlet
+    class=".viewlet.ShopArticleListingViewlet"
+    for="collective.cart.core.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="slt.theme.viewlet.article-listing"
+    permission="zope2.View"
+    view=".interfaces.IShopView"
+    />
+
+  <browser:viewlet
+    class=".viewlet.AddAddressViewlet"
+    for="slt.content.interfaces.IMemberArea"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="slt.theme.viewlet.add-address"
+    permission="zope2.View"
+    view=".interfaces.IAddressListingView"
+    />
+
+  <browser:viewlet
+    class=".viewlet.AddressListingViewlet"
+    for="slt.content.interfaces.IMemberArea"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="slt.theme.viewlet.address-listing"
+    permission="zope2.View"
+    view=".interfaces.IAddressListingView"
+    />
+
+  <browser:viewlet
+    class=".viewlet.OrderListingViewlet"
+    for="slt.content.interfaces.IMemberArea"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="slt.theme.viewlet.order-listing"
+    permission="zope2.View"
+    view=".interfaces.IOrderListingView"
+    />
+
+  <browser:viewlet
+    class=".viewlet.OrderConfirmationRegistrationNumberViewlet"
+    for="collective.cart.core.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="slt.theme.viewlet.order-confirmation-registration-number"
+    permission="zope2.View"
+    view="collective.cart.shopping.browser.interfaces.IOrderConfirmationView"
+    />
+
+  <browser:viewlet
+    class=".viewlet.BillingAndShippingRegistrationNumberViewlet"
+    for="collective.cart.core.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="slt.theme.viewlet.billing-and-shipping-registration-number"
+    permission="zope2.View"
+    view="collective.cart.shopping.browser.interfaces.IBillingAndShippingView"
     />
 
 </configure>

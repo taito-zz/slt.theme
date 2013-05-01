@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.19 (2013-05-01)
+=================
+
+- Removed dependency from five.grok. [taito]
+
 0.18.2 (2013-04-11)
 ===================
 

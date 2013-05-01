@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from collective.cart.core.interfaces import IShoppingSiteRoot
 from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
@@ -6,6 +7,7 @@ from plone.app.testing import TEST_USER_PASSWORD
 from plone.app.testing import setRoles
 from plone.testing import layered
 from slt.theme.tests.base import FUNCTIONAL_TESTING
+from zope.interface import alsoProvides
 from zope.testing import renormalizing
 
 import doctest
@@ -28,7 +30,6 @@ def setUp(self):
     layer = self.globs['layer']
     browser = Browser(layer['app'])
     portal = layer['portal']
-    # Update global variables within the tests.
     self.globs.update({
         'TEST_USER_NAME': TEST_USER_NAME,
         'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
@@ -37,11 +38,11 @@ def setUp(self):
     })
 
     browser.setBaseUrl(portal.absolute_url())
-
     browser.handleErrors = True
     portal.error_log._ignored_exceptions = ()
-
     setRoles(portal, TEST_USER_ID, ['Manager'])
+
+    alsoProvides(portal, IShoppingSiteRoot)
 
     # Set the site back in English mode to make testing easier.
     portal.portal_languages.manage_setLanguageSettings('en', ['en', 'fi'])
