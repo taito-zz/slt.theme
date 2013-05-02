@@ -47,7 +47,7 @@ def setUp(self):
         'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
         'browser': browser,
         'portal': portal,
-        'prink': prink,
+        # 'prink': prink,
     })
     ztc.utils.setupCoreSessions(app)
     browser.setBaseUrl(portal.absolute_url())
@@ -61,7 +61,6 @@ def setUp(self):
     shipping_method_container = createContentInContainer(portal,
         'collective.cart.shipping.ShippingMethodContainer', id='toimitustavat', checkConstraints=False)
     modified(shipping_method_container)
-    # shipping_method_container = portal['toimitustavat']
     shipping_method1 = shipping_method_container[shipping_method_container.invokeFactory('ShippingMethod', 'shippingmethod1',
         title='ShippingMethöd1', vat=24.0)]
     modified(shipping_method1)
