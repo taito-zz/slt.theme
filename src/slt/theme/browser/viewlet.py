@@ -44,7 +44,8 @@ class LinkToOrderViewlet(ViewletBase):
 
         :rtype: str
         """
-        return IShoppingSite(self.context).link_to_order(order_id=self.view.order_id)
+        membership = getToolByName(self.context, 'portal_membership')
+        return '{}?order_number={}'.format(membership.getHomeUrl(), self.view.order_id)
 
 
 class ShopArticleListingViewlet(ViewletBase):

@@ -24,6 +24,8 @@ class SltThemeLayer(PloneSandboxLayer):
         z2.installProduct(app, 'collective.cart.shopping')
         z2.installProduct(app, 'collective.cart.shipping')
 
+        import z3c.jbot
+        self.loadZCML(package=z3c.jbot)
         # Load ZCML
         import slt.theme
         self.loadZCML(package=slt.theme)
@@ -31,6 +33,12 @@ class SltThemeLayer(PloneSandboxLayer):
     def setUpPloneSite(self, portal):
         """Set up Plone."""
         # Install into Plone site using portal_setup
+
+        # Installs all the Plone stuff. Workflows etc. to setup defaul plone site.
+        self.applyProfile(portal, 'Products.CMFPlone:plone')
+
+        # Install portal content. Including the Members folder! to setup defaul plone site.
+        self.applyProfile(portal, 'Products.CMFPlone:plone-content')
 
         self.applyProfile(portal, 'slt.theme:default')
 

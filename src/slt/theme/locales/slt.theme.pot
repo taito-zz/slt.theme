@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-04-11 11:44+0000\n"
+"POT-Creation-Date: 2013-05-02 08:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,19 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: slt.theme\n"
 
-#: ./browser/templates/addresses.pt:16
+#: ./browser/viewlets/add-address.pt:4
 msgid "Add New Address"
 msgstr ""
 
-#: ./browser/templates/orders.pt:114
+#: ./browser/template.py:82
+msgid "Add commonly used addresses to make your order easier."
+msgstr ""
+
+#: ./browser/template.py:73
+msgid "Address Linsting"
+msgstr ""
+
+#: ./browser/viewlets/order-listing.pt:101
 msgid "Billing Address"
 msgstr ""
 
@@ -33,17 +41,25 @@ msgstr ""
 msgid "Feed to Shop Top"
 msgstr ""
 
-#: ./browser/templates/orders.pt:106
-#: ./browser/viewlets/billing-and-shipping-registration-number.pt:4
-#: ./browser/viewlets/registration-number.pt:5
+#: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:20
+msgid "Login failed"
+msgstr ""
+
+#: ./browser/template.py:81
+msgid "Order Linsting"
+msgstr ""
+
+#: ./browser/viewlets/billing-and-shipping-registration-number.pt:7
+#: ./browser/viewlets/order-confirmation-registration-number.pt:5
+#: ./browser/viewlets/order-listing.pt:93
 msgid "Registration Number"
 msgstr ""
 
-#: ./browser/templates/orders.pt:123
+#: ./browser/viewlets/order-listing.pt:110
 msgid "Shipping Address"
 msgstr ""
 
-#: ./browser/templates/orders.pt:20
+#: ./browser/viewlets/order-listing.pt:7
 msgid "State:"
 msgstr ""
 
@@ -51,9 +67,8 @@ msgstr ""
 msgid "Unfeed from Shop Top"
 msgstr ""
 
-#. Default: "Add commonly used addresses to make your order easier."
-#: ./browser/templates/addresses.pt:13
-msgid "add_addresses"
+#: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:60
+msgid "Welcome! You are now logged in."
 msgstr ""
 
 #. Default: "Check this box to allow direct marketing from this site."
@@ -67,7 +82,7 @@ msgid "allow_direct_marketing_title"
 msgstr ""
 
 #. Default: "Please fill your personal information."
-#: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_initial.cpy:17
+#: ./browser/template.py:38
 msgid "first-time-login"
 msgstr ""
 
@@ -76,18 +91,13 @@ msgstr ""
 msgid "help_registration_form"
 msgstr ""
 
-#. Default: "You haven't tried to order anything yet."
-#: ./browser/templates/orders.pt:12
-msgid "no_orders"
-msgstr ""
-
 #. Default: "Order Number: ${order_number}"
-#: ./browser/templates/orders.pt:18
+#: ./browser/viewlets/order-listing.pt:5
 msgid "order-number"
 msgstr ""
 
 #. Default: "Updated: ${order_updated}"
-#: ./browser/templates/orders.pt:23
+#: ./browser/viewlets/order-listing.pt:10
 msgid "order-updated"
 msgstr ""
 

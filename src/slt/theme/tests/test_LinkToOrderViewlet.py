@@ -19,8 +19,10 @@ class LinkToOrderViewletTestCase(IntegrationTestCase):
         instance = self.create_viewlet(LinkToOrderViewlet)
         self.assertTrue(verifyObject(ILinkToOrderViewlet, instance))
 
-    @mock.patch('slt.theme.browser.viewlet.IShoppingSite')
-    def test_order_url(self, IShoppingSite):
+    @mock.patch('slt.theme.browser.viewlet.getToolByName')
+    def test_order_url(self, getToolByName):
         view = mock.Mock()
+        view.order_id = 2
+        getToolByName().getHomeUrl.return_value = 'HOME_URL'
         instance = self.create_viewlet(LinkToOrderViewlet, view=view)
-        self.assertEqual(instance.order_url(), IShoppingSite().link_to_order())
+        self.assertEqual(instance.order_url(), 'HOME_URL?order_number=2')

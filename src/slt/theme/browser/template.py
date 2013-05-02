@@ -10,6 +10,7 @@ from slt.theme.browser.interfaces import IOrderListingView
 from slt.theme.browser.interfaces import IShopView
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implements
+from Products.CMFPlone import PloneMessageFactory
 
 
 PasswordResetToolMessageFactory = MessageFactory("passwordresettool")
@@ -22,6 +23,20 @@ class PwresetFinishView(BrowserView):
         message = PasswordResetToolMessageFactory(u'message_pwreset_success')
         IStatusMessage(self.request).addStatusMessage(message, type='info')
         url = '{0}/login_form?came_from={0}'.format(portal_url)
+        return self.request.response.redirect(url)
+
+
+class LoginSuccessView(BrowserView):
+
+    def __call__(self):
+        url = self.context.absolute_url()
+        message = PloneMessageFactory(u'Welcome! You are now logged in.')
+        portal_state = self.context.restrictedTraverse('@@plone_portal_state')
+        member = portal_state.member()
+        if not member.getProperty('fullname'):
+            url = '{}/@@personal-information'.format(portal_state.portal_url())
+            message = _(u'first-time-login', default=u'Please fill your personal information.')
+        IStatusMessage(self.request).addStatusMessage(message, type='info')
         return self.request.response.redirect(url)
 
 

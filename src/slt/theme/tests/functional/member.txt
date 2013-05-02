@@ -1,0 +1,65 @@
+Log in as Manager::
+
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+
+Assign cart portlet and member portlet::
+
+    >>> browser.open('/++contextportlets++plone.leftcolumn/+/collective.cart.core.CartPortlet')
+    >>> browser.open('/++contextportlets++plone.leftcolumn/+/slt.portlet.MemberPortlet')
+
+Log out::
+
+    >>> browser.getLink('Log out').click()
+
+    >>> browser.open('/')
+    >>> print browser.bycss('.portletMember')
+    --- 1 ---
+    <dl class="portlet portletMember"><dd class="portletItem">
+    <ul><li>
+    <a href="http://www.sll.fi/" title="The Finnish Association for Nature Conservation">The Finnish Association for Nature Conservation</a>
+    </li>
+    <li>
+    <a href="http://nohost/plone/login" title="Log in">Log in</a>
+    </li>
+    </ul></dd>
+    </dl>
+
+Log in as member1::
+
+    >>> browser.login('member1', 'member1')
+    >>> browser.url
+    'http://nohost/plone/@@personal-information'
+
+    >>> print browser.bycss('.info')
+    --- 1 ---
+    ...
+    --- 2 ---
+    <dl class="portalMessage info"><dt>Info</dt>
+    <dd>Please fill your personal information.</dd>
+    </dl>
+
+Add full name and email::
+
+    >>> browser.getControl(name="form.fullname").value = 'Full Name'
+    >>> browser.getControl(name="form.email").value = 'member1@email.com'
+    >>> browser.getControl(name="form.actions.save").click()
+
+Log out and log in again should not redirect to @@personal-information::
+
+    >>> browser.getLink('Log out').click()
+
+    >>> browser.login('member1', 'member1')
+    >>> browser.url
+    'http://nohost/plone'
+
+    >>> print browser.bycss('.info')
+    --- 1 ---
+    ...
+    --- 2 ---
+    <dl class="portalMessage info"><dt>Info</dt>
+    <dd>Welcome! You are now logged in.</dd>
+    </dl>
+
+Go to portal top::
+
+    >>> browser.open('/')

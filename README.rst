@@ -7,6 +7,12 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.20 (2013-05-02)
+=================
+
+- Lead to @@personal-information after log in to fill those information. [taito]
+- Fixed link to order. [taito]
+
 0.19 (2013-05-01)
 =================
 

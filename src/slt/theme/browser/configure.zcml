@@ -114,6 +114,14 @@
     />
 
   <browser:page
+    class=".template.LoginSuccessView"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    name="login_success"
+    permission="zope2.View"
+    />
+
+  <browser:page
     class=".template.ShopView"
     for="collective.cart.shopping.interfaces.IShoppingSiteRoot"
     layer=".interfaces.ISltThemeLayer"
