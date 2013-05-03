@@ -197,7 +197,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'9')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'10')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -276,7 +276,7 @@ class TestCase(IntegrationTestCase):
         manager = "collective.base.viewlet-manager.base-form"
         skinname = "*"
         self.assertEqual(storage.getOrder(manager, skinname), (
-            u'collective.cart.shopping.viewlet.add-to-cart',
+            u'collective.cart.core.viewlet.add-to-cart',
             u'collective.cart.shopping.viewlet.body-text',
             u'collective.cart.shopping.viewlet.articles-in-article',
             u'collective.cart.shopping.viewlet.add-subtract-stock',

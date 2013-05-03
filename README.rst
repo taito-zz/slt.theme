@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.20.1 (2013-05-03)
+===================
+
+- Added upgrade step. [taito]
+
 0.20 (2013-05-02)
 =================
 
