@@ -1,3 +1,86 @@
+/* Shop top */
+
+#content-core {
+  margin: 1em 0;
+}
+#shop-article-listing article,
+#articles-in-article-container article {
+  float: left;
+  position: relative;
+}
+#shop-article-listing article {
+  margin: 0 5% 5% 0;
+  width: 45%;
+}
+
+#shop-article-listing article img,
+#articles-in-article-container article img,
+section#articles-in-article td img,
+section#cart-articles td img {
+  width: 100%;
+}
+#shop-article-listing article div.text,
+#articles-in-article-container article div.text {
+  background: rgba(71, 71, 71, 0.9);
+  bottom: 0em;
+  position: absolute;
+  width: 100%;
+}
+#shop-article-listing article.discount div.discount,
+#articles-in-article-container article.discount div.discount
+{
+  border-radius: 0 0 0 5px;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  padding: 0.5em 1em;
+  position: absolute;
+  right: 0em;
+  top: 0em;
+}
+#shop-article-listing article.discount div.discount,
+#shop-article-listing article.discount div.text,
+#articles-in-article-container article.discount div.discount,
+#articles-in-article-container article.discount div.text {
+  background: rgba(208, 51, 115, 0.9);
+}
+#shop-article-listing article.discount div.discount,
+#shop-article-listing article div.text a,
+#articles-in-article-container article.discount div.discount,
+#articles-in-article-container article div.text a {
+  border-bottom: none;
+  color: white;
+}
+#shop-article-listing article div.text span.feed-order a {
+  color: #0081A3;
+}
+#shop-article-listing article div.text h1,
+#articles-in-article-container article div.text h1 {
+  margin-top: 0;
+  letter-spacing: 0;
+  line-height: 1.2em;
+}
+#shop-article-listing article div.text {
+  padding: 0 0 0.5em;
+}
+
+#shop-article-listing article div.text h1 {
+  font-size: 1.2em;
+  margin: 0.3em 20px 0;
+  text-transform: uppercase;
+}
+#articles-in-article-container article div.text h1 {
+  font-size: 1.1em;
+  margin: 0.5em 15px 0;
+}
+#shop-article-listing article div.text p,
+#articles-in-article-container article div.text p {
+  margin-bottom: 0;
+  line-height: 1.1em;
+}
+#shop-article-listing article div.text p {
+  margin: 0 20px;
+}
+
 #collective-cart-shopping td {
   vertical-align: top;
 }
@@ -43,21 +126,6 @@ dl.portletCart dd.portletItem {
   text-align: center;
 }
 
-section#order-flow {
-  font-size: 120%;
-}
-
-section#order-flow,
-section#order-flow a:link,
-section#order-flow a:visited {
-  border-bottom: none;
-  color: #A7A7A7;
-}
-
-section#order-flow #current-step {
-  color: #575757;
-}
-
 section.checkout-content {
   margin: 1em 0;
   width: 90%;
@@ -69,7 +137,7 @@ section#cart-articles {
 
 section#articles-in-article table,
 section#cart-articles table,
-section#cart-total,
+#cart-articles-total,
 section#confirmation-total {
   width: 100%;
 }
@@ -108,14 +176,18 @@ section#cart-articles td.name p {
   margin: 0;
 }
 
-section#cart-total,
-section#confirmation-total,
-section#checkout {
+#cart-articles-total,
+#confirmation-total,
+#check-out-buttons {
   text-align: right;
 }
 
+#confirmation-total {
+  margin: 1em 0;
+}
+
 .gross,
-section#cart-total,
+#cart-articles-total,
 section#confirmation-total {
   font-size: 150%;
 }
@@ -138,17 +210,17 @@ section#confirmation-total {
   padding: 0.3em 0.5em;
 }
 
-.update, .remove, .checkout, .clear, .back, #form-buttons-update {
+.update, .remove, .next, .clear, .back, #form-buttons-update {
   border: 0;
   border-radius: 5px;
   color: white;
 }
 
-.update, .remove, .checkout, #form-buttons-update {
+.update, .remove, .next, #form-buttons-update {
   background: #CA2464;
 }
 
-.checkout, .clear, .back {
+.next, .clear, .back {
   padding: 0.5em 0.7em;
 }
 .back,
@@ -156,7 +228,7 @@ section#confirmation-total {
   background: #989898;
 }
 
-section#cart-total {
+#cart-articles-total {
   margin: 1em 0;
 }
 
@@ -172,7 +244,7 @@ p#cart-is-empty {
 }
 
 section#shipping-method {
-  margin: 2em 0 ;
+  margin: 1em 0 ;
   border-bottom: 4px solid #666666;
 }
 
@@ -180,16 +252,8 @@ section#shipping-method table{
   width: 100%;
 }
 
-section#slt-theme-top-articles article,
-section#collective-cart-shopping-article-container-articles article {
-  float: left;
-  position: relative;
-}
-section#slt-theme-top-articles article {
-  margin: 0 5% 5% 0;
-  width: 45%;
-}
-section#collective-cart-shopping-article-container-articles article {
+
+#articles-in-article-container article {
   margin: 0 3% 3% 0;
   width: 30%;
 }
@@ -199,78 +263,11 @@ td.price-and-quantity {
   width: 20%;
 }
 
-section#slt-theme-top-articles article img,
-section#collective-cart-shopping-article-container-articles article img,
-section#articles-in-article td img,
-section#cart-articles td img {
-  width: 100%;
-}
-section#slt-theme-top-articles article div.text,
-section#collective-cart-shopping-article-container-articles article div.text {
-  background: rgba(71, 71, 71, 0.9);
-  bottom: 0em;
-  position: absolute;
-  width: 100%;
-}
-section#slt-theme-top-articles article.discount div.discount,
-section#collective-cart-shopping-article-container-articles article.discount div.discount
-{
-  border-radius: 0 0 0 5px;
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  padding: 0.5em 1em;
-  position: absolute;
-  right: 0em;
-  top: 0em;
-}
-section#slt-theme-top-articles article.discount div.discount,
-section#slt-theme-top-articles article.discount div.text,
-section#collective-cart-shopping-article-container-articles article.discount div.discount,
-section#collective-cart-shopping-article-container-articles article.discount div.text {
-  background: rgba(208, 51, 115, 0.9);
-}
-section#slt-theme-top-articles article.discount div.discount,
-section#slt-theme-top-articles article div.text a,
-section#collective-cart-shopping-article-container-articles article.discount div.discount,
-section#collective-cart-shopping-article-container-articles article div.text a {
-  border-bottom: none;
-  color: white;
-}
-section#slt-theme-top-articles article div.text span.feed-order a {
-  color: #0081A3;
-}
-section#slt-theme-top-articles article div.text h1,
-section#collective-cart-shopping-article-container-articles article div.text h1 {
-  margin-top: 0;
-  letter-spacing: 0;
-  line-height: 1.2em;
-}
-section#slt-theme-top-articles article div.text {
-  padding: 0 0 0.5em;
-}
-
-section#slt-theme-top-articles article div.text h1 {
-  font-size: 1.2em;
-  margin: 0.3em 20px 0;
-  text-transform: uppercase;
-}
-section#collective-cart-shopping-article-container-articles article div.text h1 {
-  font-size: 1.1em;
-  margin: 0.5em 15px 0;
-}
-section#slt-theme-top-articles article div.text p,
-section#collective-cart-shopping-article-container-articles article div.text p {
-  margin-bottom: 0;
-  line-height: 1.1em;
-}
-section#slt-theme-top-articles article div.text p {
-  margin: 0 20px;
-}
-section#collective-cart-shopping-article-container-articles article div.text p {
+#articles-in-article-container article div.text p {
   font-size: 1.3em;
   margin: 0 15px 0.5em;
 }
-section#collective-cart-shopping-article-container-articles article div.text p span.original-money {
+#articles-in-article-container article div.text p span.original-money {
   color: #a9a9a9;
   font-size: 0.8em;
   margin: 0 1em;
@@ -283,9 +280,6 @@ section#collective-cart-shopping-article-container-articles article div.text p s
   font-size: 1.8em;
   font-weight: normal;
 }
-.portaltype-collective-cart-core-article #content .documentDescription {
-  margin: 0 0 0.5em;
-}
 section#add-to-cart span.stock {
   display: block;
   margin: 0.5em 0;
@@ -293,15 +287,12 @@ section#add-to-cart span.stock {
 section#add-to-cart section#money {
   margin: 0.1em 0;
 }
-section#add-to-cart section#price {
-  margin: 0.1em 0;
-}
 section#add-to-cart section#quantity,
 section#add-subarticle-to-cart section#quantity {
   margin: 0.5em 0;
 }
 
-section#vat {
+#vat-rate {
   color: #A7A7A7;
   font-size: 85%;
 }
@@ -349,7 +340,7 @@ section#discount p{
   display: none;
 }
 
-#terms {
+#terms-text {
   height: 10em;
   overflow-y: scroll;
 }
@@ -359,17 +350,39 @@ section#shipping-method-form .formControls {
   display: inline;
 }
 
+/* @@cart */
+.template-cart #content h1.documentFirstHeading,
+.template-billing-and-shipping #content h1.documentFirstHeading,
+.template-order-confirmation #content h1.documentFirstHeading {
+    display: none;
+}
+
+
 /** billing-and-shipping **/
-section#customer-info dt,
-section#customer-info dd {
+
+#shipping-methods {
+  margin: 1em 0;
+}
+
+#billing-address dt,
+#billing-address dd,
+#shipping-address dt,
+#shipping-address dd,
+#shipping-methods dt,
+#shipping-methods dd
+ {
   display: inline-block;
 }
-section#customer-info dt {
+#billing-address dt,
+#shipping-address dt,
+#shipping-methods dt {
   font-size: 110%;
   font-weight: normal;
   width: 17%;
 }
-section#customer-info dd {
+#billing-address dd,
+#shipping-address dd {
+  font-weight: normal;
   margin: 0;
   width: 30%;
 }
@@ -377,29 +390,30 @@ dl.field span.required:after {
     color: #CA2464;
     content: "*";
 }
-section#customer-info dd input {
+#billing-address dd input,
+#shipping-address dd input {
   height: 1.8em;
   padding: 0 0.5em;
   width: 100%;
 }
-section#customer-info dd input[type="radio"] {
+/*#billing-address dd input[type="radio"] {
   height: 1em;
   width: auto;
-}
-section#customer-info p span {
+}*/
+/*#billing-address p span {
   margin: 0 0.5em;
-}
-section#customer-info dl.shipping-methods dt {
+}*/
+/*#shipping-methods dl.shipping-methods dt {
   vertical-align: top;
 }
-section#customer-info dl.shipping-methods dd {
+#shipping-methods dl.shipping-methods dd {
   width: 80%;
-}
-section#customer-info p#billing-and-shipping-same-or-different span {
+}*/
+section#billing-address p#billing-and-shipping-same-or-different span {
   font-size: 100%;
   margin: 0;
 }
-section#customer-info p#billing-and-shipping-same-or-different select {
+section#billing-address p#billing-and-shipping-same-or-different select {
   font-size: 80%;
 }
 
@@ -426,7 +440,7 @@ dl#registration-number dd{
 }
 
 @media screen and (max-width: 500px) {
-  section#slt-theme-top-articles article {
+  #shop-article-listing article {
     float: none;
     width: 100%;
   }

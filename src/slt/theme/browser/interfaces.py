@@ -1,5 +1,6 @@
 from collective.base.interfaces import IBaseFormView
 from collective.base.interfaces import IViewlet
+from sll.basetheme.browser.interfaces import INavigationRootView
 from zope.interface import Interface
 from zope.viewlet.interfaces import IViewletManager
 
@@ -18,34 +19,16 @@ class IBaseViewViewletManager(IViewletManager):
 
 # View
 
-class IShopView(IBaseFormView):
+class IShopView(IBaseFormView, INavigationRootView):
     """View interface for ShopView"""
 
 
 class IAddressListingView(IBaseFormView):
     """View interface for AddressListingView"""
 
-    # def addresses():
-    #     """Returns list of dictionary of addresses
-
-    #     :rtype: list
-    #     """
-
 
 class IOrderListingView(IBaseFormView):
     """View interface for OrderListingView"""
-
-    # def orders():
-    #     """Returns list of dictionary of orders
-
-    #     :rtype: list
-    #     """
-
-    # def class_collapsible():
-    #     """Returns styling values
-
-    #     :rtype: str
-    #     """
 
 
 # Viewlet
