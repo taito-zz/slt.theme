@@ -396,19 +396,7 @@ dl.field span.required:after {
   padding: 0 0.5em;
   width: 100%;
 }
-/*#billing-address dd input[type="radio"] {
-  height: 1em;
-  width: auto;
-}*/
-/*#billing-address p span {
-  margin: 0 0.5em;
-}*/
-/*#shipping-methods dl.shipping-methods dt {
-  vertical-align: top;
-}
-#shipping-methods dl.shipping-methods dd {
-  width: 80%;
-}*/
+
 section#billing-address p#billing-and-shipping-same-or-different span {
   font-size: 100%;
   margin: 0;
@@ -416,6 +404,13 @@ section#billing-address p#billing-and-shipping-same-or-different span {
 section#billing-address p#billing-and-shipping-same-or-different select {
   font-size: 80%;
 }
+
+/* @@thanks */
+
+#link-to-order {
+  margin: 0 0 1em;
+}
+
 
 /* Please log in */
 section.please-login p a {

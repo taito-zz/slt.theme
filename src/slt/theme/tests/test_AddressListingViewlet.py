@@ -20,17 +20,18 @@ class AddressListingViewletTestCase(IntegrationTestCase):
         instance = self.create_viewlet(AddressListingViewlet)
         self.assertTrue(verifyObject(IAddressListingViewlet, instance))
 
-    def test_addresses(self):
+    @mock.patch('slt.theme.browser.viewlet.IMember')
+    def test_addresses(self, IMember):
         view = mock.Mock()
         instance = self.create_viewlet(AddressListingViewlet, view=view)
-        view.addresses.return_value = []
+        IMember().infos.return_value = []
         self.assertEqual(len(instance.addresses()), 0)
 
         address1 = self.create_content('collective.cart.shopping.CustomerInfo', id='address1',
             first_name='FIRST1', last_name='LAST1', organization='ORGANIZATION1', city='CITY1', post='POST1',
             street='STREET1', email='EMAIL1', phone='PHONE1')
 
-        view.addresses.return_value = [address1]
+        IMember().infos.return_value = [address1]
         self.assertEqual(len(instance.addresses()), 1)
         self.assertEqual(instance.addresses(), [{
             'city': 'CITY1 POST1',

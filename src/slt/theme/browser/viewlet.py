@@ -8,6 +8,7 @@ from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
 from plone.registry.interfaces import IRegistry
+from slt.content.interfaces import IMember
 from slt.content.interfaces import IOrder
 from slt.theme.browser.interfaces import IAddAddressViewlet
 from slt.theme.browser.interfaces import IAddressListingViewlet
@@ -97,7 +98,7 @@ class AddressListingViewlet(ViewletBase):
 
     def addresses(self):
         result = []
-        for item in IContentListing(self.view.addresses()):
+        for item in IContentListing(IMember(self.context).infos()):
             res = {
                 'name': self._name(item),
                 'organization': self._organization(item),

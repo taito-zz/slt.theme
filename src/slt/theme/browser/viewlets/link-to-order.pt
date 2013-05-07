@@ -1,7 +1,6 @@
-<a
-  i18n:domain="slt.theme"
-  i18n:translate=""
-  id="link-to-order"
-  tal:attributes="href view/order_url"
-  tal:condition="not: context/@@plone_portal_state/anonymous"
-  >Check the order</a>
+<section i18n:domain="slt.theme" id="link-to-order" tal:condition="not: context/@@plone_portal_state/anonymous">
+  <a
+    i18n:translate=""
+    tal:attributes="href view/order_url"
+    >Check the order</a>
+</section>
