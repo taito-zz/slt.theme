@@ -1,0 +1,4 @@
+<section i18n:domain="slt.theme" id="registration-number" tal:condition="view/registration_number">
+  <span class="title" i18n:translate="">Registration Number</span>
+  <span class="registration-number" tal:content="order/registration_number" />
+</section>

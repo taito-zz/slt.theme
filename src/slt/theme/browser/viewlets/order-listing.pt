@@ -1,4 +1,7 @@
-<section id="order-listing" i18n:domain="slt.theme">
+<section id="order-listing">
+  <div tal:replace="structure provider:slt.theme.viewlet-manager.order-listing" />
+</section>
+<!-- <section id="order-listing" i18n:domain="slt.theme">
   <dl tal:attributes="class view/class_collapsible" tal:repeat="order view/orders">
     <dt class="collapsibleHeader">
       <span class="order-number" i18n:translate="order-number">
@@ -120,3 +123,4 @@
     </dd>
   </dl>
 </section>
+ -->

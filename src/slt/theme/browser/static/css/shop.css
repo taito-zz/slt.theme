@@ -243,16 +243,6 @@ p#cart-is-empty {
   text-align: center;
 }
 
-section#shipping-method {
-  margin: 1em 0 ;
-  border-bottom: 4px solid #666666;
-}
-
-section#shipping-method table{
-  width: 100%;
-}
-
-
 #articles-in-article-container article {
   margin: 0 3% 3% 0;
   width: 30%;

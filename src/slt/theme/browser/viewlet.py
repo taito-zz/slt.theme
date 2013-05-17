@@ -1,21 +1,19 @@
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from collective.base.viewlet import Viewlet
 from collective.cart.shopping.interfaces import IArticleAdapter
-from collective.cart.shopping.interfaces import IOrderAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
 from plone.app.contentlisting.interfaces import IContentListing
-from plone.app.layout.viewlets.common import ViewletBase
 from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
 from plone.registry.interfaces import IRegistry
 from slt.content.interfaces import IMember
-from slt.content.interfaces import IOrder
 from slt.theme.browser.interfaces import IAddAddressViewlet
 from slt.theme.browser.interfaces import IAddressListingViewlet
 from slt.theme.browser.interfaces import IBillingAndShippingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import ILinkToOrderViewlet
-from slt.theme.browser.interfaces import IOrderConfirmationRegistrationNumberViewlet
-from slt.theme.browser.interfaces import IOrderListingViewlet
+# from slt.theme.browser.interfaces import IOrderConfirmationRegistrationNumberViewlet
+from slt.theme.browser.interfaces import IOrderListingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import IShopArticleListingViewlet
 from slt.theme.interfaces import ICollapsedOnLoad
 from slt.theme.interfaces import IFeedToShopTop
@@ -33,7 +31,7 @@ class DocumentBylineViewlet(BaseDocumentBylineViewlet):
             return True
 
 
-class LinkToOrderViewlet(ViewletBase):
+class LinkToOrderViewlet(Viewlet):
     """Viewlet for view: @@thanks
     Shows link to order
     """
@@ -49,7 +47,7 @@ class LinkToOrderViewlet(ViewletBase):
         return '{}?order_number={}'.format(membership.getHomeUrl(), self.view.order_id)
 
 
-class ShopArticleListingViewlet(ViewletBase):
+class ShopArticleListingViewlet(Viewlet):
     """Viewlet for view: @@slt-view
     Shows article listing"""
     implements(IShopArticleListingViewlet)
@@ -83,14 +81,14 @@ class ShopArticleListingViewlet(ViewletBase):
         return res
 
 
-class AddAddressViewlet(ViewletBase):
+class AddAddressViewlet(Viewlet):
     """Viewlet for view: @@address-listing
     Shows button to add new address"""
     implements(IAddAddressViewlet)
     index = ViewPageTemplateFile('viewlets/add-address.pt')
 
 
-class AddressListingViewlet(ViewletBase):
+class AddressListingViewlet(Viewlet):
     """Viewlet for view: @@address-listing
     Shows address listing"""
     implements(IAddressListingViewlet)
@@ -131,61 +129,7 @@ class AddressListingViewlet(ViewletBase):
         return getUtility(ICollapsedOnLoad)(len(self.view.addresses()) > 4)
 
 
-class OrderListingViewlet(ViewletBase):
-    """Viewlet for view: @@order-listing
-    Shows order listing"""
-    implements(IOrderListingViewlet)
-    index = ViewPageTemplateFile('viewlets/order-listing.pt')
-
-    def orders(self):
-        """Returns list of dictionary of orders
-
-        :rtype: list
-        """
-        shopping_site = IShoppingSite(self.context)
-        res = []
-        creator = getToolByName(self.context, 'portal_membership').getAuthenticatedMember().id
-        workflow = getToolByName(self.context, 'portal_workflow')
-        query = {
-            'Creator': creator,
-            'path': shopping_site.shop_path(),
-            'sort_on': 'modified',
-            'sort_order': 'descending',
-        }
-        order_number = self.request.form.get('order_number')
-        if order_number:
-            query['id'] = order_number
-        toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
-        for item in shopping_site.get_content_listing(IOrder, **query):
-            obj = item.getObject()
-            order = IOrderAdapter(obj)
-            res.append({
-                'articles': order.articles(),
-                'id': item.getId(),
-                'modified': toLocalizedTime(item.modified),
-                'shipping_method': order.locale_shipping_method(),
-                'state_title': workflow.getTitleForStateOnType(item.review_state(), item.portal_type),
-                'title': item.Title(),
-                'total': shopping_site.format_money(order.total()),
-                'url': item.getURL(),
-                'billing_info': order.get_address('billing'),
-                'shipping_info': order.get_address('shipping'),
-                'registration_number': obj.registration_number,
-            })
-        return res
-
-    def class_collapsible(self):
-        """Returns styling values
-
-        :rtype: str
-        """
-        utility = getUtility(ICollapsedOnLoad)
-        if len(self.orders()) == 1:
-            return utility(collapsed=False)
-        return utility()
-
-
-class BillingAndShippingRegistrationNumberViewlet(ViewletBase):
+class BillingAndShippingRegistrationNumberViewlet(Viewlet):
     """Viewlet for view: @@billing-and-shipping
     Shows form to update billing address"""
     implements(IBillingAndShippingRegistrationNumberViewlet)
@@ -206,17 +150,26 @@ class BillingAndShippingRegistrationNumberViewlet(ViewletBase):
             IShoppingSite(self.context).update_cart('registration_number', registration_number.strip())
 
 
-class OrderConfirmationRegistrationNumberViewlet(ViewletBase):
-    """Viewlet for view: @@order-confirmation
-    Shows registration number"""
-    implements(IOrderConfirmationRegistrationNumberViewlet)
-    index = ViewPageTemplateFile('viewlets/order-confirmation-registration-number.pt')
+# class OrderConfirmationRegistrationNumberViewlet(Viewlet):
+#     """Viewlet for view: @@order-confirmation
+#     Shows registration number"""
+#     implements(IOrderConfirmationRegistrationNumberViewlet)
+#     index = ViewPageTemplateFile('viewlets/order-confirmation-registration-number.pt')
 
-    def registration_number(self):
-        """Returns registration number
+#     def registration_number(self):
+#         """Returns registration number
 
-        :rtype: str
-        """
-        cart = IShoppingSite(self.context).cart()
-        if cart:
-            return cart.get('registration_number')
+#         :rtype: str
+#         """
+#         cart = IShoppingSite(self.context).cart()
+#         if cart:
+#             return cart.get('registration_number')
+
+
+class OrderListingRegistrationNumberViewlet(Viewlet):
+    """Viewlet for order listing to show addresses"""
+    implements(IOrderListingRegistrationNumberViewlet)
+    index = ViewPageTemplateFile('viewlets/order-listing-registration-number.pt')
+
+    def _handle_repeated(self, item):
+        self.registration_number = item['obj'].registration_number

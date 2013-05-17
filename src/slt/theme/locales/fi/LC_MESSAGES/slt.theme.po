@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-05-07 19:01+0000\n"
+"POT-Creation-Date: 2013-05-17 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,13 @@ msgstr ""
 msgid "Add New Address"
 msgstr "Lisää uusi osoite"
 
-#: ./browser/template.py:82
+#: ./browser/template.py:74
 msgid "Add commonly used addresses to make your order easier."
 msgstr "Lisää usein käytetyt osoitteet tähän."
 
 #: ./browser/template.py:73
 msgid "Address Linsting"
 msgstr "Osoitelista"
-
-#: ./browser/viewlets/order-listing.pt:101
-msgid "Billing Address"
-msgstr "Laskutusosoite"
 
 #: ./browser/viewlets/link-to-order.pt:2
 msgid "Check the order"
@@ -48,17 +44,9 @@ msgstr "Tilauslista"
 
 #: ./browser/viewlets/billing-and-shipping-registration-number.pt:7
 #: ./browser/viewlets/order-confirmation-registration-number.pt:5
-#: ./browser/viewlets/order-listing.pt:93
+#: ./browser/viewlets/order-listing-registration-number.pt:2
 msgid "Registration Number"
 msgstr "Jäsennumero"
-
-#: ./browser/viewlets/order-listing.pt:110
-msgid "Shipping Address"
-msgstr "Toimitusosoite"
-
-#: ./browser/viewlets/order-listing.pt:7
-msgid "State:"
-msgstr "Tila:"
 
 #: ./profiles/default/actions.xml
 msgid "Unfeed from Shop Top"
@@ -87,16 +75,6 @@ msgstr "Täytä yksityistietosi ensin."
 #: ./browser/register.py:8
 msgid "help_registration_form"
 msgstr "Verkkokaupasta ostaminen edellyttää rekisteröitymistä. Anna nimesi ja sähköpostiosoitteesi ja paina rekisteröidy. Tämän jälkeen antamaasi sähköpostiosoitteeseen tulee linkki, jota kautta pääset vahvistamaan rekisteröitymisesi ja täyttämään loput tarvittavat tiedot."
-
-#. Default: "Order Number: ${order_number}"
-#: ./browser/viewlets/order-listing.pt:5
-msgid "order-number"
-msgstr "Tilausnumero: ${order_number}"
-
-#. Default: "Updated: ${order_updated}"
-#: ./browser/viewlets/order-listing.pt:10
-msgid "order-updated"
-msgstr "Päivitetty: ${order_updated}"
 
 #. Default: "Registration Number: ${number}"
 #: ./browser/templates/order-mail-template.pt:21

@@ -1,10 +1,12 @@
+from collective.cart.shopping.tests.base import IntegrationTestCase as BaseIntegrationTestCase
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
-from collective.cart.shopping.tests.base import IntegrationTestCase as BaseIntegrationTestCase
+from zope.publisher.browser import TestRequest
 
+import mock
 import unittest
 
 
@@ -61,6 +63,13 @@ class IntegrationTestCase(BaseIntegrationTestCase):
     """Base class for integration tests."""
 
     layer = INTEGRATION_TESTING
+
+    def create_viewletmanager(self, viewletmanager, context=None, view=None):
+        if context is None:
+            context = self.portal
+        request = TestRequest()
+        request.set = mock.Mock()
+        return viewletmanager(context, request, view)
 
 
 class FunctionalTestCase(unittest.TestCase):

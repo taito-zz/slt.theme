@@ -71,7 +71,7 @@ class AddressListingView(BaseView):
     implements(IAddressListingView)
 
     title = _(u'Address Linsting')
-    description = None
+    description = _(u'Add commonly used addresses to make your order easier.')
 
 
 class OrderListingView(BaseView):
@@ -79,7 +79,6 @@ class OrderListingView(BaseView):
     implements(IOrderListingView)
 
     title = _(u'Order Linsting')
-    description = _(u'Add commonly used addresses to make your order easier.')
 
 
 class ToCustomerOrderMailTemplateView(BaseToCustomerOrderMailTemplateView):

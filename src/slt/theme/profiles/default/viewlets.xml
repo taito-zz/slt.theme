@@ -17,6 +17,12 @@
     <viewlet name="slt.theme.viewlet.order-listing" />
   </order>
 
+  <order manager="collective.cart.shopping.viewlet-manager.order-listing" skinname="*">
+    <viewlet
+      insert-after="collective.cart.shopping.viewlet.order-listing-total"
+      name="slt.theme.viewlet.order-listing-registration-number" />
+  </order>
+
   <order manager="plone.portalfooter" skinname="*">
     <viewlet name="sll.basetheme.footer.info" />
   </order>

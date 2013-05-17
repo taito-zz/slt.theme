@@ -1,5 +1,6 @@
 from collective.base.interfaces import IBaseFormView
 from collective.base.interfaces import IViewlet
+from collective.cart.shopping.browser.interfaces import IOrderListingViewletManager as IBaseOrderListingViewletManager
 from sll.basetheme.browser.interfaces import INavigationRootView
 from zope.interface import Interface
 from zope.viewlet.interfaces import IViewletManager
@@ -15,6 +16,10 @@ class ISltThemeLayer(Interface):
 
 class IBaseViewViewletManager(IViewletManager):
     """Viewlet manager interface for base view"""
+
+
+class IOrderListingViewletManager(IBaseOrderListingViewletManager):
+    """Viewlet manager interface for OrderListingViewletManager"""
 
 
 # View
@@ -107,3 +112,7 @@ class IOrderConfirmationRegistrationNumberViewlet(IViewlet):
 
         :rtype: str
         """
+
+
+class IOrderListingRegistrationNumberViewlet(IViewlet):
+    """Viewlet interface for OrderListingRegistrationNumberViewlet"""

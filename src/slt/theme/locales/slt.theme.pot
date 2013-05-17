@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-05-07 19:01+0000\n"
+"POT-Creation-Date: 2013-05-17 15:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,16 +21,12 @@ msgstr ""
 msgid "Add New Address"
 msgstr ""
 
-#: ./browser/template.py:82
+#: ./browser/template.py:74
 msgid "Add commonly used addresses to make your order easier."
 msgstr ""
 
 #: ./browser/template.py:73
 msgid "Address Linsting"
-msgstr ""
-
-#: ./browser/viewlets/order-listing.pt:101
-msgid "Billing Address"
 msgstr ""
 
 #: ./browser/viewlets/link-to-order.pt:2
@@ -51,16 +47,8 @@ msgstr ""
 
 #: ./browser/viewlets/billing-and-shipping-registration-number.pt:7
 #: ./browser/viewlets/order-confirmation-registration-number.pt:5
-#: ./browser/viewlets/order-listing.pt:93
+#: ./browser/viewlets/order-listing-registration-number.pt:2
 msgid "Registration Number"
-msgstr ""
-
-#: ./browser/viewlets/order-listing.pt:110
-msgid "Shipping Address"
-msgstr ""
-
-#: ./browser/viewlets/order-listing.pt:7
-msgid "State:"
 msgstr ""
 
 #: ./profiles/default/actions.xml
@@ -89,16 +77,6 @@ msgstr ""
 #. Default: "You need to be registered and logged in to buy products from our shopping site."
 #: ./browser/register.py:8
 msgid "help_registration_form"
-msgstr ""
-
-#. Default: "Order Number: ${order_number}"
-#: ./browser/viewlets/order-listing.pt:5
-msgid "order-number"
-msgstr ""
-
-#. Default: "Updated: ${order_updated}"
-#: ./browser/viewlets/order-listing.pt:10
-msgid "order-updated"
 msgstr ""
 
 #. Default: "Registration Number: ${number}"
