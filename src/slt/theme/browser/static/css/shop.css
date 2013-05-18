@@ -210,17 +210,17 @@ section#confirmation-total {
   padding: 0.3em 0.5em;
 }
 
-.update, .remove, .next, .clear, .back, #form-buttons-update {
+.update, .remove, button.next, .clear, .back, #form-buttons-update {
   border: 0;
   border-radius: 5px;
   color: white;
 }
 
-.update, .remove, .next, #form-buttons-update {
+.update, .remove, button.next, #form-buttons-update {
   background: #CA2464;
 }
 
-.next, .clear, .back {
+button.next, .clear, .back {
   padding: 0.5em 0.7em;
 }
 .back,
