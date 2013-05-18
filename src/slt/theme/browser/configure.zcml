@@ -142,7 +142,7 @@
     for="slt.content.interfaces.IMemberArea"
     layer=".interfaces.ISltThemeLayer"
     name="view"
-    permission="zope2.View"
+    permission="collective.cart.core.ViewOrderContent"
     />
 
   <browser:page
@@ -214,12 +214,22 @@
     view=".interfaces.IAddressListingView"
     />
 
-  <browser:viewlet
+  <!-- <browser:viewlet
     class="collective.cart.shopping.browser.viewlet.OrderListingViewlet"
     for="slt.content.interfaces.IMemberArea"
     layer=".interfaces.ISltThemeLayer"
     manager="collective.base.interfaces.IBaseFormViewletManager"
     name="slt.theme.viewlet.order-listing"
+    permission="zope2.View"
+    view=".interfaces.IOrderListingView"
+    /> -->
+
+  <browser:viewlet
+    class="collective.cart.shopping.browser.viewlet.OrderListingViewlet"
+    for="slt.content.interfaces.IMemberArea"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="collective.cart.shopping.viewlet.order-listing"
     permission="zope2.View"
     view=".interfaces.IOrderListingView"
     />
@@ -244,12 +254,21 @@
     view="collective.cart.shopping.browser.interfaces.IBillingAndShippingView"
     />
 
-  <browser:viewlet
+  <!-- <browser:viewlet
     class=".viewlet.OrderListingRegistrationNumberViewlet"
     for="*"
     layer=".interfaces.ISltThemeLayer"
     manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
     name="slt.theme.viewlet.order-listing-registration-number"
+    permission="collective.cart.core.ViewOrderContent"
+    /> -->
+
+  <browser:viewlet
+    class=".viewlet.OrderListingRegistrationNumberViewlet"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
+    name="collective.cart.shopping.viewlet.order-listing-registration-number"
     permission="collective.cart.core.ViewOrderContent"
     />
 

@@ -16,6 +16,8 @@ class OrderListingViewletManager(BaseOrderListingViewletManager):
             'sort_order': 'descending',
         }
         order_number = self.request.form.get('order_number')
+
         if order_number:
             query['id'] = order_number
+
         return shopping_site.get_content_listing(IOrder, **query)
