@@ -6,90 +6,41 @@ from slt.theme.tests.base import IntegrationTestCase
 class TestCase(IntegrationTestCase):
     """TestCase for Plone setup."""
 
-    def setUp(self):
-        self.portal = self.layer['portal']
-
-    def test_installed__package(self):
+    def test_package_installed(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertTrue(installer.isProductInstalled('slt.theme'))
 
-    def get_action(self, name):
-        """Get action.
-
-        :param name: Name of action.
-        :param type: str
-
-        :rtype: action
-        """
-        return getattr(getattr(getToolByName(
-            self.portal, 'portal_actions'), 'object_buttons'), name, None)
-
-    def test_actions__object_buttons__feed_to_shop_top__i18n_domain(self):
-        action = self.get_action('feed_to_shop_top')
+    def test_actions__object_members(self):
+        action = getattr(getattr(getToolByName(self.portal, 'portal_actions'), 'object'), 'members')
         self.assertEqual(action.i18n_domain, 'slt.theme')
-
-    def test_actions__object_buttons__feed_to_shop_top__meta_type(self):
-        action = self.get_action('feed_to_shop_top')
         self.assertEqual(action.meta_type, 'CMF Action')
-
-    def test_actions__object_buttons__feed_to_shop_top__title(self):
-        action = self.get_action('feed_to_shop_top')
-        self.assertEqual(action.title, 'Feed to Shop Top')
-
-    def test_actions__object_buttons__feed_to_shop_top__description(self):
-        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(action.title, 'Members')
         self.assertEqual(action.description, '')
-
-    def test_actions__object_buttons__feed_to_shop_top__url_expr(self):
-        action = self.get_action('feed_to_shop_top')
-        self.assertEqual(
-            action.url_expr, 'string:${globals_view/getCurrentObjectUrl}/@@feed-to-shop-top')
-
-    def test_actions__object_buttons__feed_to_shop_top__available_expr(self):
-        action = self.get_action('feed_to_shop_top')
-        self.assertEqual(
-            action.available_expr, 'python: object.restrictedTraverse("feedable-to-shop-top")()')
-
-    def test_actions__object_buttons__feed_to_shop_top__permissions(self):
-        action = self.get_action('feed_to_shop_top')
-        self.assertEqual(action.permissions, ('slt.theme: Manage feed for shop top',))
-
-    def test_actions__object_buttons__feed_to_shop_top__visible(self):
-        action = self.get_action('feed_to_shop_top')
+        self.assertEqual(action.url_expr, 'string:${globals_view/getCurrentObjectUrl}/@@members')
+        self.assertEqual(action.available_expr, 'python: object.restrictedTraverse("@@is-shopping-site")()')
+        self.assertEqual(action.permissions, ('Modify portal content',))
         self.assertTrue(action.visible)
 
-    def test_actions__object_buttons__unfeed_from_shop_top__i18n_domain(self):
-        action = self.get_action('unfeed_from_shop_top')
+    def test_actions__object_buttons__feed_to_shop_top(self):
+        action = getattr(getattr(getToolByName(self.portal, 'portal_actions'), 'object_buttons'), 'feed_to_shop_top')
         self.assertEqual(action.i18n_domain, 'slt.theme')
-
-    def test_actions__object_buttons__unfeed_from_shop_top__meta_type(self):
-        action = self.get_action('unfeed_from_shop_top')
         self.assertEqual(action.meta_type, 'CMF Action')
-
-    def test_actions__object_buttons__unfeed_from_shop_top__title(self):
-        action = self.get_action('unfeed_from_shop_top')
-        self.assertEqual(action.title, 'Unfeed from Shop Top')
-
-    def test_actions__object_buttons__unfeed_from_shop_top__description(self):
-        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(action.title, 'Feed to Shop Top')
         self.assertEqual(action.description, '')
-
-    def test_actions__object_buttons__unfeed_from_shop_top__url_expr(self):
-        action = self.get_action('unfeed_from_shop_top')
-        self.assertEqual(
-            action.url_expr, 'string:${globals_view/getCurrentObjectUrl}/@@unfeed-from-shop-top')
-
-    def test_actions__object_buttons__unfeed_from_shop_top__available_expr(self):
-        action = self.get_action('unfeed_from_shop_top')
-        self.assertEqual(
-            action.available_expr, 'python: object.restrictedTraverse("unfeedable-from-shop-top")()')
-
-    def test_actions__object_buttons__unfeed_from_shop_top__permissions(self):
-        action = self.get_action('unfeed_from_shop_top')
+        self.assertEqual(action.url_expr, 'string:${globals_view/getCurrentObjectUrl}/@@feed-to-shop-top')
+        self.assertEqual(action.available_expr, 'python: object.restrictedTraverse("@@feedable-to-shop-top")()')
         self.assertEqual(action.permissions, ('slt.theme: Manage feed for shop top',))
+        self.assertTrue(action.visible)
 
-    def test_actions__object_buttons__unfeed_from_shop_top__visible(self):
-        action = self.get_action('unfeed_from_shop_top')
+    def test_actions__object_buttons__unfeed_from_shop_top(self):
+        action = getattr(getattr(getToolByName(self.portal, 'portal_actions'), 'object_buttons'), 'unfeed_from_shop_top')
+        self.assertEqual(action.i18n_domain, 'slt.theme')
+        self.assertEqual(action.meta_type, 'CMF Action')
+        self.assertEqual(action.title, 'Unfeed from Shop Top')
+        self.assertEqual(action.description, '')
+        self.assertEqual(action.url_expr, 'string:${globals_view/getCurrentObjectUrl}/@@unfeed-from-shop-top')
+        self.assertEqual(action.available_expr, 'python: object.restrictedTraverse("@@unfeedable-from-shop-top")()')
+        self.assertEqual(action.permissions, ('slt.theme: Manage feed for shop top',))
         self.assertTrue(action.visible)
 
     def test_browserlayer(self):
@@ -197,7 +148,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'10')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'11')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -336,13 +287,20 @@ class TestCase(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         self.assertFalse(installer.isProductInstalled('slt.theme'))
 
+    def test_uninstall__actions__object__members(self):
+        self.uninstall_package()
+        with self.assertRaises(AttributeError):
+            getattr(getattr(getToolByName(self.portal, 'portal_actions'), 'object'), 'members')
+
     def test_uninstall__actions__object_buttons__feed_to_shop_top(self):
         self.uninstall_package()
-        self.assertIsNone(self.get_action('feed_to_shop_top'))
+        with self.assertRaises(AttributeError):
+            getattr(getattr(getToolByName(self.portal, 'portal_actions'), 'object_buttons'), 'feed_to_shop_top')
 
     def test_uninstall__actions__object_buttons__unfeed_from_shop_top(self):
         self.uninstall_package()
-        self.assertIsNone(self.get_action('unfeed_from_shop_top'))
+        with self.assertRaises(AttributeError):
+            getattr(getattr(getToolByName(self.portal, 'portal_actions'), 'object_buttons'), 'unfeed_from_shop_top')
 
     def test_uninstall__browserlayer(self):
         self.uninstall_package()

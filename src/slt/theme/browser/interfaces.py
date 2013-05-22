@@ -28,6 +28,28 @@ class IShopView(IBaseFormView, INavigationRootView):
     """View interface for ShopView"""
 
 
+class IMembersView(IBaseFormView, INavigationRootView):
+    """View interface for @@members"""
+
+    def all_members():
+        """Returns list of all the members
+
+        :rtype: list
+        """
+
+    def direct_marketing_allowers():
+        """Returns list of memebers who allow direct marketing
+
+        :rtype: list
+        """
+
+    def table_headers():
+        """Returns headers for table
+
+        :rtype: tuple
+        """
+
+
 class IAddressListingView(IBaseFormView):
     """View interface for AddressListingView"""
 
@@ -56,6 +78,10 @@ class IShopArticleListingViewlet(IViewlet):
 
         :rtype: list
         """
+
+
+class IMembersExportViewlet(IViewlet):
+    """Viewlet interface for MembersExportViewlet"""
 
 
 class IAddAddressViewlet(IViewlet):

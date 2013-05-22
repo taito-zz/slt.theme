@@ -12,6 +12,7 @@ from slt.theme.browser.interfaces import IAddAddressViewlet
 from slt.theme.browser.interfaces import IAddressListingViewlet
 from slt.theme.browser.interfaces import IBillingAndShippingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import ILinkToOrderViewlet
+from slt.theme.browser.interfaces import IMembersExportViewlet
 from slt.theme.browser.interfaces import IOrderListingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import IShopArticleListingViewlet
 from slt.theme.interfaces import ICollapsedOnLoad
@@ -48,7 +49,8 @@ class LinkToOrderViewlet(Viewlet):
 
 class ShopArticleListingViewlet(Viewlet):
     """Viewlet for view: @@slt-view
-    Shows article listing"""
+    Shows article listing
+    """
     implements(IShopArticleListingViewlet)
     index = ViewPageTemplateFile('viewlets/shop-article-listing.pt')
 
@@ -78,6 +80,20 @@ class ShopArticleListingViewlet(Viewlet):
                 'url': item.getURL(),
             })
         return res
+
+
+class MembersExportViewlet(Viewlet):
+    """Viewlet for view: @@members
+
+    Shows member export buttons
+    """
+    implements(IMembersExportViewlet)
+    index = ViewPageTemplateFile('viewlets/members-export.pt')
+
+    def available(self):
+        if self.view.direct_marketing_allowers():
+            return True
+        return False
 
 
 class AddAddressViewlet(Viewlet):

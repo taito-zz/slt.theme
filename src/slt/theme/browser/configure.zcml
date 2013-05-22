@@ -130,6 +130,14 @@
     />
 
   <browser:page
+    class=".template.MembersView"
+    for="collective.cart.shopping.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="members"
+    permission="cmf.ModifyPortalContent"
+    />
+
+  <browser:page
     class=".template.AddressListingView"
     for="slt.content.interfaces.IMemberArea"
     layer=".interfaces.ISltThemeLayer"
@@ -195,6 +203,16 @@
     />
 
   <browser:viewlet
+    class=".viewlet.MembersExportViewlet"
+    for="collective.cart.core.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.base.interfaces.IBaseFormViewletManager"
+    name="slt.theme.viewlet.members-export"
+    permission="cmf.ModifyPortalContent"
+    view=".interfaces.IMembersView"
+    />
+
+  <browser:viewlet
     class=".viewlet.AddAddressViewlet"
     for="slt.content.interfaces.IMemberArea"
     layer=".interfaces.ISltThemeLayer"
@@ -214,16 +232,6 @@
     view=".interfaces.IAddressListingView"
     />
 
-  <!-- <browser:viewlet
-    class="collective.cart.shopping.browser.viewlet.OrderListingViewlet"
-    for="slt.content.interfaces.IMemberArea"
-    layer=".interfaces.ISltThemeLayer"
-    manager="collective.base.interfaces.IBaseFormViewletManager"
-    name="slt.theme.viewlet.order-listing"
-    permission="zope2.View"
-    view=".interfaces.IOrderListingView"
-    /> -->
-
   <browser:viewlet
     class="collective.cart.shopping.browser.viewlet.OrderListingViewlet"
     for="slt.content.interfaces.IMemberArea"
@@ -234,16 +242,6 @@
     view=".interfaces.IOrderListingView"
     />
 
-  <!-- <browser:viewlet
-    class=".viewlet.OrderConfirmationRegistrationNumberViewlet"
-    for="collective.cart.core.interfaces.IShoppingSiteRoot"
-    layer=".interfaces.ISltThemeLayer"
-    manager="collective.base.interfaces.IBaseFormViewletManager"
-    name="slt.theme.viewlet.order-confirmation-registration-number"
-    permission="zope2.View"
-    view="collective.cart.shopping.browser.interfaces.IOrderConfirmationView"
-    /> -->
-
   <browser:viewlet
     class=".viewlet.BillingAndShippingRegistrationNumberViewlet"
     for="collective.cart.core.interfaces.IShoppingSiteRoot"
@@ -253,15 +251,6 @@
     permission="zope2.View"
     view="collective.cart.shopping.browser.interfaces.IBillingAndShippingView"
     />
-
-  <!-- <browser:viewlet
-    class=".viewlet.OrderListingRegistrationNumberViewlet"
-    for="*"
-    layer=".interfaces.ISltThemeLayer"
-    manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
-    name="slt.theme.viewlet.order-listing-registration-number"
-    permission="collective.cart.core.ViewOrderContent"
-    /> -->
 
   <browser:viewlet
     class=".viewlet.OrderListingRegistrationNumberViewlet"

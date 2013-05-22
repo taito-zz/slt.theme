@@ -1,0 +1,7 @@
+<section i18n:domain="slt.theme" id="members-export" tal:condition="view/available">
+  <button
+    i18n:translate="export-direct-marketing-allowers"
+    name="form.buttons.ExportDirectMarketingAllowers"
+    value="form.buttons.ExportDirectMarketingAllowers"
+    type="submit">Export Direct Marketing Allowers</button>
+</section>

@@ -34,6 +34,13 @@ class TestCase(IntegrationTestCase):
         reimport_viewlets(self.portal)
         self.assertEqual(len(storage.getHidden(manager, skinname)), 5)
 
+    def test_reimport_actions(self):
+        setup = mock.Mock()
+        from slt.theme.upgrades import reimport_actions
+        reimport_actions(setup)
+        setup.runImportStepFromProfile.assert_called_with(
+            'profile-slt.theme:default', 'actions', run_dependencies=False, purge_old=False)
+
     @mock.patch('slt.theme.upgrades.reimport_profile')
     def test_reimport_cssregistry(self, reimport_profile):
         from slt.theme.upgrades import reimport_cssregistry
@@ -76,21 +83,3 @@ class TestCase(IntegrationTestCase):
 
         self.assertEqual(storage.getHidden(manager, skinname), (u'viewlet3',))
         self.assertEqual(storage.getOrder(manager, skinname), (u'viewlet4',))
-
-    # @mock.patch('slt.theme.upgrades.clean_viewlets')
-    # def test_clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self, clean_viewlets):
-    #     from slt.theme.upgrades import clean_viewlets_from_collective_cart_shopping_billing_shipping_manager
-    #     clean_viewlets_from_collective_cart_shopping_billing_shipping_manager(self.portal)
-    #     self.assertEqual(clean_viewlets.call_args_list, [
-    #         [(u'collective.cart.shopping.billing.shipping.manager', u'Plone Default')],
-    #         [(u'collective.cart.shopping.billing.shipping.manager', u'Sunburst Theme')],
-    #         [(u'collective.cart.shopping.billing.shipping.manager', u'*')]])
-
-    # @mock.patch('slt.theme.upgrades.clean_viewlets')
-    # def test_clean_viewlets_from_plone_portalfooter(self, clean_viewlets):
-    #     from slt.theme.upgrades import clean_viewlets_from_plone_portalfooter
-    #     clean_viewlets_from_plone_portalfooter(self.portal)
-    #     self.assertEqual(clean_viewlets.call_args_list, [
-    #         [(u'plone.portalfooter', u'Plone Default')],
-    #         [(u'plone.portalfooter', u'Sunburst Theme')],
-    #         [(u'plone.portalfooter', u'*')]])

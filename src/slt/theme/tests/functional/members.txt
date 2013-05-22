@@ -1,0 +1,39 @@
+Visit @@members::
+
+    >>> browser.open('/@@members')
+    >>> browser.url
+    'http://nohost/plone/acl_users/credentials_cookie_auth/require_login?came_from=http%3A//nohost/plone/%40%40members'
+
+Log in as member1::
+
+    >>> browser.login('member1', 'member1')
+
+Visit @@members::
+
+    >>> browser.open('/@@members')
+    >>> browser.url
+    'http://nohost/plone/acl_users/credentials_cookie_auth/require_login?came_from=http%3A//nohost/plone/%40%40members'
+
+Log out and log in as member4 who has Site Administrator role::
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.login('member4', 'member4')
+
+    >>> browser.open('/@@members')
+    >>> browser.url
+    'http://nohost/plone/@@members'
+
+    >>> print browser.bycss('.documentFirstHeading')
+    --- 1 ---
+    <h1 class="documentFirstHeading">Members</h1>
+
+    >>> print browser.bycss('.documentDescription')
+    --- 1 ---
+    <div class="documentDescription">There are 2 members out of 5 who allows direct marketing.</div>
+
+    >>> browser.getControl(name="form.buttons.ExportDirectMarketingAllowers").click()
+    >>> print browser.contents
+    ID (e-mail)|Name
+    member2@member.ml|Full Name 2
+    member3@member.ml|Full Name 3
+    <BLANKLINE>

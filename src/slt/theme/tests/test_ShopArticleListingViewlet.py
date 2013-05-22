@@ -12,7 +12,7 @@ class ShopArticleListingViewletTestCase(IntegrationTestCase):
     """TestCase for ShopArticleListingViewlet"""
 
     def test_subclass(self):
-        from plone.app.layout.viewlets.common import ViewletBase as Base
+        from collective.base.viewlet import Viewlet as Base
         self.assertTrue(ShopArticleListingViewlet, Base)
         from collective.base.interfaces import IViewlet as Base
         self.assertTrue(issubclass(IShopArticleListingViewlet, Base))

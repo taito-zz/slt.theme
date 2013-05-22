@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-05-17 15:43+0000\n"
+"POT-Creation-Date: 2013-05-22 15:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 msgid "Add New Address"
 msgstr "Lisää uusi osoite"
 
-#: ./browser/template.py:74
+#: ./browser/template.py:138
 msgid "Add commonly used addresses to make your order easier."
 msgstr "Lisää usein käytetyt osoitteet tähän."
 
-#: ./browser/template.py:73
+#: ./browser/template.py:137
 msgid "Address Linsting"
 msgstr "Osoitelista"
 
@@ -34,11 +34,24 @@ msgstr "Tarkista tilaus"
 msgid "Feed to Shop Top"
 msgstr "Syöte kaupan etusivulle"
 
+#: ./browser/template.py:108
+msgid "ID (e-mail)"
+msgstr "Tunnus (s-posti)"
+
 #: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:20
 msgid "Login failed"
 msgstr "Kirjautuminen epäonnistui"
 
 #: ./browser/template.py:81
+#: ./profiles/default/actions.xml
+msgid "Members"
+msgstr "Jäsenet"
+
+#: ./browser/template.py:109
+msgid "Name"
+msgstr "Nimi"
+
+#: ./browser/template.py:145
 msgid "Order Linsting"
 msgstr "Tilauslista"
 
@@ -66,8 +79,13 @@ msgstr "Ruksaa ja salli suoramarkkinointi."
 msgid "allow_direct_marketing_title"
 msgstr "Salli suoramarkkinointi"
 
+#. Default: "Export Direct Marketing Allowers"
+#: ./browser/viewlets/members-export.pt:2
+msgid "export-direct-marketing-allowers"
+msgstr "Exporttaa suoramarkkinointihyväksyjät"
+
 #. Default: "Please fill your personal information."
-#: ./browser/template.py:38
+#: ./browser/template.py:46
 msgid "first-time-login"
 msgstr "Täytä yksityistietosi ensin."
 
@@ -75,6 +93,11 @@ msgstr "Täytä yksityistietosi ensin."
 #: ./browser/register.py:8
 msgid "help_registration_form"
 msgstr "Verkkokaupasta ostaminen edellyttää rekisteröitymistä. Anna nimesi ja sähköpostiosoitteesi ja paina rekisteröidy. Tämän jälkeen antamaasi sähköpostiosoitteeseen tulee linkki, jota kautta pääset vahvistamaan rekisteröitymisesi ja täyttämään loput tarvittavat tiedot."
+
+#. Default: "There are ${direct_marketing_allowers} members out of ${all_members} who allows direct marketing."
+#: ./browser/template.py:84
+msgid "members-description"
+msgstr "Suoramarkkinointia hyväksyy ${direct_marketing_allowers} jäsentä ${all_members} jäseneistä."
 
 #. Default: "Registration Number: ${number}"
 #: ./browser/templates/order-mail-template.pt:21
