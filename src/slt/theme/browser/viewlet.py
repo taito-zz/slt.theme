@@ -12,7 +12,6 @@ from slt.theme.browser.interfaces import IAddAddressViewlet
 from slt.theme.browser.interfaces import IAddressListingViewlet
 from slt.theme.browser.interfaces import IBillingAndShippingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import ILinkToOrderViewlet
-# from slt.theme.browser.interfaces import IOrderConfirmationRegistrationNumberViewlet
 from slt.theme.browser.interfaces import IOrderListingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import IShopArticleListingViewlet
 from slt.theme.interfaces import ICollapsedOnLoad
@@ -126,7 +125,7 @@ class AddressListingViewlet(Viewlet):
         return city.strip()
 
     def class_collapsible(self):
-        return getUtility(ICollapsedOnLoad)(len(self.view.addresses()) > 4)
+        return getUtility(ICollapsedOnLoad)(len(self.addresses()) > 4)
 
 
 class BillingAndShippingRegistrationNumberViewlet(Viewlet):
@@ -148,22 +147,6 @@ class BillingAndShippingRegistrationNumberViewlet(Viewlet):
         registration_number = form.get('registration_number')
         if form.get('form.buttons.CheckOut') is not None and registration_number is not None:
             IShoppingSite(self.context).update_cart('registration_number', registration_number.strip())
-
-
-# class OrderConfirmationRegistrationNumberViewlet(Viewlet):
-#     """Viewlet for view: @@order-confirmation
-#     Shows registration number"""
-#     implements(IOrderConfirmationRegistrationNumberViewlet)
-#     index = ViewPageTemplateFile('viewlets/order-confirmation-registration-number.pt')
-
-#     def registration_number(self):
-#         """Returns registration number
-
-#         :rtype: str
-#         """
-#         cart = IShoppingSite(self.context).cart()
-#         if cart:
-#             return cart.get('registration_number')
 
 
 class OrderListingRegistrationNumberViewlet(Viewlet):

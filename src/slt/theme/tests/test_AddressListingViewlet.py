@@ -10,7 +10,7 @@ class AddressListingViewletTestCase(IntegrationTestCase):
     """TestCase for AddressListingViewlet"""
 
     def test_subclass(self):
-        from plone.app.layout.viewlets.common import ViewletBase as Base
+        from collective.base.viewlet import Viewlet as Base
         self.assertTrue(issubclass(AddressListingViewlet, Base))
         from collective.base.interfaces import IViewlet as Base
         self.assertTrue(issubclass(IAddressListingViewlet, Base))
@@ -74,13 +74,12 @@ class AddressListingViewletTestCase(IntegrationTestCase):
         self.assertEqual(instance._city(item), 'CITY POST')
 
     def test_class_collapsible(self):
-        view = mock.Mock()
-        instance = self.create_viewlet(AddressListingViewlet, view=view)
-        view.addresses.return_value = []
+        instance = self.create_viewlet(AddressListingViewlet)
+        instance.addresses = mock.Mock(return_value=[])
         self.assertEqual(instance.class_collapsible(), 'collapsible')
 
-        view.addresses.return_value = [mock.Mock(), mock.Mock(), mock.Mock(), mock.Mock()]
+        instance.addresses.return_value = [mock.Mock(), mock.Mock(), mock.Mock(), mock.Mock()]
         self.assertEqual(instance.class_collapsible(), 'collapsible')
 
-        view.addresses.return_value = [mock.Mock(), mock.Mock(), mock.Mock(), mock.Mock(), mock.Mock()]
+        instance.addresses.return_value = [mock.Mock(), mock.Mock(), mock.Mock(), mock.Mock(), mock.Mock()]
         self.assertEqual(instance.class_collapsible(), 'collapsible collapsedOnLoad')
