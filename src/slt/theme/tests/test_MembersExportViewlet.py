@@ -2,8 +2,6 @@
 from slt.theme.browser.interfaces import IMembersExportViewlet
 from slt.theme.browser.viewlet import MembersExportViewlet
 from slt.theme.tests.base import IntegrationTestCase
-from zope.interface import alsoProvides
-from zope.lifecycleevent import modified
 
 import mock
 
@@ -23,7 +21,6 @@ class MembersExportViewletTestCase(IntegrationTestCase):
         self.assertTrue(verifyObject(IMembersExportViewlet, instance))
 
     def test_available(self):
-        from zope.interface.verify import verifyObject
         view = mock.Mock()
         view.direct_marketing_allowers.return_value = []
         instance = self.create_viewlet(MembersExportViewlet, view=view)

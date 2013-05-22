@@ -7,10 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
-0.21.3 (2013-05-xx)
+0.21.3 (2013-05-22)
 ===================
 
 - Fixed method: class_collapsible for address listing viewlet. [taito]
+- Added view: @@members for exporting member information. [taito]
 
 0.21.2 (2013-05-18)
 ===================

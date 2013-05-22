@@ -2,21 +2,14 @@
 from Products.CMFCore.utils import getToolByName
 from Testing import ZopeTestCase as ztc
 from collective.cart.core.interfaces import IShoppingSiteRoot
-from decimal import Decimal
 from hexagonit.testing.browser import Browser
-from moneyed import Money
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import TEST_USER_PASSWORD
 from plone.app.testing import setRoles
-from plone.dexterity.utils import createContentInContainer
-from plone.registry.interfaces import IRegistry
 from plone.testing import layered
-from plone.uuid.interfaces import IUUID
 from slt.theme.tests.base import FUNCTIONAL_TESTING
-from zope.component import getUtility
 from zope.interface import alsoProvides
-from zope.lifecycleevent import modified
 from zope.testing import renormalizing
 
 import doctest
