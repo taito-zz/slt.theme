@@ -142,7 +142,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'11')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'12')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -183,14 +183,18 @@ class TestCase(IntegrationTestCase):
         record = self.get_record('slt.theme.articles_feed_on_top_page')
         self.assertEqual(record.value, 0)
 
-    def test_rolemap__slt_theme_Show_byline__rolesOfPermission(self):
+    def test_rolemap__collective_cart_shopping_View_Stock_On_Add_To_Cart(self):
+        permission = "collective.cart.shopping: View Stock On Add To Cart"
+        self.assertEqual(get_roles(self.portal, permission), [
+            'Manager',
+            'Site Administrator'])
+        self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
+
+    def test_rolemap__slt_theme_Show_byline(self):
         permission = "slt.theme: Show byline"
         self.assertEqual(get_roles(self.portal, permission), [
             'Manager',
             'Site Administrator'])
-
-    def test_rolemap__slt_theme_Show_byline__acquiredRolesAreUsedBy(self):
-        permission = "slt.theme: Show byline"
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
 
     def get_ctype(self, name):

@@ -103,4 +103,14 @@
     title="Reimport actions"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="12"
+    handler="slt.theme.upgrades.reimport_rolemap"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="11"
+    title="Reiimport rolemap"
+    />
+
 </configure>
