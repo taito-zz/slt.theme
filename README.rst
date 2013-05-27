@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.21.4 (2013-05-27)
+===================
+
+- Add permission to show stock at add to cart form. [taito]
+
 0.21.3 (2013-05-22)
 ===================
 
