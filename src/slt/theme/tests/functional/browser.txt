@@ -28,7 +28,7 @@ Add Article::
     >>> browser.getControl(name="form.widgets.IDublinCore.title").value = 'Kirja1'
     >>> browser.getControl(name="form.widgets.IDublinCore.description").value = 'Kirja1:n kuvaus.'
     >>> browser.getControl(name="form.widgets.ISKU.sku").value = 'SKU1'
-    >>> browser.getControl(name="form.widgets.IDiscount.price").value = '12.30'
+    >>> browser.getControl(name="form.widgets.IDiscountBehavior.price").value = '12.30'
     >>> browser.getControl(name="form.widgets.ISize.weight").value = '100.0'
     >>> browser.getControl(name="form.buttons.save").click()
 

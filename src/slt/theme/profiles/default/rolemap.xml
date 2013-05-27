@@ -5,5 +5,9 @@
       <role name="Manager" />
       <role name="Site Administrator"/>
     </permission>
+    <permission name="collective.cart.shopping: View Stock On Add To Cart" acquire="False">
+      <role name="Manager" />
+      <role name="Site Administrator" />
+    </permission>
   </permissions>
 </rolemap>

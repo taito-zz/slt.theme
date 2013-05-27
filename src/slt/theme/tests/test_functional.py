@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from Testing import ZopeTestCase as ztc
 from collective.cart.core.interfaces import IShoppingSiteRoot
 from hexagonit.testing.browser import Browser
 from plone.app.testing import TEST_USER_ID
@@ -36,7 +37,7 @@ def setUp(self):
         'portal': portal,
         'browser': browser,
     })
-
+    ztc.utils.setupCoreSessions(layer['app'])
     browser.setBaseUrl(portal.absolute_url())
     browser.handleErrors = True
     portal.error_log._ignored_exceptions = ()
@@ -84,5 +85,6 @@ def DocFileSuite(testfile, flags=FLAGS, setUp=setUp, layer=FUNCTIONAL_TESTING):
 
 def test_suite():
     return unittest.TestSuite([
+        DocFileSuite('functional/article.txt'),
         DocFileSuite('functional/browser.txt'),
         DocFileSuite('functional/personalpreferences.txt')])
