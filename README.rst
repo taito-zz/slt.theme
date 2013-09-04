@@ -7,6 +7,12 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.21.6 (2013-09-04)
+===================
+
+- Test with Plone-4.3.1. [taito]
+- Fix view: pwreset_finish available for every interfaces. [taito]
+
 0.21.5 (2013-05-27)
 ===================
 

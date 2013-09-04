@@ -107,7 +107,7 @@
 
   <browser:page
     class=".template.PwresetFinishView"
-    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    for="*"
     layer=".interfaces.ISltThemeLayer"
     name="pwreset_finish"
     permission="zope2.View"
