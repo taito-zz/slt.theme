@@ -7,7 +7,7 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
-0.22 (2013-10-16)
+0.22 (2013-10-xx)
 =================
 
 - Test with Plone-4.3.2. [taito]
