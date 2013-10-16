@@ -26,6 +26,6 @@ dl.portalMessage dt {
     font: normal 1em "Helvetica Neue",Arial,FreeSans,sans-serif;
 }
 /* footer */
-#portal-footer-wrapper a:link, #portal-footer-wrapper a:visited {
+#portal-footer-wrapper a:hover {
     color: #0084A7;
 }
