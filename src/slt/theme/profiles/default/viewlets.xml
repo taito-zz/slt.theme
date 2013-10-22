@@ -6,10 +6,6 @@
     <viewlet
       insert-after="collective.cart.shopping.viewlet.billing-and-shipping-shipping-methods"
       name="slt.theme.viewlet.billing-and-shipping-registration-number" />
-    <!-- @@order-confirmation -->
-    <viewlet
-      insert-after="collective.cart.shopping.viewlet.order-confirmation-total"
-      name="slt.theme.viewlet.order-confirmation-registration-number" />
     <!-- @@address-listing -->
     <viewlet name="slt.theme.viewlet.add-address" />
     <viewlet name="slt.theme.viewlet.address-listing" />

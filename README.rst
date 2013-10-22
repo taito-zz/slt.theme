@@ -7,11 +7,12 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
-0.22 (2013-10-xx)
+0.22 (2013-10-22)
 =================
 
 - Test with Plone-4.3.2. [taito]
 - Style footer. [taito]
+- Enable field for registration number for anonymous. [taito]
 
 0.21.6 (2013-09-04)
 ===================

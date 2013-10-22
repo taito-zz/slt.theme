@@ -1,7 +1,6 @@
 <section
     i18n:domain="slt.theme"
-    id="billing-and-shipping-registration-number"
-    tal:condition="not: context/@@plone_portal_state/anonymous">
+    id="billing-and-shipping-registration-number">
   <dl class="field">
     <dt>
       <tal:label i18n:translate="">Registration Number</tal:label>

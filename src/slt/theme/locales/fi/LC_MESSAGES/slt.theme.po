@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-05-27 06:53+0000\n"
+"POT-Creation-Date: 2013-10-22 08:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,9 +55,9 @@ msgstr "Nimi"
 msgid "Order Linsting"
 msgstr "Tilauslista"
 
-#: ./browser/viewlets/billing-and-shipping-registration-number.pt:7
-#: ./browser/viewlets/order-confirmation-registration-number.pt:5
+#: ./browser/viewlets/billing-and-shipping-registration-number.pt:6
 #: ./browser/viewlets/order-listing-registration-number.pt:2
+#: ./userdataschema.py:24
 msgid "Registration Number"
 msgstr "Jäsennumero"
 

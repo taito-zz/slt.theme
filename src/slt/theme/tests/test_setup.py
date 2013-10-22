@@ -241,7 +241,6 @@ class TestCase(IntegrationTestCase):
             u'collective.cart.shopping.viewlet.order-confirmation-cart-article-listing',
             u'collective.cart.shopping.viewlet.order-confirmation-shipping-method',
             u'collective.cart.shopping.viewlet.order-confirmation-total',
-            u'slt.theme.viewlet.order-confirmation-registration-number',
             u'collective.cart.shopping.viewlet.order-confirmation-terms',
             u'collective.cart.shopping.viewlet.order-confirmation-check-out-buttons',
             u'slt.theme.viewlet.add-address',

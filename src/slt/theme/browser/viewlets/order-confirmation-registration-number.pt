@@ -1,9 +1,0 @@
-<dl
-  i18n:domain="slt.theme"
-  id="order-confirmation-registration-number"
-  tal:condition="view/registration_number">
-  <dt i18n:translate="">
-    Registration Number
-  </dt>
-  <dd tal:content="view/registration_number" />
-</dl>
