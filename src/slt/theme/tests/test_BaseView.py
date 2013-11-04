@@ -1,5 +1,5 @@
 from slt.theme.tests.base import IntegrationTestCase
-from slt.theme.browser.template import BaseView
+from slt.theme.browser.view import BaseView
 
 import mock
 

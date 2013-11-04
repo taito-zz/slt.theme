@@ -5,8 +5,8 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from StringIO import StringIO
 from collective.base.view import BaseFormView
-from collective.cart.shopping.browser.template import ToCustomerOrderMailTemplateView as BaseToCustomerOrderMailTemplateView
-from collective.cart.shopping.browser.template import ToShopOrderMailTemplateView as BaseToShopOrderMailTemplateView
+from collective.cart.shopping.browser.view import ToCustomerOrderMailTemplateView as BaseToCustomerOrderMailTemplateView
+from collective.cart.shopping.browser.view import ToShopOrderMailTemplateView as BaseToShopOrderMailTemplateView
 from datetime import datetime
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
@@ -147,9 +147,9 @@ class OrderListingView(BaseView):
 
 class ToCustomerOrderMailTemplateView(BaseToCustomerOrderMailTemplateView):
     """Mail template used to send e-mail to customer"""
-    template = ViewPageTemplateFile('templates/order-mail-template.pt')
+    template = ViewPageTemplateFile('views/order-mail-template.pt')
 
 
 class ToShopOrderMailTemplateView(BaseToShopOrderMailTemplateView):
     """Mail template used to send email to shop"""
-    template = ViewPageTemplateFile('templates/order-mail-template.pt')
+    template = ViewPageTemplateFile('views/order-mail-template.pt')

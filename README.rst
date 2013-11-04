@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.23 (2013-11-xx)
+=================
+
+- Fix module name template.py -> view.py [taito]
+
 0.22 (2013-10-22)
 =================
 

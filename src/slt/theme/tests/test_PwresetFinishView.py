@@ -1,4 +1,4 @@
-from slt.theme.browser.template import PwresetFinishView
+from slt.theme.browser.view import PwresetFinishView
 from slt.theme.tests.base import IntegrationTestCase
 
 import mock
@@ -11,7 +11,7 @@ class PwresetFinishViewTestCase(IntegrationTestCase):
         from Products.Five import BrowserView
         self.assertTrue(issubclass(PwresetFinishView, BrowserView))
 
-    @mock.patch('slt.theme.browser.template.IStatusMessage')
+    @mock.patch('slt.theme.browser.view.IStatusMessage')
     def test___call__(self, IStatusMessage):
         instance = self.create_view(PwresetFinishView)
         instance.context.absolute_url = mock.Mock(return_value='portal_url')

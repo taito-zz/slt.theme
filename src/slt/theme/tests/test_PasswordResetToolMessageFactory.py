@@ -1,4 +1,4 @@
-from slt.theme.browser.template import PasswordResetToolMessageFactory
+from slt.theme.browser.view import PasswordResetToolMessageFactory
 
 import unittest
 
