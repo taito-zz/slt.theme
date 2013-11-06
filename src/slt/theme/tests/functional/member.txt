@@ -38,10 +38,35 @@ Log in as member1::
     <dd>Please fill your personal information.</dd>
     </dl>
 
-Add full name and email::
+Go to portal top::
 
+    >>> browser.open('/')
+
+Go to article and add to cart::
+
+    >>> browser.open('/article1')
+    >>> browser.getControl(name="form.buttons.AddToCart").click()
+    >>> browser.open('/@@cart')
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+
+    >>> 'value="Full"' in browser.contents
+    False
+    >>> 'value="Name"' in browser.contents
+    False
+    >>> 'value="member1@email.com"' in browser.contents
+    False
+    >>> 'value="2000-01-31"' in browser.contents
+    False
+    >>> 'value="REGNUMBER"' in browser.contents
+    False
+
+Now update full name, email, birth date and registration number at personal-information::
+
+    >>> browser.open('/@@personal-information')
     >>> browser.getControl(name="form.fullname").value = 'Full Name'
     >>> browser.getControl(name="form.email").value = 'member1@email.com'
+    >>> browser.getControl(name="form.registration_number").value = 'REGNUMBER'
+    >>> browser.getControl(name="form.birth_date").value = '2000-01-31'
     >>> browser.getControl(name="form.actions.save").click()
 
 Log out and log in again should not redirect to @@personal-information::
@@ -60,6 +85,215 @@ Log out and log in again should not redirect to @@personal-information::
     <dd>Welcome! You are now logged in.</dd>
     </dl>
 
-Go to portal top::
+Go add to cart and go to billing-and-shipping::
 
-    >>> browser.open('/')
+    >>> browser.open('/article1')
+    >>> browser.getControl(name="form.buttons.AddToCart").click()
+    >>> browser.open('/@@cart')
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+
+    >>> 'value="Full"' in browser.contents
+    True
+    >>> 'value="Name"' in browser.contents
+    True
+    >>> 'value="member1@email.com"' in browser.contents
+    True
+    >>> 'value="2000-01-31"' in browser.contents
+    True
+    >>> 'value="REGNUMBER"' in browser.contents
+    True
+
+Checkout::
+
+    >>> browser.getControl(name="billing_street").value = 'STREET'
+    >>> browser.getControl(name="billing_post").value = 'POST'
+    >>> browser.getControl(name="billing_city").value = 'CITY'
+    >>> browser.getControl(name="billing_phone").value = 'PHONE'
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@order-confirmation'
+
+Back to billing-and-shipping::
+
+    >>> browser.getControl(name="form.buttons.Back").click()
+
+    >>> 'value="Full"' in browser.contents
+    True
+    >>> 'value="Name"' in browser.contents
+    True
+    >>> 'value="member1@email.com"' in browser.contents
+    True
+    >>> 'value="2000-01-31"' in browser.contents
+    True
+    >>> 'value="REGNUMBER"' in browser.contents
+    True
+    >>> 'value="STREET"' in browser.contents
+    True
+    >>> 'value="POST"' in browser.contents
+    True
+    >>> 'value="CITY"' in browser.contents
+    True
+    >>> 'value="PHONE"' in browser.contents
+    True
+
+Input non date value to birth date::
+
+    >>> browser.getControl(name="birth_date").value = ' BDATE '
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@billing-and-shipping'
+
+    >>> print browser.bycss('.warn')
+    --- 1 ---
+    <dl class="portalMessage warn"><dt>Warn</dt>
+    <dd>Input birth date with format: YYYY-MM-DD like 1990-01-31</dd>
+    </dl>
+
+Correct the birth date::
+
+    >>> browser.getControl(name="birth_date").value = ' 1990-12-1 '
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@order-confirmation'
+
+Confirm the order::
+
+    >>> len(mailhost.messages)
+    0
+
+    >>> browser.getControl(name="accept-terms").value = True
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@thanks'
+
+    >>> len(mailhost.messages)
+    2
+
+    >>> msg = mailhost.messages[-2]
+    >>> prink(msg)
+    MIME-Version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    Subject: =?utf-8?q?Order_Number=3A_1?=
+    To: Full Name <member1@email.com>
+    From: Site <info@shop.com>
+    Date: ...
+    <BLANKLINE>
+    Thank you for the order.
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Number: 1
+    <BLANKLINE>
+    <BLANKLINE>
+    Registration Number: REGNUMBER
+    <BLANKLINE>
+    Birth Date: 1990-12-01
+    <BLANKLINE>
+    <BLANKLINE>
+    Billing Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    Shipping Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Contents
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    <BLANKLINE>
+    SKU: SK=C3=961
+    =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d1
+    <BLANKLINE>
+    Total: 12.40 =E2=82=AC
+    <BLANKLINE>
+    Link to the order: None?order_number=3D1
+    <BLANKLINE>
+    <BLANKLINE>
+
+    >>> msg = mailhost.messages[-1]
+    >>> prink(msg)
+    MIME-Version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    Subject: =?utf-8?q?Order_Number=3A_1?=
+    To: Site <info@shop.com>
+    From: Site <info@shop.com>
+    Date: ...
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Number: 1
+    <BLANKLINE>
+    <BLANKLINE>
+    Registration Number: REGNUMBER
+    <BLANKLINE>
+    Birth Date: 1990-12-01
+    <BLANKLINE>
+    <BLANKLINE>
+    Billing Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    Shipping Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Contents
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    <BLANKLINE>
+    SKU: SK=C3=961
+    =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d1
+    <BLANKLINE>
+    Total: 12.40 =E2=82=AC
+    <BLANKLINE>
+    Link to the order: http://nohost/plone/tilaukset/1
+    <BLANKLINE>
+    <BLANKLINE>
+
+Check the order::
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+    >>> browser.open('/tilaukset/1')
+    >>> print browser.bycss('#birth-date')
+    --- 1 ---
+    <section id="birth-date"><span class="title">Birth Date</span>
+    <span class="birth-date">1990-12-01</span>
+    </section>

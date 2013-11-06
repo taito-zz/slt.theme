@@ -12,6 +12,18 @@ class UserDataPanel(personalpreferences.UserDataPanel):
 
 class UserDataPanelAdapter(personalpreferences.UserDataPanelAdapter):
 
+    def get_birth_date(self):
+        return self._getProperty('birth_date')
+
+    def set_birth_date(self, value):
+        if value is None:
+            value = ''
+        else:
+            value = value.isoformat()
+        return self.context.setMemberProperties({'birth_date': value})
+
+    birth_date = property(get_birth_date, set_birth_date)
+
     def get_registration_number(self):
         return self._getProperty('registration_number')
 

@@ -20,6 +20,8 @@
 
 <span i18n:domain="slt.theme" tal:condition="python:item.get('registration_number')" tal:omit-tag="" i18n:translate="registration-number">Registration Number: <span i18n:name="number" tal:replace="item/registration_number" />
 </span>
+<span i18n:domain="slt.theme" tal:condition="python:item.get('birth_date')" tal:omit-tag="" i18n:translate="birth-date">Birth Date: <span i18n:name="date" tal:replace="item/birth_date" />
+</span>
 
 <span tal:omit-tag="" i18n:translate="">Billing Address</span>
 <span tal:replace="item/underline" />

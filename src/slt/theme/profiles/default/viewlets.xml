@@ -2,10 +2,6 @@
 <object>
 
   <order manager="collective.base.viewlet-manager.base-form" skinname="*">
-    <!-- @@billing-and-shipping -->
-    <viewlet
-      insert-after="collective.cart.shopping.viewlet.billing-and-shipping-shipping-methods"
-      name="slt.theme.viewlet.billing-and-shipping-registration-number" />
     <!-- @@address-listing -->
     <viewlet name="slt.theme.viewlet.add-address" />
     <viewlet name="slt.theme.viewlet.address-listing" />
@@ -17,6 +13,9 @@
     <viewlet
       insert-after="collective.cart.shopping.viewlet.order-listing-total"
       name="slt.theme.viewlet.order-listing-registration-number" />
+    <viewlet
+      insert-after="slt.theme.viewlet.order-listing-registration-number"
+      name="slt.theme.viewlet.order-listing-birth-date" />
   </order>
 
   <order manager="plone.portalfooter" skinname="*">

@@ -1,0 +1,4 @@
+<section i18n:domain="slt.theme" id="birth-date" tal:condition="view/birth_date">
+  <span class="title" i18n:translate="">Birth Date</span>
+  <span class="birth-date" tal:content="view/birth_date" />
+</section>

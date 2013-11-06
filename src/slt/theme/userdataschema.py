@@ -20,6 +20,11 @@ class IUserDataSchema(Interface):
     fullname = userdataschema.IUserDataSchema.get('fullname')
     email = userdataschema.IUserDataSchema.get('email')
 
+    birth_date = schema.Date(
+        title=_('Birth Date'),
+        description=_('Use format: YYYY-MM-DD'),
+        required=False)
+
     registration_number = schema.TextLine(
         title=_('Registration Number'),
         required=False)

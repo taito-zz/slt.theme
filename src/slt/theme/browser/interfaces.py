@@ -1,14 +1,15 @@
 from collective.base.interfaces import IBaseFormView
 from collective.base.interfaces import IViewlet
+from collective.cart.shopping.browser.interfaces import IBillingAndShippingBillingAddressViewlet as IBaseBillingAndShippingBillingAddressViewlet
+from collective.cart.shopping.browser.interfaces import ICollectiveCartShoppingLayer
 from collective.cart.shopping.browser.interfaces import IOrderListingViewletManager as IBaseOrderListingViewletManager
 from sll.basetheme.browser.interfaces import INavigationRootView
-from zope.interface import Interface
 from zope.viewlet.interfaces import IViewletManager
 
 
 # Browser layer
 
-class ISltThemeLayer(Interface):
+class ISltThemeLayer(ICollectiveCartShoppingLayer):
     """Marker interface for browserlayer."""
 
 
@@ -120,8 +121,20 @@ class IOrderListingViewlet(IViewlet):
         """
 
 
-class IBillingAndShippingRegistrationNumberViewlet(IViewlet):
-    """Viewlet interface for BillingAndShippingRegistrationNumberViewlet"""
+class IBillingAndShippingBillingAddressViewlet(IBaseBillingAndShippingBillingAddressViewlet):
+    """Viewlet interface for BillingAndShippingBillingAddressViewlet"""
+
+    def max_date():
+        """Maximum date for birth date field"""
+
+    def min_date():
+        """Minimum date for birth date field"""
+
+    def birth_date():
+        """Return birth date
+
+        :rtype: str
+        """
 
     def registration_number():
         """Returns registration number
@@ -142,3 +155,7 @@ class IOrderConfirmationRegistrationNumberViewlet(IViewlet):
 
 class IOrderListingRegistrationNumberViewlet(IViewlet):
     """Viewlet interface for OrderListingRegistrationNumberViewlet"""
+
+
+class IOrderListingBirthDateViewlet(IViewlet):
+    """Viewlet interface for OrderListingBirthDateViewlet"""

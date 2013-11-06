@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Testing import ZopeTestCase as ztc
+from collective.cart.core.interfaces import IShoppingSiteRoot
 from decimal import Decimal
 from hexagonit.testing.browser import Browser
 from moneyed import Money
@@ -14,6 +15,7 @@ from plone.testing import layered
 from plone.uuid.interfaces import IUUID
 from slt.theme.tests.base import FUNCTIONAL_TESTING
 from zope.component import getUtility
+from zope.interface import alsoProvides
 from zope.lifecycleevent import modified
 from zope.testing import renormalizing
 
@@ -33,8 +35,8 @@ CHECKER = renormalizing.RENormalizing([
 ])
 
 
-# def prink(e):
-#     print eval('"""{0}"""'.format(str(e)))
+def prink(e):
+    print eval('"""{0}"""'.format(str(e)))
 
 
 def setUp(self):
@@ -47,13 +49,15 @@ def setUp(self):
         'TEST_USER_PASSWORD': TEST_USER_PASSWORD,
         'browser': browser,
         'portal': portal,
-        # 'prink': prink,
+        'prink': prink,
     })
     ztc.utils.setupCoreSessions(app)
     browser.setBaseUrl(portal.absolute_url())
     browser.handleErrors = True
     portal.error_log._ignored_exceptions = ()
     setRoles(portal, TEST_USER_ID, ['Manager'])
+
+    alsoProvides(portal, IShoppingSiteRoot)
 
     workflow = getToolByName(portal, 'portal_workflow')
 
@@ -74,7 +78,7 @@ def setUp(self):
 
     # Add Article
     article1 = createContentInContainer(portal, 'collective.cart.core.Article', checkConstraints=False, title='Ärticle1',
-        money=Money(Decimal('12.40'), currency='EUR'), vat_rate=24.0, reducible_quantity=100, sku='SKÖ1')
+        money=Money(Decimal('12.40'), currency='EUR'), vat_rate=24.0, reducible_quantity=100, sku='SKÖ1', salable=True)
     modified(article1)
     workflow.doActionFor(article1, 'publish')
 
@@ -84,6 +88,17 @@ def setUp(self):
     modified(stock1)
 
     getUtility(IRegistry)['collective.cart.shopping.notification_cc_email'] = u'info@shop.com'
+
+    # Add terms-message
+    terms = portal[portal.invokeFactory('Folder', 'terms-message')]
+    workflow.doActionFor(terms, 'publish')
+    terms_en = terms[terms.invokeFactory('Document', 'en')]
+    workflow.doActionFor(terms_en, 'publish')
+
+    # Add order container
+    order_container = createContentInContainer(portal,
+        'collective.cart.core.OrderContainer', id='tilaukset', checkConstraints=False)
+    modified(order_container)
 
     # Add two members
     regtool = getToolByName(portal, 'portal_registration')

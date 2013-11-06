@@ -156,6 +156,7 @@ section#cart-articles tr {
 section#articles-in-article td,
 section#cart-articles td {
   padding: 1em 0;
+  vertical-align: top;
 }
 
 section#articles-in-article td.name,
@@ -270,14 +271,14 @@ td.price-and-quantity {
   font-size: 1.8em;
   font-weight: normal;
 }
-section#add-to-cart span.stock {
+section.add-to-cart span.stock {
   display: block;
   margin: 0.5em 0;
 }
-section#add-to-cart section#money {
+section.add-to-cart section#money {
   margin: 0.1em 0;
 }
-section#add-to-cart section#quantity,
+section.add-to-cart section#quantity,
 section#add-subarticle-to-cart section#quantity {
   margin: 0.5em 0;
 }
@@ -395,6 +396,11 @@ section#billing-address p#billing-and-shipping-same-or-different select {
   font-size: 80%;
 }
 
+/* order-confirmation */
+.template-order-confirmation #content-core section#article-listing .title-and-description {
+  padding: 1em 0.7em;
+}
+
 /* @@thanks */
 
 #link-to-order {
@@ -410,12 +416,12 @@ section.please-login p a {
 }
 
 /* Registration Number */
-dl#registration-number dt{
+/*dl#registration-number dt{
   display: inline-block;
 }
 dl#registration-number dd{
   display: inline-block;
-}
+}*/
 
 
 @media screen and (max-width: 900px) {

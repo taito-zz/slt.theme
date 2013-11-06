@@ -243,11 +243,11 @@
     />
 
   <browser:viewlet
-    class=".viewlet.BillingAndShippingRegistrationNumberViewlet"
+    class=".viewlet.BillingAndShippingBillingAddressViewlet"
     for="collective.cart.core.interfaces.IShoppingSiteRoot"
     layer=".interfaces.ISltThemeLayer"
     manager="collective.base.interfaces.IBaseFormViewletManager"
-    name="slt.theme.viewlet.billing-and-shipping-registration-number"
+    name="collective.cart.shopping.viewlet.billing-and-shipping-billing-address"
     permission="zope2.View"
     view="collective.cart.shopping.browser.interfaces.IBillingAndShippingView"
     />
@@ -258,6 +258,15 @@
     layer=".interfaces.ISltThemeLayer"
     manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
     name="collective.cart.shopping.viewlet.order-listing-registration-number"
+    permission="collective.cart.core.ViewOrderContent"
+    />
+
+  <browser:viewlet
+    class=".viewlet.OrderListingBirthDateViewlet"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
+    name="collective.cart.shopping.viewlet.order-listing-birth-date"
     permission="collective.cart.core.ViewOrderContent"
     />
 

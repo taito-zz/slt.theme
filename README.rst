@@ -7,10 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
-0.23 (2013-11-xx)
+0.23 (2013-11-06)
 =================
 
 - Fix module name template.py -> view.py [taito]
+- Add field: birth date for billing and shipping page. [taito]
 
 0.22 (2013-10-22)
 =================

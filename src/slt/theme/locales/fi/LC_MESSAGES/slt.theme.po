@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-10-22 08:20+0000\n"
+"POT-Creation-Date: 2013-11-06 07:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,19 @@ msgstr ""
 msgid "Add New Address"
 msgstr "Lisää uusi osoite"
 
-#: ./browser/template.py:138
+#: ./browser/view.py:138
 msgid "Add commonly used addresses to make your order easier."
 msgstr "Lisää usein käytetyt osoitteet tähän."
 
-#: ./browser/template.py:137
+#: ./browser/view.py:137
 msgid "Address Linsting"
 msgstr "Osoitelista"
+
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:84
+#: ./browser/viewlets/order-listing-birth-date.pt:2
+#: ./userdataschema.py:24
+msgid "Birth Date"
+msgstr "Syntymäaika"
 
 #: ./browser/viewlets/link-to-order.pt:2
 msgid "Check the order"
@@ -34,7 +40,7 @@ msgstr "Tarkista tilaus"
 msgid "Feed to Shop Top"
 msgstr "Syöte kaupan etusivulle"
 
-#: ./browser/template.py:108
+#: ./browser/view.py:108
 msgid "ID (e-mail)"
 msgstr "Tunnus (s-posti)"
 
@@ -42,22 +48,22 @@ msgstr "Tunnus (s-posti)"
 msgid "Login failed"
 msgstr "Kirjautuminen epäonnistui"
 
-#: ./browser/template.py:81
+#: ./browser/view.py:81
 #: ./profiles/default/actions.xml
 msgid "Members"
 msgstr "Jäsenet"
 
-#: ./browser/template.py:109
+#: ./browser/view.py:109
 msgid "Name"
 msgstr "Nimi"
 
-#: ./browser/template.py:145
+#: ./browser/view.py:145
 msgid "Order Linsting"
 msgstr "Tilauslista"
 
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:97
 #: ./browser/viewlets/billing-and-shipping-registration-number.pt:6
 #: ./browser/viewlets/order-listing-registration-number.pt:2
-#: ./userdataschema.py:24
 msgid "Registration Number"
 msgstr "Jäsennumero"
 
@@ -65,19 +71,28 @@ msgstr "Jäsennumero"
 msgid "Unfeed from Shop Top"
 msgstr "Ota syöte pois kaupan etusivusta"
 
+#: ./userdataschema.py:25
+msgid "Use format: YYYY-MM-DD"
+msgstr "Käytä formatti: VVVV-KK-PP, esim. 1990-12-31"
+
 #: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:60
 msgid "Welcome! You are now logged in."
 msgstr "Tervetuloa! Olet nyt kirjautunut sisään."
 
 #. Default: "Check this box to allow direct marketing from this site."
-#: ./userdataschema.py:29
+#: ./userdataschema.py:34
 msgid "allow_direct_marketing_description"
 msgstr "Ruksaa ja salli suoramarkkinointi."
 
 #. Default: "Allow Direct Marketing"
-#: ./userdataschema.py:28
+#: ./userdataschema.py:33
 msgid "allow_direct_marketing_title"
 msgstr "Salli suoramarkkinointi"
+
+#. Default: "Birth Date: ${date}"
+#: ./browser/views/order-mail-template.pt:23
+msgid "birth-date"
+msgstr "Syntymäaika: ${date}"
 
 #. Default: "Export Direct Marketing Allowers"
 #: ./browser/viewlets/members-export.pt:2
@@ -85,7 +100,7 @@ msgid "export-direct-marketing-allowers"
 msgstr "Exporttaa suoramarkkinointihyväksyjät"
 
 #. Default: "Please fill your personal information."
-#: ./browser/template.py:46
+#: ./browser/view.py:46
 msgid "first-time-login"
 msgstr "Täytä yksityistietosi ensin."
 
@@ -95,12 +110,12 @@ msgid "help_registration_form"
 msgstr "Verkkokaupasta ostaminen edellyttää rekisteröitymistä. Anna nimesi ja sähköpostiosoitteesi ja paina rekisteröidy. Tämän jälkeen antamaasi sähköpostiosoitteeseen tulee linkki, jota kautta pääset vahvistamaan rekisteröitymisesi ja täyttämään loput tarvittavat tiedot."
 
 #. Default: "There are ${direct_marketing_allowers} members out of ${all_members} who allows direct marketing."
-#: ./browser/template.py:84
+#: ./browser/view.py:84
 msgid "members-description"
 msgstr "Suoramarkkinointia hyväksyy ${direct_marketing_allowers} jäsentä ${all_members} jäseneistä."
 
 #. Default: "Registration Number: ${number}"
-#: ./browser/templates/order-mail-template.pt:21
+#: ./browser/views/order-mail-template.pt:21
 msgid "registration-number"
 msgstr "Jäsennumero: ${number}"
 

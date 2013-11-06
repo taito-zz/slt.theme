@@ -142,7 +142,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'12')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'13')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -236,7 +236,6 @@ class TestCase(IntegrationTestCase):
             u'collective.cart.shopping.viewlet.billing-and-shipping-billing-address',
             u'collective.cart.shopping.viewlet.billing-and-shipping-shipping-address',
             u'collective.cart.shopping.viewlet.billing-and-shipping-shipping-methods',
-            u'slt.theme.viewlet.billing-and-shipping-registration-number',
             u'collective.cart.shopping.viewlet.billing-and-shipping-check-out-buttons',
             u'collective.cart.shopping.viewlet.order-confirmation-cart-article-listing',
             u'collective.cart.shopping.viewlet.order-confirmation-shipping-method',
@@ -246,6 +245,20 @@ class TestCase(IntegrationTestCase):
             u'slt.theme.viewlet.add-address',
             u'slt.theme.viewlet.address-listing',
             u'slt.theme.viewlet.order-listing'))
+
+    def test_viewlets__order__collective_cart_shopping_viewlet_manager_order_listing(self):
+        from zope.component import getUtility
+        from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
+        storage = getUtility(IViewletSettingsStorage)
+        manager = "collective.cart.shopping.viewlet-manager.order-listing"
+        skinname = "*"
+        self.assertEqual(storage.getOrder(manager, skinname), (
+            u'collective.cart.shopping.viewlet.order-listing-article-listing',
+            u'collective.cart.shopping.viewlet.order-listing-shipping-method',
+            u'collective.cart.shopping.viewlet.order-listing-total',
+            u'slt.theme.viewlet.order-listing-registration-number',
+            u'slt.theme.viewlet.order-listing-birth-date',
+            u'collective.cart.shopping.viewlet.order-listing-addresses'))
 
     def test_viewlets__hidden__plone_portalfooter(self):
         from zope.component import getUtility

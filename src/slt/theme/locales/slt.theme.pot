@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-10-22 08:20+0000\n"
+"POT-Creation-Date: 2013-11-06 07:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,18 @@ msgstr ""
 msgid "Add New Address"
 msgstr ""
 
-#: ./browser/template.py:138
+#: ./browser/view.py:138
 msgid "Add commonly used addresses to make your order easier."
 msgstr ""
 
-#: ./browser/template.py:137
+#: ./browser/view.py:137
 msgid "Address Linsting"
+msgstr ""
+
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:84
+#: ./browser/viewlets/order-listing-birth-date.pt:2
+#: ./userdataschema.py:24
+msgid "Birth Date"
 msgstr ""
 
 #: ./browser/viewlets/link-to-order.pt:2
@@ -37,7 +43,7 @@ msgstr ""
 msgid "Feed to Shop Top"
 msgstr ""
 
-#: ./browser/template.py:108
+#: ./browser/view.py:108
 msgid "ID (e-mail)"
 msgstr ""
 
@@ -45,22 +51,22 @@ msgstr ""
 msgid "Login failed"
 msgstr ""
 
-#: ./browser/template.py:81
+#: ./browser/view.py:81
 #: ./profiles/default/actions.xml
 msgid "Members"
 msgstr ""
 
-#: ./browser/template.py:109
+#: ./browser/view.py:109
 msgid "Name"
 msgstr ""
 
-#: ./browser/template.py:145
+#: ./browser/view.py:145
 msgid "Order Linsting"
 msgstr ""
 
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:97
 #: ./browser/viewlets/billing-and-shipping-registration-number.pt:6
 #: ./browser/viewlets/order-listing-registration-number.pt:2
-#: ./userdataschema.py:24
 msgid "Registration Number"
 msgstr ""
 
@@ -68,18 +74,27 @@ msgstr ""
 msgid "Unfeed from Shop Top"
 msgstr ""
 
+#: ./userdataschema.py:25
+msgid "Use format: YYYY-MM-DD"
+msgstr ""
+
 #: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:60
 msgid "Welcome! You are now logged in."
 msgstr ""
 
 #. Default: "Check this box to allow direct marketing from this site."
-#: ./userdataschema.py:29
+#: ./userdataschema.py:34
 msgid "allow_direct_marketing_description"
 msgstr ""
 
 #. Default: "Allow Direct Marketing"
-#: ./userdataschema.py:28
+#: ./userdataschema.py:33
 msgid "allow_direct_marketing_title"
+msgstr ""
+
+#. Default: "Birth Date: ${date}"
+#: ./browser/views/order-mail-template.pt:23
+msgid "birth-date"
 msgstr ""
 
 #. Default: "Export Direct Marketing Allowers"
@@ -88,7 +103,7 @@ msgid "export-direct-marketing-allowers"
 msgstr ""
 
 #. Default: "Please fill your personal information."
-#: ./browser/template.py:46
+#: ./browser/view.py:46
 msgid "first-time-login"
 msgstr ""
 
@@ -98,12 +113,12 @@ msgid "help_registration_form"
 msgstr ""
 
 #. Default: "There are ${direct_marketing_allowers} members out of ${all_members} who allows direct marketing."
-#: ./browser/template.py:84
+#: ./browser/view.py:84
 msgid "members-description"
 msgstr ""
 
 #. Default: "Registration Number: ${number}"
-#: ./browser/templates/order-mail-template.pt:21
+#: ./browser/views/order-mail-template.pt:21
 msgid "registration-number"
 msgstr ""
 

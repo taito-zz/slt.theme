@@ -2,17 +2,22 @@ from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.base.viewlet import Viewlet
+from collective.cart.shopping.browser.viewlet import BillingAndShippingBillingAddressViewlet as BaseBillingAndShippingBillingAddressViewlet
 from collective.cart.shopping.interfaces import IArticleAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
+from datetime import date
+from datetime import timedelta
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
+from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from slt.content.interfaces import IMember
 from slt.theme.browser.interfaces import IAddAddressViewlet
 from slt.theme.browser.interfaces import IAddressListingViewlet
-from slt.theme.browser.interfaces import IBillingAndShippingRegistrationNumberViewlet
+from slt.theme.browser.interfaces import IBillingAndShippingBillingAddressViewlet
 from slt.theme.browser.interfaces import ILinkToOrderViewlet
 from slt.theme.browser.interfaces import IMembersExportViewlet
+from slt.theme.browser.interfaces import IOrderListingBirthDateViewlet
 from slt.theme.browser.interfaces import IOrderListingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import IShopArticleListingViewlet
 from slt.theme.interfaces import ICollapsedOnLoad
@@ -144,31 +149,60 @@ class AddressListingViewlet(Viewlet):
         return getUtility(ICollapsedOnLoad)(len(self.addresses()) > 4)
 
 
-class BillingAndShippingRegistrationNumberViewlet(Viewlet):
-    """Viewlet for view: @@billing-and-shipping
-    Shows form to update billing address"""
-    implements(IBillingAndShippingRegistrationNumberViewlet)
-    index = ViewPageTemplateFile('viewlets/billing-and-shipping-registration-number.pt')
+class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddressViewlet):
+    """Viewlet class to show form to update billing address"""
+    implements(IBillingAndShippingBillingAddressViewlet)
+    index = ViewPageTemplateFile('viewlets/billing-and-shipping-billing-address.pt')
+
+    @view.memoize
+    def _today(self):
+        return date.today()
+
+    def max_date(self):
+        """Maximum date for birth date field"""
+        return self._today().isoformat()
+
+    def min_date(self):
+        return (self._today() - timedelta(365 * 120)).isoformat()
+        """Minimum date for birth date field"""
+
+    def birth_date(self):
+        """Return birth date
+
+        :rtype: str
+        """
+        return self.view.shopping_site().cart().get('birth_date') or self.context.restrictedTraverse(
+            '@@plone_portal_state').member().getProperty('birth_date', self._today())
 
     def registration_number(self):
         """Returns registration number
 
         :rtype: str
         """
-        return IShoppingSite(self.context).cart().get('registration_number') or self.context.restrictedTraverse(
+        return self.view.shopping_site().cart().get('registration_number') or self.context.restrictedTraverse(
             '@@plone_portal_state').member().getProperty('registration_number')
 
     def update(self):
         form = self.request.form
         registration_number = form.get('registration_number')
-        if form.get('form.buttons.CheckOut') is not None and registration_number is not None:
-            IShoppingSite(self.context).update_cart('registration_number', registration_number.strip())
+        if form.get('form.buttons.CheckOut') is not None:
+            if registration_number is not None:
+                self.view.shopping_site().update_cart('registration_number', registration_number.strip())
 
 
 class OrderListingRegistrationNumberViewlet(Viewlet):
-    """Viewlet for order listing to show addresses"""
+    """Viewlet for order listing to show registration number"""
     implements(IOrderListingRegistrationNumberViewlet)
     index = ViewPageTemplateFile('viewlets/order-listing-registration-number.pt')
 
     def _handle_repeated(self, item):
         self.registration_number = item['obj'].registration_number
+
+
+class OrderListingBirthDateViewlet(Viewlet):
+    """Viewlet for order listing to show birth date"""
+    implements(IOrderListingBirthDateViewlet)
+    index = ViewPageTemplateFile('viewlets/order-listing-birth-date.pt')
+
+    def _handle_repeated(self, item):
+        self.birth_date = item['obj'].birth_date
