@@ -224,7 +224,10 @@ class TestCase(IntegrationTestCase):
         storage = getUtility(IViewletSettingsStorage)
         manager = "collective.base.viewlet-manager.base-form"
         skinname = "*"
+        self.maxDiff = None
         self.assertEqual(storage.getOrder(manager, skinname), (
+            u'collective.cart.shopping.viewlet.article-containers-in-article-container',
+            u'collective.cart.shopping.viewlet.articles-in-article-container',
             u'collective.cart.core.viewlet.add-to-cart',
             u'collective.cart.shopping.viewlet.body-text',
             u'collective.cart.shopping.viewlet.articles-in-article',

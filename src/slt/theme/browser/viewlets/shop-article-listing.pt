@@ -10,21 +10,23 @@
     </a>
     <div tal:condition="python: item['class'] == 'discount'" class="discount" i18n:translate="">Discount</div>
     <div class="text">
-      <h1>
-        <a
-          tal:attributes="href item/url"
-          tal:content="item/title" />
-        <span class="feed-order" tal:condition="item/feed_order">
-          &#40;<a
-            tal:attributes="href string: ${item/url}/edit"
-            tal:content="item/feed_order" />&#41;
-        </span>
-      </h1>
-      <p>
-        <a
-          tal:attributes="href item/url"
-          tal:content="item/description" />
-      </p>
+      <div class="text-wrapper">
+        <h1>
+          <a
+            tal:attributes="href item/url"
+            tal:content="item/title" />
+          <span class="feed-order" tal:condition="item/feed_order">
+            &#40;<a
+              tal:attributes="href string: ${item/url}/edit"
+              tal:content="item/feed_order" />&#41;
+          </span>
+        </h1>
+        <p>
+          <a
+            tal:attributes="href item/url"
+            tal:content="item/description" />
+        </p>
+      </div>
     </div>
   </article>
 </section>

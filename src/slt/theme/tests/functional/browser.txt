@@ -56,12 +56,14 @@ Check shop top page::
     <section id="shop-article-listing"><article class="normal"><a href="http://nohost/plone/kirjat/kirja1">
     <img src="http://nohost/plone/kirjat/kirja1/@@images/image" title="Kirja1"></a>
     <div class="text">
+    <div class="text-wrapper">
     <h1>
     <a href="http://nohost/plone/kirjat/kirja1">Kirja1</a>
     </h1>
     <p>
     <a href="http://nohost/plone/kirjat/kirja1">Kirja1:n kuvaus.</a>
     </p>
+    </div>
     </div>
     </article></section>
 

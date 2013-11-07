@@ -4,6 +4,7 @@
   margin: 1em 0;
 }
 #shop-article-listing article,
+#article-containers-in-article-container article,
 #articles-in-article-container article {
   float: left;
   position: relative;
@@ -14,17 +15,24 @@
 }
 
 #shop-article-listing article img,
+#article-containers-in-article-container article img,
 #articles-in-article-container article img,
 section#articles-in-article td img,
 section#cart-articles td img {
   width: 100%;
 }
 #shop-article-listing article div.text,
+#article-containers-in-article-container article div.text,
 #articles-in-article-container article div.text {
-  background: rgba(71, 71, 71, 0.9);
+  background: rgba(71, 71, 71, 0.7);
   bottom: 0em;
   position: absolute;
   width: 100%;
+}
+#shop-article-listing article div.text-wrapper,
+#article-containers-in-article-container article div.text-wrapper,
+#articles-in-article-container article div.text-wrapper {
+  padding: 0.5em 1em;
 }
 #shop-article-listing article.discount div.discount,
 #articles-in-article-container article.discount div.discount
@@ -45,6 +53,7 @@ section#cart-articles td img {
 }
 #shop-article-listing article.discount div.discount,
 #shop-article-listing article div.text a,
+#article-containers-in-article-container article div.text a,
 #articles-in-article-container article.discount div.discount,
 #articles-in-article-container article div.text a {
   border-bottom: none;
@@ -65,12 +74,13 @@ section#cart-articles td img {
 
 #shop-article-listing article div.text h1 {
   font-size: 1.2em;
-  margin: 0.3em 20px 0;
+  margin: 0;
   text-transform: uppercase;
 }
+#article-containers-in-article-container article div.text h1,
 #articles-in-article-container article div.text h1 {
-  font-size: 1.1em;
-  margin: 0.5em 15px 0;
+  font-size: 1em;
+  margin: 0;
 }
 #shop-article-listing article div.text p,
 #articles-in-article-container article div.text p {
@@ -78,7 +88,7 @@ section#cart-articles td img {
   line-height: 1.1em;
 }
 #shop-article-listing article div.text p {
-  margin: 0 20px;
+  margin: 0;
 }
 
 #collective-cart-shopping td {
@@ -244,6 +254,12 @@ p#cart-is-empty {
   text-align: center;
 }
 
+#article-containers-in-article-container,
+#articles-in-article-container {
+  clear: both;
+}
+
+#article-containers-in-article-container article,
 #articles-in-article-container article {
   margin: 0 3% 3% 0;
   width: 30%;
@@ -255,8 +271,8 @@ td.price-and-quantity {
 }
 
 #articles-in-article-container article div.text p {
-  font-size: 1.3em;
-  margin: 0 15px 0.5em;
+  font-size: 1.1em;
+  margin: 0;
 }
 #articles-in-article-container article div.text p span.original-money {
   color: #a9a9a9;
