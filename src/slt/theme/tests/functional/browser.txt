@@ -30,6 +30,10 @@ Add Article::
     >>> browser.getControl(name="form.widgets.ISKU.sku").value = 'SKU1'
     >>> browser.getControl(name="form.widgets.IDiscountBehavior.price").value = '12.30'
     >>> browser.getControl(name="form.widgets.ISize.weight").value = '100.0'
+
+    >>> import StringIO
+    >>> dummy_image1 = StringIO.StringIO('Dummy image1')
+    >>> browser.getControl(name='form.widgets.image').mech_control.add_file(dummy_image1, filename='dummy1.png')
     >>> browser.getControl(name="form.buttons.save").click()
 
     >>> browser.open('/')
@@ -59,6 +63,9 @@ Check shop top page::
     <div class="text-wrapper">
     <h1>
     <a href="http://nohost/plone/kirjat/kirja1">Kirja1</a>
+    <span class="feed-order">
+    (<a href="http://nohost/plone/kirjat/kirja1/edit">Edit</a>)
+    </span>
     </h1>
     <p>
     <a href="http://nohost/plone/kirjat/kirja1">Kirja1:n kuvaus.</a>
@@ -84,3 +91,83 @@ Check shop top page::
 
     >>> browser.open('/')
     >>> print browser.bycss('#shop-article-listing')
+
+Feed article1 again::
+
+    >>> browser.open('/kirjat/kirja1')
+    >>> browser.getLink('Feed to Shop Top').click()
+
+Add one another article and feed to top::
+
+    >>> browser.open('/kirjat/++add++collective.cart.core.Article')
+    >>> browser.getControl(name="form.widgets.IDublinCore.title").value = 'Kirja2'
+    >>> browser.getControl(name="form.widgets.IDublinCore.description").value = 'Kirja2:n kuvaus.'
+    >>> browser.getControl(name="form.widgets.ISKU.sku").value = 'SKU2'
+    >>> browser.getControl(name="form.widgets.IDiscountBehavior.price").value = '12.30'
+    >>> browser.getControl(name="form.widgets.ISize.weight").value = '100.0'
+
+    >>> dummy_image2 = StringIO.StringIO('Dummy image2')
+    >>> browser.getControl(name='form.widgets.image').mech_control.add_file(dummy_image2, filename='dummy2.png')
+    >>> browser.getControl(name="form.buttons.save").click()
+    >>> browser.getLink('Feed to Shop Top').click()
+
+    >>> browser.open('/')
+    >>> print browser.bycss('#shop-article-listing')
+    --- 1 ---
+    <section id="shop-article-listing"><article class="normal"><a href="http://nohost/plone/kirjat/kirja1">
+    <img src="http://nohost/plone/kirjat/kirja1/@@images/image" title="Kirja1"></a>
+    <div class="text">
+    <div class="text-wrapper">
+    <h1>
+    <a href="http://nohost/plone/kirjat/kirja1">Kirja1</a>
+    <span class="feed-order">
+    (<a href="http://nohost/plone/kirjat/kirja1/edit">Edit</a>)
+    </span>
+    </h1>
+    <p>
+    <a href="http://nohost/plone/kirjat/kirja1">Kirja1:n kuvaus.</a>
+    </p>
+    </div>
+    </div>
+    </article><article class="normal"><a href="http://nohost/plone/kirjat/kirja2">
+    <img src="http://nohost/plone/kirjat/kirja2/@@images/image" title="Kirja2"></a>
+    <div class="text">
+    <div class="text-wrapper">
+    <h1>
+    <a href="http://nohost/plone/kirjat/kirja2">Kirja2</a>
+    <span class="feed-order">
+    (<a href="http://nohost/plone/kirjat/kirja2/edit">Edit</a>)
+    </span>
+    </h1>
+    <p>
+    <a href="http://nohost/plone/kirjat/kirja2">Kirja2:n kuvaus.</a>
+    </p>
+    </div>
+    </div>
+    </article></section>
+
+Limit number of feeds::
+
+    >>> browser.open('/portal_registry/edit/slt.theme.articles_feed_on_top_page')
+    >>> browser.getControl(name="form.widgets.value").value = "1"
+    >>> browser.getControl(name="form.buttons.save").click()
+
+    >>> browser.open('/')
+    >>> print browser.bycss('#shop-article-listing')
+    --- 1 ---
+    <section id="shop-article-listing"><article class="normal"><a href="http://nohost/plone/kirjat/kirja2">
+    <img src="http://nohost/plone/kirjat/kirja2/@@images/image" title="Kirja2"></a>
+    <div class="text">
+    <div class="text-wrapper">
+    <h1>
+    <a href="http://nohost/plone/kirjat/kirja2">Kirja2</a>
+    <span class="feed-order">
+    (<a href="http://nohost/plone/kirjat/kirja2/edit">Edit</a>)
+    </span>
+    </h1>
+    <p>
+    <a href="http://nohost/plone/kirjat/kirja2">Kirja2:n kuvaus.</a>
+    </p>
+    </div>
+    </div>
+    </article></section>

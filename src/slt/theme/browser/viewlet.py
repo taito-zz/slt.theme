@@ -3,12 +3,12 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.base.viewlet import Viewlet
 from collective.cart.shopping.browser.viewlet import BillingAndShippingBillingAddressViewlet as BaseBillingAndShippingBillingAddressViewlet
-from collective.cart.shopping.interfaces import IArticleAdapter
 from collective.cart.shopping.interfaces import IShoppingSite
 from datetime import date
 from datetime import timedelta
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
+from plone.memoize import ram
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from slt.content.interfaces import IMember
@@ -22,6 +22,7 @@ from slt.theme.browser.interfaces import IOrderListingRegistrationNumberViewlet
 from slt.theme.browser.interfaces import IShopArticleListingViewlet
 from slt.theme.interfaces import ICollapsedOnLoad
 from slt.theme.interfaces import IFeedToShopTop
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
 from zope.interface import implements
 
@@ -52,6 +53,10 @@ class LinkToOrderViewlet(Viewlet):
         return '{}?order_number={}'.format(membership.getHomeUrl(), self.view.order_id)
 
 
+def _objs_p_mtime_cachekey(method, self):
+    return IAnnotations(self.context).get('_objs_p_mtime')
+
+
 class ShopArticleListingViewlet(Viewlet):
     """Viewlet for view: @@slt-view
     Shows article listing
@@ -59,8 +64,16 @@ class ShopArticleListingViewlet(Viewlet):
     implements(IShopArticleListingViewlet)
     index = ViewPageTemplateFile('viewlets/shop-article-listing.pt')
 
-    def articles(self):
-        """Returns list of dictionary of articles
+    def update(self):
+        super(ShopArticleListingViewlet, self).update()
+        annotations = IAnnotations(self.context)
+        current_objs_p_mtime = annotations.get('_objs_p_mtime')
+        objs_p_mtime = [obj.image._p_mtime for obj in self._objs()]
+        if current_objs_p_mtime != objs_p_mtime:
+            annotations['_objs_p_mtime'] = objs_p_mtime
+
+    def _objs(self):
+        """Returns list of article objects
 
         :rtype: list
         """
@@ -71,20 +84,18 @@ class ShopArticleListingViewlet(Viewlet):
         limit = getUtility(IRegistry)['slt.theme.articles_feed_on_top_page']
         if limit:
             query['sort_limit'] = limit
-        res = []
-        context_state = self.context.restrictedTraverse('@@plone_context_state')
-        for item in IShoppingSite(self.context).get_content_listing(IFeedToShopTop, **query):
-            style_class = 'normal'
-            if IArticleAdapter(item.getObject()).discount_available():
-                style_class = 'discount'
-            res.append({
-                'description': item.Description(),
-                'class': style_class,
-                'feed_order': context_state.is_editable() and item.feed_order,
-                'title': item.Title(),
-                'url': item.getURL(),
-            })
-        return res
+        return IShoppingSite(self.context).get_objects(IFeedToShopTop, **query)
+
+    @ram.cache(_objs_p_mtime_cachekey)
+    def articles(self):
+        """Returns content listing
+        """
+        return IContentListing(self._objs())
+
+    @ram.cache(_objs_p_mtime_cachekey)
+    def number_of_articles(self):
+        """Return number of articles"""
+        return len(self.articles())
 
 
 class MembersExportViewlet(Viewlet):

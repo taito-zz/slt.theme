@@ -7,10 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
-0.23.1 (2013-11-xx)
+0.23.1 (2013-11-12)
 ===================
 
 - Update style. [taito]
+- Cache article listing viewlet. [taito]
 
 0.23 (2013-11-06)
 =================
