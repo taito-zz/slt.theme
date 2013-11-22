@@ -207,7 +207,7 @@ class OrderListingRegistrationNumberViewlet(Viewlet):
     index = ViewPageTemplateFile('viewlets/order-listing-registration-number.pt')
 
     def _handle_repeated(self, item):
-        self.registration_number = item['obj'].registration_number
+        self.registration_number = getattr(item['obj'], 'registration_number', None)
 
 
 class OrderListingBirthDateViewlet(Viewlet):
@@ -216,4 +216,4 @@ class OrderListingBirthDateViewlet(Viewlet):
     index = ViewPageTemplateFile('viewlets/order-listing-birth-date.pt')
 
     def _handle_repeated(self, item):
-        self.birth_date = item['obj'].birth_date
+        self.birth_date = getattr(item['obj'], 'birth_date', None)

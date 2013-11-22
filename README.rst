@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.23.2 (2013-11-22)
+===================
+
+- Fix AttributeError for viewlets: collective.cart.shopping.viewlet.order-listing-birth-date and collective.cart.shopping.viewlet.order-listing-registration-number [taito]
+
 0.23.1 (2013-11-12)
 ===================
 
