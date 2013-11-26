@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts" meta_type="JavaScripts Registry">
+
+  <javascript
+    id="++resource++slt.theme/javascript/birth-date.js"
+    expression="python: object.restrictedTraverse('@@birth-date-enabled')()"
+    />
+
+</object>

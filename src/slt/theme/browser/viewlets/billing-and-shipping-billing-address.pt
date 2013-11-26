@@ -89,6 +89,7 @@
         tal:attributes="
           max view/max_date;
           min view/min_date;
+          placeholder view/today;
           value view/birth_date" />
     </dd>
   </dl>

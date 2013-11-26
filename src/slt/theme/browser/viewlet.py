@@ -166,16 +166,18 @@ class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddre
     index = ViewPageTemplateFile('viewlets/billing-and-shipping-billing-address.pt')
 
     @view.memoize
-    def _today(self):
+    def today(self):
+        """Today"""
         return date.today()
 
     def max_date(self):
         """Maximum date for birth date field"""
-        return self._today().isoformat()
+        return (self.today() - timedelta(365 * 18)).isoformat()
 
     def min_date(self):
-        return (self._today() - timedelta(365 * 120)).isoformat()
         """Minimum date for birth date field"""
+        return (self.today() - timedelta(365 * 120)).isoformat()
+
 
     def birth_date(self):
         """Return birth date
@@ -183,7 +185,7 @@ class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddre
         :rtype: str
         """
         return self.view.shopping_site().cart().get('birth_date') or self.context.restrictedTraverse(
-            '@@plone_portal_state').member().getProperty('birth_date', self._today())
+            '@@plone_portal_state').member().getProperty('birth_date', None)
 
     def registration_number(self):
         """Returns registration number

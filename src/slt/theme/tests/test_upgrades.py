@@ -17,7 +17,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(registry['slt.theme.articles_feed_on_top_page'], 4)
 
         from slt.theme.upgrades import reimport_registry
-        reimport_registry(self.portal)
+        reimport_registry(self.portal.portal_setup)
 
         self.assertEqual(registry['slt.theme.articles_feed_on_top_page'], 0)
 
@@ -31,7 +31,7 @@ class TestCase(IntegrationTestCase):
         self.assertEqual(len(storage.getHidden(manager, skinname)), 1)
 
         from slt.theme.upgrades import reimport_viewlets
-        reimport_viewlets(self.portal)
+        reimport_viewlets(self.portal.portal_setup)
         self.assertEqual(len(storage.getHidden(manager, skinname)), 5)
 
     def test_reimport_actions(self):
@@ -41,23 +41,33 @@ class TestCase(IntegrationTestCase):
         setup.runImportStepFromProfile.assert_called_with(
             'profile-slt.theme:default', 'actions', run_dependencies=False, purge_old=False)
 
-    @mock.patch('slt.theme.upgrades.reimport_profile')
-    def test_reimport_cssregistry(self, reimport_profile):
+    def test_reimport_cssregistry(self):
+        setup = mock.Mock()
         from slt.theme.upgrades import reimport_cssregistry
-        reimport_cssregistry(self.portal)
-        reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'cssregistry')
+        reimport_cssregistry(setup)
+        setup.runImportStepFromProfile.assert_called_with(
+            'profile-slt.theme:default', 'cssregistry', run_dependencies=False, purge_old=False)
 
-    @mock.patch('slt.theme.upgrades.reimport_profile')
-    def test_reimport_memberdata_properties(self, reimport_profile):
+    def test_reimport_jsregistry(self):
+        setup = mock.Mock()
+        from slt.theme.upgrades import reimport_jsregistry
+        reimport_jsregistry(setup)
+        setup.runImportStepFromProfile.assert_called_with(
+            'profile-slt.theme:default', 'jsregistry', run_dependencies=False, purge_old=False)
+
+    def test_reimport_memberdata_properties(self):
+        setup = mock.Mock()
         from slt.theme.upgrades import reimport_memberdata_properties
-        reimport_memberdata_properties(self.portal)
-        reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'memberdata-properties')
+        reimport_memberdata_properties(setup)
+        setup.runImportStepFromProfile.assert_called_with(
+            'profile-slt.theme:default', 'memberdata-properties', run_dependencies=False, purge_old=False)
 
-    @mock.patch('slt.theme.upgrades.reimport_profile')
-    def test_reimport_rolemap(self, reimport_profile):
+    def test_reimport_rolemap(self):
+        setup = mock.Mock()
         from slt.theme.upgrades import reimport_rolemap
-        reimport_rolemap(self.portal)
-        reimport_profile.assert_called_with(self.portal, 'profile-slt.theme:default', 'rolemap')
+        reimport_rolemap(setup)
+        setup.runImportStepFromProfile.assert_called_with(
+            'profile-slt.theme:default', 'rolemap', run_dependencies=False, purge_old=False)
 
     def test_clean_viewlets(self):
         from zope.component import getUtility

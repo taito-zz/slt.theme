@@ -139,10 +139,14 @@ class TestCase(IntegrationTestCase):
         resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertTrue(resource.getApplyPrefix())
 
+    def test_jsregistry__birth_date(self):
+        resource = getToolByName(self.portal, 'portal_javascripts').getResource('++resource++slt.theme/javascript/birth-date.js')
+
+
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'13')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'14')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')

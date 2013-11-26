@@ -169,6 +169,16 @@
     permission="zope2.View"
     />
 
+  <!-- Miscellaneous -->
+  <browser:page
+    attribute="birth_date_enabled"
+    class=".view.Miscellaneous"
+    for="collective.cart.shopping.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="birth-date-enabled"
+    permission="zope2.View"
+    />
+
   <!-- Viewlet Manager -->
 
   <browser:viewletManager

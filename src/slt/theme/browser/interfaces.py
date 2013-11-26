@@ -124,6 +124,9 @@ class IOrderListingViewlet(IViewlet):
 class IBillingAndShippingBillingAddressViewlet(IBaseBillingAndShippingBillingAddressViewlet):
     """Viewlet interface for BillingAndShippingBillingAddressViewlet"""
 
+    def today():
+        """Today"""
+
     def max_date():
         """Maximum date for birth date field"""
 

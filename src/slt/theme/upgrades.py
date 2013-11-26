@@ -7,39 +7,39 @@ import logging
 PROFILE_ID = 'profile-slt.theme:default'
 
 
-def reimport_registry(context, logger=None):
-    """Reimport registry"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting registry.')
-    setup.runImportStepFromProfile(PROFILE_ID, 'plone.app.registry', run_dependencies=False, purge_old=False)
-
-
-def reimport_viewlets(context, logger=None):
-    """Reimport viewlets"""
-    if logger is None:
-        logger = logging.getLogger(__name__)
-    setup = getToolByName(context, 'portal_setup')
-    logger.info('Reimporting viewlets.')
-    setup.runImportStepFromProfile(PROFILE_ID, 'viewlets', run_dependencies=False, purge_old=False)
-
-
 def reimport_actions(setup):
     """Reimport actions"""
     setup.runImportStepFromProfile(PROFILE_ID, 'actions', run_dependencies=False, purge_old=False)
 
 
-def reimport_cssregistry(context):
-    reimport_profile(context, PROFILE_ID, 'cssregistry')
+def reimport_cssregistry(setup):
+    """Reimport cssregistry"""
+    setup.runImportStepFromProfile(PROFILE_ID, 'cssregistry', run_dependencies=False, purge_old=False)
 
 
-def reimport_memberdata_properties(context):
-    reimport_profile(context, PROFILE_ID, 'memberdata-properties')
+def reimport_jsregistry(setup):
+    """Reimport jsregistry"""
+    setup.runImportStepFromProfile(PROFILE_ID, 'jsregistry', run_dependencies=False, purge_old=False)
 
 
-def reimport_rolemap(context):
-    reimport_profile(context, PROFILE_ID, 'rolemap')
+def reimport_memberdata_properties(setup):
+    """Reimport memberdata-properties"""
+    setup.runImportStepFromProfile(PROFILE_ID, 'memberdata-properties', run_dependencies=False, purge_old=False)
+
+
+def reimport_registry(setup):
+    """Reimport registry"""
+    setup.runImportStepFromProfile(PROFILE_ID, 'plone.app.registry', run_dependencies=False, purge_old=False)
+
+
+def reimport_rolemap(setup):
+    """Reimport rolemap"""
+    setup.runImportStepFromProfile(PROFILE_ID, 'rolemap', run_dependencies=False, purge_old=False)
+
+
+def reimport_viewlets(setup):
+    """Reimport viewlets"""
+    setup.runImportStepFromProfile(PROFILE_ID, 'viewlets', run_dependencies=False, purge_old=False)
 
 
 def clean_viewlets(manager, skinname):
