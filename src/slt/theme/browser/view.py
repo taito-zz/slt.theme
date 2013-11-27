@@ -155,9 +155,10 @@ class ToShopOrderMailTemplateView(BaseToShopOrderMailTemplateView):
     template = ViewPageTemplateFile('views/order-mail-template.pt')
 
 
-class Miscellaneous(BrowserView):
-    """Miscellaneous"""
+# class Miscellaneous(BrowserView):
+#     """Miscellaneous"""
 
-    def birth_date_enabled(self):
-        """True if birth date enabaled else False"""
-        return self.request.environ.get('PATH_INFO').split('/')[-1] == '@@billing-and-shipping'
+#     def birth_date_enabled(self):
+#         """True if birth date enabaled else False"""
+#         import pdb; pdb.set_trace()
+#         return self.request.environ.get('PATH_INFO').split('/')[-1] == '@@billing-and-shipping'

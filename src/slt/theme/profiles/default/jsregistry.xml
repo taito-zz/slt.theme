@@ -3,7 +3,6 @@
 
   <javascript
     id="++resource++slt.theme/javascript/birth-date.js"
-    expression="python: object.restrictedTraverse('@@birth-date-enabled')()"
     />
 
 </object>

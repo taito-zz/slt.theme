@@ -79,7 +79,7 @@
       <input name="billing_phone" type="tel" required="required" tal:attributes="value info/phone" />
     </dd>
   </dl>
-  <dl class="field" i18n:domain="slt.theme">
+  <dl class="field birth_date" i18n:domain="slt.theme">
     <dt>
       <tal:label i18n:translate="">Birth Date</tal:label>
       <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
