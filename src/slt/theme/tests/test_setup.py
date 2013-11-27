@@ -140,8 +140,7 @@ class TestCase(IntegrationTestCase):
         self.assertTrue(resource.getApplyPrefix())
 
     def test_jsregistry__birth_date(self):
-        resource = getToolByName(self.portal, 'portal_javascripts').getResource('++resource++slt.theme/javascript/birth-date.js')
-
+        getToolByName(self.portal, 'portal_javascripts').getResource('++resource++slt.theme/javascript/birth-date.js')
 
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')

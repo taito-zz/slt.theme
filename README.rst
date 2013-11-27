@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.24 (2013-11-27)
+=================
+
+- Add javascript to toggle birth date field. [taito]
+
 0.23.2 (2013-11-22)
 ===================
 

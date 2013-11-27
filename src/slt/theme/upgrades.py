@@ -1,6 +1,3 @@
-from Products.CMFCore.utils import getToolByName
-from abita.utils.utils import reimport_profile
-
 import logging
 
 

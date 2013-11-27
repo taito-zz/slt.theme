@@ -178,7 +178,6 @@ class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddre
         """Minimum date for birth date field"""
         return (self.today() - timedelta(365 * 120)).isoformat()
 
-
     def birth_date(self):
         """Return birth date
 
