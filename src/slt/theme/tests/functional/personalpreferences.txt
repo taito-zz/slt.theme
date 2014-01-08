@@ -56,5 +56,3 @@ Update birth date::
 
     >>> 'member1@member.one' in browser.contents
     True
-    >>> 'Jan 31, 2000' in browser.contents
-    True
