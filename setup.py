@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='slt.theme',
-    version='0.24',
+    version='0.25',
     description="Turns plone them into SLT shopping theme.",
     long_description=open("README.rst").read(),
     classifiers=[
