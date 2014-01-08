@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-11-06 07:12+0000\n"
+"POT-Creation-Date: 2014-01-06 03:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Osoitelista"
 
 #: ./browser/viewlets/billing-and-shipping-billing-address.pt:84
 #: ./browser/viewlets/order-listing-birth-date.pt:2
-#: ./userdataschema.py:24
+#: ./userdataschema.py:38
 msgid "Birth Date"
 msgstr "Syntymäaika"
 
@@ -61,7 +61,7 @@ msgstr "Nimi"
 msgid "Order Linsting"
 msgstr "Tilauslista"
 
-#: ./browser/viewlets/billing-and-shipping-billing-address.pt:97
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:96
 #: ./browser/viewlets/billing-and-shipping-registration-number.pt:6
 #: ./browser/viewlets/order-listing-registration-number.pt:2
 msgid "Registration Number"
@@ -71,21 +71,17 @@ msgstr "Jäsennumero"
 msgid "Unfeed from Shop Top"
 msgstr "Ota syöte pois kaupan etusivusta"
 
-#: ./userdataschema.py:25
-msgid "Use format: YYYY-MM-DD"
-msgstr "Käytä formatti: VVVV-KK-PP, esim. 1990-12-31"
-
 #: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:60
 msgid "Welcome! You are now logged in."
 msgstr "Tervetuloa! Olet nyt kirjautunut sisään."
 
 #. Default: "Check this box to allow direct marketing from this site."
-#: ./userdataschema.py:34
+#: ./userdataschema.py:49
 msgid "allow_direct_marketing_description"
 msgstr "Ruksaa ja salli suoramarkkinointi."
 
 #. Default: "Allow Direct Marketing"
-#: ./userdataschema.py:33
+#: ./userdataschema.py:48
 msgid "allow_direct_marketing_title"
 msgstr "Salli suoramarkkinointi"
 
@@ -93,6 +89,11 @@ msgstr "Salli suoramarkkinointi"
 #: ./browser/views/order-mail-template.pt:23
 msgid "birth-date"
 msgstr "Syntymäaika: ${date}"
+
+#. Default: "Use format: YYYY-MM-DD"
+#: ./userdataschema.py:19
+msgid "birth_date_format"
+msgstr "Käytä formatti PP.KK.VVVV esim. 31.01.1990"
 
 #. Default: "Export Direct Marketing Allowers"
 #: ./browser/viewlets/members-export.pt:2

@@ -85,12 +85,10 @@
       <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
     </dt>
     <dd>
-      <input name="birth_date" type="date" required="required"
+      <input name="birth_date" type="text" required="required"
         tal:attributes="
-          max view/max_date;
-          min view/min_date;
-          placeholder view/today;
-          value view/birth_date" />
+          placeholder view/localized_today;
+          value view/localized_birth_date" />
     </dd>
   </dl>
   <dl class="field" i18n:domain="slt.theme">

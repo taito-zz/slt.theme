@@ -55,7 +55,7 @@ Go to article and add to cart::
     False
     >>> 'value="member1@email.com"' in browser.contents
     False
-    >>> 'value="2000-01-31"' in browser.contents
+    >>> 'value="Jan 31, 2000"' in browser.contents
     False
     >>> 'value="REGNUMBER"' in browser.contents
     False
@@ -66,7 +66,7 @@ Now update full name, email, birth date and registration number at personal-info
     >>> browser.getControl(name="form.fullname").value = 'Full Name'
     >>> browser.getControl(name="form.email").value = 'member1@email.com'
     >>> browser.getControl(name="form.registration_number").value = 'REGNUMBER'
-    >>> browser.getControl(name="form.birth_date").value = '2000-01-31'
+    >>> browser.getControl(name="form.birth_date").value = '31.01.2000'
     >>> browser.getControl(name="form.actions.save").click()
 
 Log out and log in again should not redirect to @@personal-information::
@@ -98,13 +98,14 @@ Go add to cart and go to billing-and-shipping::
     True
     >>> 'value="member1@email.com"' in browser.contents
     True
-    >>> 'value="2000-01-31"' in browser.contents
+    >>> 'value="Jan 31, 2000"' in browser.contents
     True
     >>> 'value="REGNUMBER"' in browser.contents
     True
 
 Checkout::
 
+    >>> browser.getControl(name="birth_date").value = '31.01.2000'
     >>> browser.getControl(name="billing_street").value = 'STREET'
     >>> browser.getControl(name="billing_post").value = 'POST'
     >>> browser.getControl(name="billing_city").value = 'CITY'
@@ -123,7 +124,7 @@ Back to billing-and-shipping::
     True
     >>> 'value="member1@email.com"' in browser.contents
     True
-    >>> 'value="2000-01-31"' in browser.contents
+    >>> 'value="Jan 31, 2000"' in browser.contents
     True
     >>> 'value="REGNUMBER"' in browser.contents
     True
@@ -151,7 +152,7 @@ Input non date value to birth date::
 
 Correct the birth date::
 
-    >>> browser.getControl(name="birth_date").value = ' 1990-12-1 '
+    >>> browser.getControl(name="birth_date").value = ' 1.12.1990 '
     >>> browser.getControl(name="form.buttons.CheckOut").click()
     >>> browser.url
     'http://nohost/plone/@@order-confirmation'
@@ -187,7 +188,7 @@ Confirm the order::
     <BLANKLINE>
     Registration Number: REGNUMBER
     <BLANKLINE>
-    Birth Date: 1990-12-01
+    Birth Date: Dec 01, 1990
     <BLANKLINE>
     <BLANKLINE>
     Billing Address
@@ -246,7 +247,7 @@ Confirm the order::
     <BLANKLINE>
     Registration Number: REGNUMBER
     <BLANKLINE>
-    Birth Date: 1990-12-01
+    Birth Date: Dec 01, 1990
     <BLANKLINE>
     <BLANKLINE>
     Billing Address
@@ -295,5 +296,5 @@ Check the order::
     >>> print browser.bycss('#birth-date')
     --- 1 ---
     <section id="birth-date"><span class="title">Birth Date</span>
-    <span class="birth-date">1990-12-01</span>
+    <span class="birth-date">Dec 01, 1990</span>
     </section>

@@ -1,3 +1,5 @@
+from DateTime import DateTime
+from datetime import datetime
 from plone.app.users.browser import personalpreferences
 from slt.theme.userdataschema import IUserDataSchema
 from zope.formlib import form
@@ -13,13 +15,16 @@ class UserDataPanel(personalpreferences.UserDataPanel):
 class UserDataPanelAdapter(personalpreferences.UserDataPanelAdapter):
 
     def get_birth_date(self):
-        return self._getProperty('birth_date')
+        toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
+        birth_date = self._getProperty('birth_date')
+        if birth_date:
+            return toLocalizedTime(DateTime(birth_date))
 
     def set_birth_date(self, value):
         if value is None:
             value = ''
         else:
-            value = value.isoformat()
+            value = datetime.strptime(value.strip(), '%d.%m.%Y').date().isoformat()
         return self.context.setMemberProperties({'birth_date': value})
 
     birth_date = property(get_birth_date, set_birth_date)

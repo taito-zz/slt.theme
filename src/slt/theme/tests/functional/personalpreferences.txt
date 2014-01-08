@@ -50,11 +50,11 @@ Got to @@personal-information::
 Update birth date::
 
     >>> browser.getControl(name="form.email").value = 'member1@member.one'
-    >>> browser.getControl(name="form.birth_date").value = '2000-01-31'
+    >>> browser.getControl(name="form.birth_date").value = '31.01.2000'
     >>> browser.getControl(name="form.actions.save").click()
     >>> browser.open('/@@personal-information')
 
     >>> 'member1@member.one' in browser.contents
     True
-    >>> '2000-01-31' in browser.contents
+    >>> 'Jan 31, 2000' in browser.contents
     True

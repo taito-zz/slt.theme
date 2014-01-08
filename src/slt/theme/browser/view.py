@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory
 from Products.Five import BrowserView
@@ -145,20 +146,20 @@ class OrderListingView(BaseView):
     title = _(u'Order Linsting')
 
 
-class ToCustomerOrderMailTemplateView(BaseToCustomerOrderMailTemplateView):
+class BaseOrderMailTemplateView(object):
+
+    def localized_birth_date(self):
+        birth_date = self.items.get('birth_date')
+        if birth_date:
+            toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
+            return toLocalizedTime(DateTime(birth_date))
+
+
+class ToCustomerOrderMailTemplateView(BaseToCustomerOrderMailTemplateView, BaseOrderMailTemplateView):
     """Mail template used to send e-mail to customer"""
     template = ViewPageTemplateFile('views/order-mail-template.pt')
 
 
-class ToShopOrderMailTemplateView(BaseToShopOrderMailTemplateView):
+class ToShopOrderMailTemplateView(BaseToShopOrderMailTemplateView, BaseOrderMailTemplateView):
     """Mail template used to send email to shop"""
     template = ViewPageTemplateFile('views/order-mail-template.pt')
-
-
-# class Miscellaneous(BrowserView):
-#     """Miscellaneous"""
-
-#     def birth_date_enabled(self):
-#         """True if birth date enabaled else False"""
-#         import pdb; pdb.set_trace()
-#         return self.request.environ.get('PATH_INFO').split('/')[-1] == '@@billing-and-shipping'

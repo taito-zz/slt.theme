@@ -1,3 +1,4 @@
+from DateTime import DateTime
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -5,7 +6,6 @@ from collective.base.viewlet import Viewlet
 from collective.cart.shopping.browser.viewlet import BillingAndShippingBillingAddressViewlet as BaseBillingAndShippingBillingAddressViewlet
 from collective.cart.shopping.interfaces import IShoppingSite
 from datetime import date
-from datetime import timedelta
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.viewlets.content import DocumentBylineViewlet as BaseDocumentBylineViewlet
 from plone.memoize import ram
@@ -170,13 +170,18 @@ class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddre
         """Today"""
         return date.today()
 
-    def max_date(self):
-        """Maximum date for birth date field"""
-        return (self.today() - timedelta(365 * 18)).isoformat()
+    def localized_today(self):
+        """Localized today"""
+        toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
+        return toLocalizedTime(DateTime(self.today().isoformat()))
 
-    def min_date(self):
-        """Minimum date for birth date field"""
-        return (self.today() - timedelta(365 * 120)).isoformat()
+    # def max_date(self):
+    #     """Maximum date for birth date field"""
+    #     return (self.today() - timedelta(365 * 18)).isoformat()
+
+    # def min_date(self):
+    #     """Minimum date for birth date field"""
+    #     return (self.today() - timedelta(365 * 120)).isoformat()
 
     def birth_date(self):
         """Return birth date
@@ -185,6 +190,12 @@ class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddre
         """
         return self.view.shopping_site().cart().get('birth_date') or self.context.restrictedTraverse(
             '@@plone_portal_state').member().getProperty('birth_date', None)
+
+    def localized_birth_date(self):
+        birth_date = self.birth_date()
+        if birth_date:
+            toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
+            return toLocalizedTime(DateTime(self.birth_date()))
 
     def registration_number(self):
         """Returns registration number
@@ -217,4 +228,8 @@ class OrderListingBirthDateViewlet(Viewlet):
     index = ViewPageTemplateFile('viewlets/order-listing-birth-date.pt')
 
     def _handle_repeated(self, item):
-        self.birth_date = getattr(item['obj'], 'birth_date', None)
+        birth_date = getattr(item['obj'], 'birth_date', None)
+        if birth_date is not None:
+            toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
+            birth_date = toLocalizedTime(DateTime(birth_date))
+        self.birth_date = birth_date

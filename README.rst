@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.25 (2014-01-08)
+=================
+
+- Use Finnish format for birth date. [taito]
+
 0.24 (2013-11-27)
 =================
 

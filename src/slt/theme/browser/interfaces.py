@@ -127,16 +127,28 @@ class IBillingAndShippingBillingAddressViewlet(IBaseBillingAndShippingBillingAdd
     def today():
         """Today"""
 
-    def max_date():
-        """Maximum date for birth date field"""
+    def localized_today():
+        """Localized today
 
-    def min_date():
-        """Minimum date for birth date field"""
+        :rtype: unicode
+        """
+
+    # def max_date():
+    #     """Maximum date for birth date field"""
+
+    # def min_date():
+    #     """Minimum date for birth date field"""
 
     def birth_date():
         """Return birth date
 
         :rtype: str
+        """
+
+    def localized_birth_date():
+        """Return localized birth date
+
+        :rtype: unicode
         """
 
     def registration_number():

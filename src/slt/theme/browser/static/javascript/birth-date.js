@@ -10,7 +10,7 @@ jQuery(function() {
         }
     }
 
-    $("input[name='birth_date']").prop('type', 'text');
+    // $("input[name='birth_date']").prop('type', 'text');
 
     var billing_organization = $("input[name='billing_organization']").val();
     if (billing_organization) {
