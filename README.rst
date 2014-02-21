@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.25.1 (2014-02-21)
+===================
+
+- Use preview for viewlet: shop article listing. [taito]
+
 0.25 (2014-01-08)
 =================
 

@@ -58,7 +58,7 @@ Check shop top page::
     >>> print browser.bycss('#shop-article-listing')
     --- 1 ---
     <section id="shop-article-listing"><article class="normal"><a href="http://nohost/plone/kirjat/kirja1">
-    <img src="http://nohost/plone/kirjat/kirja1/@@images/image" title="Kirja1"></a>
+    <img src="http://nohost/plone/kirjat/kirja1/@@images/image/preview" title="Kirja1"></a>
     <div class="text">
     <div class="text-wrapper">
     <h1>
@@ -115,7 +115,7 @@ Add one another article and feed to top::
     >>> print browser.bycss('#shop-article-listing')
     --- 1 ---
     <section id="shop-article-listing"><article class="normal"><a href="http://nohost/plone/kirjat/kirja1">
-    <img src="http://nohost/plone/kirjat/kirja1/@@images/image" title="Kirja1"></a>
+    <img src="http://nohost/plone/kirjat/kirja1/@@images/image/preview" title="Kirja1"></a>
     <div class="text">
     <div class="text-wrapper">
     <h1>
@@ -130,7 +130,7 @@ Add one another article and feed to top::
     </div>
     </div>
     </article><article class="normal"><a href="http://nohost/plone/kirjat/kirja2">
-    <img src="http://nohost/plone/kirjat/kirja2/@@images/image" title="Kirja2"></a>
+    <img src="http://nohost/plone/kirjat/kirja2/@@images/image/preview" title="Kirja2"></a>
     <div class="text">
     <div class="text-wrapper">
     <h1>
@@ -156,7 +156,7 @@ Limit number of feeds::
     >>> print browser.bycss('#shop-article-listing')
     --- 1 ---
     <section id="shop-article-listing"><article class="normal"><a href="http://nohost/plone/kirjat/kirja2">
-    <img src="http://nohost/plone/kirjat/kirja2/@@images/image" title="Kirja2"></a>
+    <img src="http://nohost/plone/kirjat/kirja2/@@images/image/preview" title="Kirja2"></a>
     <div class="text">
     <div class="text-wrapper">
     <h1>
