@@ -20,7 +20,7 @@ class UserDataPanelAdapter(personalpreferences.UserDataPanelAdapter):
         if birth_date:
             return toLocalizedTime(DateTime(birth_date))
 
-    def set_birth_date(self, value):
+    def set_birth_date(self, value=None):
         if value is None:
             value = ''
         else:

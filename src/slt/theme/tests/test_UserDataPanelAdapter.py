@@ -14,3 +14,11 @@ class UserDataPanelAdapterTestCase(IntegrationTestCase):
         instance = UserDataPanelAdapter(self.portal)
         instance.set_allow_direct_marketing(None)
         self.assertFalse(instance.context.allow_direct_marketing)
+
+    def test_set_birth_date(self):
+        member = self.portal.portal_membership.getAuthenticatedMember()
+        member.setMemberProperties({'birth_date': '20.01.1990'})
+        self.assertEqual(member.getProperty('birth_date'), '20.01.1990')
+        instance = UserDataPanelAdapter(self.portal)
+        instance.set_birth_date()
+        self.assertEqual(member.getProperty('birth_date'), '')
