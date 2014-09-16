@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.25.2 (2014-09-16)
+===================
+
+- Fix method: set_birth_date on class: UserDataPanelAdapter. [taito]
+
 0.25.1 (2014-02-21)
 ===================
 
