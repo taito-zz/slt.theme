@@ -175,14 +175,6 @@ class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddre
         toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
         return toLocalizedTime(DateTime(self.today().isoformat()))
 
-    # def max_date(self):
-    #     """Maximum date for birth date field"""
-    #     return (self.today() - timedelta(365 * 18)).isoformat()
-
-    # def min_date(self):
-    #     """Minimum date for birth date field"""
-    #     return (self.today() - timedelta(365 * 120)).isoformat()
-
     def birth_date(self):
         """Return birth date
 

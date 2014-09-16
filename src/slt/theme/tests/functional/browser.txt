@@ -33,7 +33,7 @@ Add Article::
 
     >>> import StringIO
     >>> dummy_image1 = StringIO.StringIO('Dummy image1')
-    >>> browser.getControl(name='form.widgets.image').mech_control.add_file(dummy_image1, filename='dummy1.png')
+    >>> browser.getControl(name='form.widgets.image').mech_control.add_file(dummy_image1, content_type='image/png', filename='dummy1.png')
     >>> browser.getControl(name="form.buttons.save").click()
 
     >>> browser.open('/')
@@ -107,7 +107,7 @@ Add one another article and feed to top::
     >>> browser.getControl(name="form.widgets.ISize.weight").value = '100.0'
 
     >>> dummy_image2 = StringIO.StringIO('Dummy image2')
-    >>> browser.getControl(name='form.widgets.image').mech_control.add_file(dummy_image2, filename='dummy2.png')
+    >>> browser.getControl(name='form.widgets.image').mech_control.add_file(dummy_image2, content_type='image/png', filename='dummy2.png')
     >>> browser.getControl(name="form.buttons.save").click()
     >>> browser.getLink('Feed to Shop Top').click()
 

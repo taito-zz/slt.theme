@@ -83,7 +83,7 @@ def setUp(self):
     workflow.doActionFor(article1, 'publish')
 
     # Add Stock
-    stock1 = createContentInContainer(article1, 'collective.cart.stock.Stock', checkConstraints=False, title='Stöck1',
+    stock1 = createContentInContainer(article1, 'collective.cart.stock.Stock', checkConstraints=False, title=u'Stöck1',
         stock=10)
     modified(stock1)
 

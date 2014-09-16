@@ -272,12 +272,11 @@ class TestCase(IntegrationTestCase):
         storage = getUtility(IViewletSettingsStorage)
         manager = "plone.portalfooter"
         skinname = "*"
-        for viewlet in (
-            u'plone.colophon',
-            u'plone.footer',
-            u'plone.site_actions',
-            u'sll.basetheme.footer.message',
-            u'sll.basetheme.footer.subfolders'):
+        for viewlet in (u'plone.colophon',
+        u'plone.footer',
+        u'plone.site_actions',
+        u'sll.basetheme.footer.message',
+        u'sll.basetheme.footer.subfolders'):
             self.assertIn(viewlet, storage.getHidden(manager, skinname))
 
     def test_viewlets__order__plone_portalfooter(self):
