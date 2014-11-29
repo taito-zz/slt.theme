@@ -4,6 +4,9 @@ slt.theme
 
 This package contains theme related files for SLT shopping site.
 
+.. image:: https://secure.travis-ci.org/taito/slt.theme.png
+    :target: http://travis-ci.org/taito/slt.theme
+
 Changelog
 ---------
 
