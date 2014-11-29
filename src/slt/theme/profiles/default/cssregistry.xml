@@ -33,4 +33,20 @@
     applyPrefix="True"
     />
 
+  <stylesheet
+    title=""
+    authenticated="True"
+    cacheable="True"
+    compression="safe"
+    conditionalcomment=""
+    cookable="True"
+    enabled="on"
+    expression="python:checkPermission('Modify portal content', object)"
+    id="++resource++slt.theme/css/admin.css"
+    media=""
+    rel="stylesheet"
+    rendering="link"
+    applyPrefix="True"
+    />
+
 </object>

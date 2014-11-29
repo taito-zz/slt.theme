@@ -139,13 +139,27 @@ class TestCase(IntegrationTestCase):
         resource = self.get_css_resource('++resource++slt.theme/css/shop.css')
         self.assertTrue(resource.getApplyPrefix())
 
+    def test_cssregistry__admin(self):
+        resource = self.get_css_resource('++resource++slt.theme/css/admin.css')
+        self.assertIsNone(resource.getTitle())
+        self.assertTrue(resource.getAuthenticated())
+        self.assertEqual(resource.getCompression(), 'safe')
+        self.assertEqual(resource.getConditionalcomment(), '')
+        self.assertTrue(resource.getCookable())
+        self.assertTrue(resource.getEnabled())
+        self.assertEqual(resource.getExpression(), "python:checkPermission('Modify portal content', object)")
+        self.assertIsNone(resource.getMedia())
+        self.assertEqual(resource.getRel(), 'stylesheet')
+        self.assertEqual(resource.getRendering(), 'link')
+        self.assertTrue(resource.getApplyPrefix())
+
     def test_jsregistry__birth_date(self):
         getToolByName(self.portal, 'portal_javascripts').getResource('++resource++slt.theme/javascript/birth-date.js')
 
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'14')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'15')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')

@@ -7,6 +7,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.26 (2014-11-29)
+===================
+
+- Add css for Site Administrator. [taito]
+
 0.25.2 (2014-09-16)
 ===================
 

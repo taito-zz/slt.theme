@@ -133,4 +133,33 @@
     title="Reimport jsregistry"
     />
 
+  <genericsetup:upgradeStep
+    description=""
+    destination="15"
+    handler="slt.theme.upgrades.reimport_cssregistry"
+    profile="slt.theme:default"
+    sortkey="1"
+    source="14"
+    title="Reimport cssregistry"
+    />
+  <genericsetup:upgradeStep
+    description=""
+    destination="15"
+    handler="slt.theme.upgrades.reimport_jsregistry"
+    profile="slt.theme:default"
+    sortkey="2"
+    source="14"
+    title="Reimport jsregistry"
+    />
+
+  <genericsetup:upgradeStep
+    description=""
+    destination="15"
+    handler="slt.theme.upgrades.reimport_viewlets"
+    profile="slt.theme:default"
+    sortkey="3"
+    source="14"
+    title="Reimport viewlets"
+    />
+
 </configure>
