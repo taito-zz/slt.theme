@@ -10,6 +10,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.27 (2015-07-24)
+=================
+
+- Implement verkkolasku. [taito]
+
 0.26 (2014-11-29)
 ===================
 
