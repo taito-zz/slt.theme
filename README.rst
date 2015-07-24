@@ -13,6 +13,7 @@ Changelog
 0.27 (2015-07-24)
 =================
 
+- Add dependency to Products.CMFPlacefulWorkflow for test. [taito]
 - Implement verkkolasku. [taito]
 
 0.26 (2014-11-29)

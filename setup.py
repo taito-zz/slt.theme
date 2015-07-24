@@ -29,7 +29,7 @@ setup(
         'slt.content',
         'slt.portlet',
         'z3c.jbot'],
-    extras_require={'test': ['hexagonit.testing', 'plone.app.robotframework']},
+    extras_require={'test': ['Products.CMFPlacefulWorkflow', 'hexagonit.testing', 'plone.app.robotframework']},
     entry_points="""
     # -*- Entry points: -*-
 
