@@ -451,7 +451,7 @@ Check out and confirm the order::
     <BLANKLINE>
     Registration Number: REGNUMBER
     <BLANKLINE>
-    Birth Date: Jan 31, 2000
+    Birth Date: ...
     <BLANKLINE>
     <BLANKLINE>
     Verkkolasku operator: VERKKO=C3=96PE
@@ -515,7 +515,7 @@ Check out and confirm the order::
     <BLANKLINE>
     Registration Number: REGNUMBER
     <BLANKLINE>
-    Birth Date: Jan 31, 2000
+    Birth Date: ...
     <BLANKLINE>
     <BLANKLINE>
     Verkkolasku operator: VERKKO=C3=96PE
