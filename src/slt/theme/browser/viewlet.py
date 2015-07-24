@@ -2,7 +2,6 @@ from DateTime import DateTime
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.statusmessages.interfaces import IStatusMessage
 from collective.base.viewlet import Viewlet
 from collective.cart.shopping.browser.viewlet import BillingAndShippingBillingAddressViewlet as BaseBillingAndShippingBillingAddressViewlet
 from collective.cart.shopping.interfaces import IShoppingSite
@@ -13,7 +12,6 @@ from plone.memoize import ram
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from slt.content.interfaces import IMember
-from slt.theme import _
 from slt.theme.browser.interfaces import IAddAddressViewlet
 from slt.theme.browser.interfaces import IAddressListingViewlet
 from slt.theme.browser.interfaces import IBillingAndShippingBillingAddressViewlet

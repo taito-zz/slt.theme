@@ -57,13 +57,9 @@ class SltThemeLayer(PloneSandboxLayer):
 
 
 FIXTURE = SltThemeLayer()
-INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,), name="SltThemeLayer:Integration")
-FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,), name="SltThemeLayer:Functional")
-ROBOT_TESTING = FunctionalTesting(
-   bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE,
-          z2.ZSERVER_FIXTURE), name="SltThemeLayer:Robot")
+INTEGRATION_TESTING = IntegrationTesting(bases=(FIXTURE,), name="SltThemeLayer:Integration")
+FUNCTIONAL_TESTING = FunctionalTesting(bases=(FIXTURE,), name="SltThemeLayer:Functional")
+ROBOT_TESTING = FunctionalTesting(bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE), name="SltThemeLayer:Robot")
 
 
 class IntegrationTestCase(BaseIntegrationTestCase):
