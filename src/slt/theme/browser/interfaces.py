@@ -133,12 +133,6 @@ class IBillingAndShippingBillingAddressViewlet(IBaseBillingAndShippingBillingAdd
         :rtype: unicode
         """
 
-    # def max_date():
-    #     """Maximum date for birth date field"""
-
-    # def min_date():
-    #     """Minimum date for birth date field"""
-
     def birth_date():
         """Return birth date
 
@@ -152,9 +146,33 @@ class IBillingAndShippingBillingAddressViewlet(IBaseBillingAndShippingBillingAdd
         """
 
     def registration_number():
-        """Returns registration number
+        """Return registration number
 
         :rtype: str
+        """
+
+    def use_verkkolasku():
+        """Return True if use verkkolasku otherwise False
+
+        :rtype: boolean
+        """
+
+    def use_verkkolasku_checked():
+        """Return checked if use verkkolasku otherwise empty string
+
+        :rtype: str
+        """
+
+    def verkkolasku_operator():
+        """Return verkkolasku operator
+
+        :rtype: str
+        """
+
+    def verkkolasku_account():
+        """Return verkkolasku intermediator account
+
+        :rtype: int
         """
 
 
@@ -174,3 +192,7 @@ class IOrderListingRegistrationNumberViewlet(IViewlet):
 
 class IOrderListingBirthDateViewlet(IViewlet):
     """Viewlet interface for OrderListingBirthDateViewlet"""
+
+
+class IOrderListingVerkkolaskuViewlet(IViewlet):
+    """Viewlet interface for OrderListingVerkkolaskuViewlet"""

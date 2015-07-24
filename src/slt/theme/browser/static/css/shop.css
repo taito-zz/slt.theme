@@ -370,7 +370,8 @@ section#shipping-method-form .formControls {
 #shipping-methods {
   margin: 1em 0;
 }
-
+#verkkolasku dt,
+#verkkolasku dd,
 #billing-address dt,
 #billing-address dd,
 #shipping-address dt,
@@ -380,13 +381,15 @@ section#shipping-method-form .formControls {
  {
   display: inline-block;
 }
+#verkkolasku dt,
 #billing-address dt,
 #shipping-address dt,
 #shipping-methods dt {
   font-size: 110%;
   font-weight: normal;
-  width: 17%;
+  width: 30%;
 }
+#verkkolasku dd,
 #billing-address dd,
 #shipping-address dd {
   font-weight: normal;
@@ -397,6 +400,7 @@ dl.field span.required:after {
     color: #CA2464;
     content: "*";
 }
+#verkkolasku dd input,
 #billing-address dd input,
 #shipping-address dd input {
   height: 1.8em;
@@ -410,6 +414,10 @@ section#billing-address p#billing-and-shipping-same-or-different span {
 }
 section#billing-address p#billing-and-shipping-same-or-different select {
   font-size: 80%;
+}
+
+section#verkkolasku {
+  display: none;
 }
 
 /* order-confirmation */

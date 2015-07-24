@@ -1,0 +1,6 @@
+<section i18n:domain="slt.theme" id="verkkolasku" tal:condition="view/use_verkkolasku">
+  <span class="title" i18n:translate="">Verkkolasku operator</span>
+  <span class="verkkolasku-operator" tal:content="view/verkkolasku_operator" />
+  <span class="title" i18n:translate="">Account of intermediator</span>
+  <span class="verkkolasku-account" tal:content="view/verkkolasku_account" />
+</section>

@@ -100,6 +100,30 @@ Go add to cart and go to billing-and-shipping::
     True
     >>> 'value="REGNUMBER"' in browser.contents
     True
+    >>> print browser.bycss('#i_want_verkkolasku')
+    --- 1 ---
+    <section id="i_want_verkkolasku"><span>
+    I want verkkolasku
+    </span>
+    <input id="yes_i_want_verkkolasku" name="use_verkkolasku" type="radio" value="True"><span>Yes</span>
+    <input id="no_i_do_not_want_verkkolasku" name="use_verkkolasku" type="radio" value="False" checked><span>No</span>
+    </section>
+
+    >>> print browser.bycss('#verkkolasku')
+    --- 1 ---
+    <section id="verkkolasku"><dl class="field verkkolasku_operator"><dt>
+    Verkkolasku operator
+    <span class="required" title="title_required"> </span>
+    </dt>
+    <dd>
+    <input name="verkkolasku_operator" type="text" value=""></dd>
+    </dl><dl class="field verkkolasku_account"><dt>
+    Account of intermediator
+    <span class="required" title="title_required"> </span>
+    </dt>
+    <dd>
+    <input name="verkkolasku_account" type="text" value=""></dd>
+    </dl></section>
 
 Checkout::
 
@@ -294,3 +318,260 @@ Check the order::
     <section id="birth-date"><span class="title">Birth Date</span>
     <span class="birth-date">...</span>
     </section>
+    >>> print browser.bycss('#registration-number')
+    --- 1 ---
+    <section id="registration-number"><span class="title">Registration Number</span>
+    <span class="registration-number">REGNUMBER</span>
+    </section>
+    >>> print browser.bycss('#verkkolasku')
+
+Check verkkolasku related field::
+
+    >>> browser.login('member1', 'member1')
+
+Go to article and add to cart::
+
+    >>> browser.open('/article1')
+    >>> browser.getControl(name="form.buttons.AddToCart").click()
+    >>> browser.open('/@@cart')
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.getControl(name="birth_date").value = '31.01.2000'
+    >>> browser.getControl(name="billing_street").value = 'STREET'
+    >>> browser.getControl(name="billing_post").value = 'POST'
+    >>> browser.getControl(name="billing_city").value = 'CITY'
+    >>> browser.getControl(name="billing_phone").value = 'PHONE'
+    >>> browser.getControl(name="use_verkkolasku").value = ['True']
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> print browser.bycss('.info')
+    --- 1 ---
+    ...
+    --- 2 ---
+    <dl class="portalMessage info"><dt>Info</dt>
+    <dd>Input verkkolasku operator or remove check from "I want verkkolasku".</dd>
+    </dl>
+
+    >>> print browser.bycss('#i_want_verkkolasku')
+    --- 1 ---
+    <section id="i_want_verkkolasku"><span>
+    I want verkkolasku
+    </span>
+    <input id="yes_i_want_verkkolasku" name="use_verkkolasku" type="radio" value="True" checked><span>Yes</span>
+    <input id="no_i_do_not_want_verkkolasku" name="use_verkkolasku" type="radio" value="False"><span>No</span>
+    </section>
+
+    >>> browser.getControl(name="birth_date").value = '31.01.2000'
+    >>> browser.getControl(name="billing_street").value = 'STREET'
+    >>> browser.getControl(name="billing_post").value = 'POST'
+    >>> browser.getControl(name="billing_city").value = 'CITY'
+    >>> browser.getControl(name="billing_phone").value = 'PHONE'
+    >>> browser.getControl(name="verkkolasku_operator").value = 'VERKKOÖPE'
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> print browser.bycss('.info')
+    --- 1 ---
+    ...
+    --- 2 ---
+    <dl class="portalMessage info"><dt>Info</dt>
+    <dd>Input verkkolasku intermediator account.</dd>
+    </dl>
+
+    >>> browser.getControl(name="birth_date").value = '31.01.2000'
+    >>> browser.getControl(name="billing_street").value = 'STREET'
+    >>> browser.getControl(name="billing_post").value = 'POST'
+    >>> browser.getControl(name="billing_city").value = 'CITY'
+    >>> browser.getControl(name="billing_phone").value = 'PHONE'
+    >>> browser.getControl(name="verkkolasku_account").value = 'VERKKOÄCC'
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@order-confirmation'
+
+Back to billing-and-shipping::
+
+    >>> browser.getControl(name="form.buttons.Back").click()
+    >>> browser.url
+    'http://nohost/plone/@@billing-and-shipping'
+
+    >>> print browser.bycss('#i_want_verkkolasku')
+    --- 1 ---
+    <section id="i_want_verkkolasku"><span>
+    I want verkkolasku
+    </span>
+    <input id="yes_i_want_verkkolasku" name="use_verkkolasku" type="radio" value="True" checked><span>Yes</span>
+    <input id="no_i_do_not_want_verkkolasku" name="use_verkkolasku" type="radio" value="False"><span>No</span>
+    </section>
+
+    >>> print browser.bycss('#verkkolasku')
+    --- 1 ---
+    <section id="verkkolasku"><dl class="field verkkolasku_operator"><dt>
+    Verkkolasku operator
+    <span class="required" title="title_required"> </span>
+    </dt>
+    <dd>
+    <input name="verkkolasku_operator" type="text" value="VERKKO&#214;PE"></dd>
+    </dl><dl class="field verkkolasku_account"><dt>
+    Account of intermediator
+    <span class="required" title="title_required"> </span>
+    </dt>
+    <dd>
+    <input name="verkkolasku_account" type="text" value="VERKKO&#196;CC"></dd>
+    </dl></section>
+
+Check out and confirm the order::
+
+    >>> browser.getControl(name="birth_date").value = '31.01.2000'
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@order-confirmation'
+
+    >>> len(mailhost.messages)
+    2
+
+    >>> browser.getControl(name="accept-terms").value = True
+    >>> browser.getControl(name="form.buttons.CheckOut").click()
+    >>> browser.url
+    'http://nohost/plone/@@thanks'
+
+    >>> len(mailhost.messages)
+    4
+
+    >>> msg = mailhost.messages[-2]
+    >>> prink(msg)
+    MIME-Version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    Subject: =?utf-8?q?Order_Number=3A_2?=
+    To: Full Name <member1@email.com>
+    From: Site <info@shop.com>
+    Date: ...
+    <BLANKLINE>
+    Thank you for the order.
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Number: 2
+    <BLANKLINE>
+    <BLANKLINE>
+    Registration Number: REGNUMBER
+    <BLANKLINE>
+    Birth Date: Jan 31, 2000
+    <BLANKLINE>
+    <BLANKLINE>
+    Verkkolasku operator: VERKKO=C3=96PE
+    <BLANKLINE>
+    Account of intermediator: VERKKO=C3=84CC
+    <BLANKLINE>
+    <BLANKLINE>
+    Billing Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    Shipping Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Contents
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    <BLANKLINE>
+    SKU: SK=C3=961
+    =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d1
+    <BLANKLINE>
+    Total: 12.40 =E2=82=AC
+    <BLANKLINE>
+    Link to the order: None?order_number=3D2
+    <BLANKLINE>
+    <BLANKLINE>
+
+    >>> msg = mailhost.messages[-1]
+    >>> prink(msg)
+    MIME-Version: 1.0
+    Content-Type: text/plain; charset="utf-8"
+    Content-Transfer-Encoding: quoted-printable
+    Subject: =?utf-8?q?Order_Number=3A_2?=
+    To: Site <info@shop.com>
+    From: Site <info@shop.com>
+    Date: ...
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Number: 2
+    <BLANKLINE>
+    <BLANKLINE>
+    Registration Number: REGNUMBER
+    <BLANKLINE>
+    Birth Date: Jan 31, 2000
+    <BLANKLINE>
+    <BLANKLINE>
+    Verkkolasku operator: VERKKO=C3=96PE
+    <BLANKLINE>
+    Account of intermediator: VERKKO=C3=84CC
+    <BLANKLINE>
+    <BLANKLINE>
+    Billing Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    Shipping Address
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    Full Name    =
+    <BLANKLINE>
+    STREET
+    POST CITY
+    PHONE
+    member1@email.com
+    <BLANKLINE>
+    <BLANKLINE>
+    Order Contents
+    =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+    =3D=3D=3D
+    <BLANKLINE>
+    SKU: SK=C3=961
+    =C3=84rticle1 x 1 =3D 12.40 =E2=82=AC
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    Shipping Method: ShippingMeth=C3=B6d1
+    <BLANKLINE>
+    Total: 12.40 =E2=82=AC
+    <BLANKLINE>
+    Link to the order: http://nohost/plone/tilaukset/2
+    <BLANKLINE>
+    <BLANKLINE>
+
+Check the order::
+
+    >>> browser.getLink('Log out').click()
+    >>> browser.login(TEST_USER_NAME, TEST_USER_PASSWORD)
+    >>> browser.open('/tilaukset/2')
+    >>> print browser.bycss('#verkkolasku')
+    --- 1 ---
+    <section id="verkkolasku"><span class="title">Verkkolasku operator</span>
+    <span class="verkkolasku-operator">VERKKO&#214;PE</span>
+    <span class="title">Account of intermediator</span>
+    <span class="verkkolasku-account">VERKKO&#196;CC</span>
+    </section>
+
+    # >>> browser.openBrowser()

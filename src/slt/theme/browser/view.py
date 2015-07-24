@@ -8,6 +8,7 @@ from StringIO import StringIO
 from collective.base.view import BaseFormView
 from collective.cart.shopping.browser.view import ToCustomerOrderMailTemplateView as BaseToCustomerOrderMailTemplateView
 from collective.cart.shopping.browser.view import ToShopOrderMailTemplateView as BaseToShopOrderMailTemplateView
+from collective.cart.shopping.browser.view import BillingAndShippingView as BaseBillingAndShippingView
 from datetime import datetime
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
@@ -163,3 +164,37 @@ class ToCustomerOrderMailTemplateView(BaseToCustomerOrderMailTemplateView, BaseO
 class ToShopOrderMailTemplateView(BaseToShopOrderMailTemplateView, BaseOrderMailTemplateView):
     """Mail template used to send email to shop"""
     template = ViewPageTemplateFile('views/order-mail-template.pt')
+
+
+class BillingAndShippingView(BaseBillingAndShippingView):
+    """View for billing and shipping"""
+
+    def __call__(self):
+
+        form = self.request.form
+        if form.get('form.buttons.CheckOut') is not None:
+
+            use_verkkolasku = True if form.get('use_verkkolasku', False) == 'True' else False
+            shopping_site = self.shopping_site()
+            shopping_site.update_cart('use_verkkolasku', use_verkkolasku)
+
+            if use_verkkolasku:
+                verkkolasku_operator = form.get('verkkolasku_operator')
+                if not verkkolasku_operator:
+                    message = _(u'Input verkkolasku operator or remove check from "I want verkkolasku".')
+                    IStatusMessage(self.request).addStatusMessage(message, type='info')
+                    url = self.context.restrictedTraverse('@@plone_context_state').current_base_url()
+                    return self.request.response.redirect(url)
+                else:
+                    shopping_site.update_cart('verkkolasku_operator', verkkolasku_operator)
+
+                verkkolasku_account = form.get('verkkolasku_account')
+                if not verkkolasku_account:
+                    message = _(u'Input verkkolasku intermediator account.')
+                    IStatusMessage(self.request).addStatusMessage(message, type='info')
+                    url = self.context.restrictedTraverse('@@plone_context_state').current_base_url()
+                    return self.request.response.redirect(url)
+                else:
+                    shopping_site.update_cart('verkkolasku_account', verkkolasku_account)
+
+        return super(BillingAndShippingView, self).__call__()

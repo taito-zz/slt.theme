@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-01-06 03:01+0000\n"
+"POT-Creation-Date: 2015-07-24 12:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,26 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: slt.theme\n"
 
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:131
+#: ./browser/viewlets/order-listing-verkkolasku.pt:4
+msgid "Account of intermediator"
+msgstr ""
+
 #: ./browser/viewlets/add-address.pt:4
 msgid "Add New Address"
 msgstr ""
 
-#: ./browser/view.py:138
+#: ./browser/view.py:140
 msgid "Add commonly used addresses to make your order easier."
 msgstr ""
 
-#: ./browser/view.py:137
+#: ./browser/view.py:139
 msgid "Address Linsting"
 msgstr ""
 
 #: ./browser/viewlets/billing-and-shipping-billing-address.pt:84
 #: ./browser/viewlets/order-listing-birth-date.pt:2
-#: ./userdataschema.py:38
+#: ./userdataschema.py:39
 msgid "Birth Date"
 msgstr ""
 
@@ -43,30 +48,42 @@ msgstr ""
 msgid "Feed to Shop Top"
 msgstr ""
 
-#: ./browser/view.py:108
+#: ./browser/view.py:110
 msgid "ID (e-mail)"
+msgstr ""
+
+#: ./browser/view.py:193
+msgid "Input verkkolasku intermediator account."
+msgstr ""
+
+#: ./browser/view.py:184
+msgid "Input verkkolasku operator or remove check from \"I want verkkolasku\"."
 msgstr ""
 
 #: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:20
 msgid "Login failed"
 msgstr ""
 
-#: ./browser/view.py:81
+#: ./browser/view.py:83
 #: ./profiles/default/actions.xml
 msgid "Members"
 msgstr ""
 
-#: ./browser/view.py:109
+#: ./browser/view.py:111
 msgid "Name"
 msgstr ""
 
-#: ./browser/view.py:145
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:118
+msgid "No"
+msgstr ""
+
+#: ./browser/view.py:147
 msgid "Order Linsting"
 msgstr ""
 
 #: ./browser/viewlets/billing-and-shipping-billing-address.pt:96
-#: ./browser/viewlets/billing-and-shipping-registration-number.pt:6
 #: ./browser/viewlets/order-listing-registration-number.pt:2
+#: ./userdataschema.py:45
 msgid "Registration Number"
 msgstr ""
 
@@ -74,17 +91,31 @@ msgstr ""
 msgid "Unfeed from Shop Top"
 msgstr ""
 
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:123
+#: ./browser/viewlets/order-listing-verkkolasku.pt:2
+msgid "Verkkolasku operator"
+msgstr ""
+
 #: ./browser/overrides/Products.CMFPlone.skins.plone_login.login_next.cpy:60
 msgid "Welcome! You are now logged in."
 msgstr ""
 
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:112
+msgid "Yes"
+msgstr ""
+
+#. Default: "Account of intermediator: ${account}"
+#: ./browser/views/order-mail-template.pt:28
+msgid "account-of-intermediator"
+msgstr ""
+
 #. Default: "Check this box to allow direct marketing from this site."
-#: ./userdataschema.py:49
+#: ./userdataschema.py:50
 msgid "allow_direct_marketing_description"
 msgstr ""
 
 #. Default: "Allow Direct Marketing"
-#: ./userdataschema.py:48
+#: ./userdataschema.py:49
 msgid "allow_direct_marketing_title"
 msgstr ""
 
@@ -104,7 +135,7 @@ msgid "export-direct-marketing-allowers"
 msgstr ""
 
 #. Default: "Please fill your personal information."
-#: ./browser/view.py:46
+#: ./browser/view.py:48
 msgid "first-time-login"
 msgstr ""
 
@@ -113,13 +144,23 @@ msgstr ""
 msgid "help_registration_form"
 msgstr ""
 
+#. Default: "I want verkkolasku"
+#: ./browser/viewlets/billing-and-shipping-billing-address.pt:104
+msgid "i_want_verkkolasku"
+msgstr ""
+
 #. Default: "There are ${direct_marketing_allowers} members out of ${all_members} who allows direct marketing."
-#: ./browser/view.py:84
+#: ./browser/view.py:86
 msgid "members-description"
 msgstr ""
 
 #. Default: "Registration Number: ${number}"
 #: ./browser/views/order-mail-template.pt:21
 msgid "registration-number"
+msgstr ""
+
+#. Default: "Verkkolasku operator: ${operator}"
+#: ./browser/views/order-mail-template.pt:26
+msgid "verkkolasku-operator"
 msgstr ""
 

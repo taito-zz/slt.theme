@@ -169,6 +169,14 @@
     permission="zope2.View"
     />
 
+  <browser:page
+    class=".view.BillingAndShippingView"
+    for="collective.cart.shopping.interfaces.IShoppingSiteRoot"
+    layer=".interfaces.ISltThemeLayer"
+    name="billing-and-shipping"
+    permission="zope2.View"
+    />
+
   <!-- Miscellaneous -->
   <!-- <browser:page
     attribute="birth_date_enabled"
@@ -267,7 +275,7 @@
     for="*"
     layer=".interfaces.ISltThemeLayer"
     manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
-    name="collective.cart.shopping.viewlet.order-listing-registration-number"
+    name="slt.theme.viewlet.order-listing-registration-number"
     permission="collective.cart.core.ViewOrderContent"
     />
 
@@ -276,7 +284,16 @@
     for="*"
     layer=".interfaces.ISltThemeLayer"
     manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
-    name="collective.cart.shopping.viewlet.order-listing-birth-date"
+    name="slt.theme.viewlet.order-listing-birth-date"
+    permission="collective.cart.core.ViewOrderContent"
+    />
+
+  <browser:viewlet
+    class=".viewlet.OrderListingVerkkolaskuViewlet"
+    for="*"
+    layer=".interfaces.ISltThemeLayer"
+    manager="collective.cart.shopping.browser.interfaces.IOrderListingViewletManager"
+    name="slt.theme.viewlet.order-listing-verkkolasku"
     permission="collective.cart.core.ViewOrderContent"
     />
 

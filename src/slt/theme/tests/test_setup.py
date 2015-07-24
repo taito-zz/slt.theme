@@ -159,7 +159,7 @@ class TestCase(IntegrationTestCase):
     def test_metadata__version(self):
         setup = getToolByName(self.portal, 'portal_setup')
         self.assertEqual(
-            setup.getVersionForProfile('profile-slt.theme:default'), u'15')
+            setup.getVersionForProfile('profile-slt.theme:default'), u'16')
 
     def test_metadata__installed__sll_basetheme(self):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
@@ -213,6 +213,10 @@ class TestCase(IntegrationTestCase):
             'Manager',
             'Site Administrator'])
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
+
+    def test_theme_skins(self):
+        skins = getToolByName(self.portal, 'portal_skins')
+        self.assertEqual(skins.getSkinPaths()[1][0], 'Sunburst Theme')
 
     def get_ctype(self, name):
         """Returns content type info.
@@ -278,6 +282,7 @@ class TestCase(IntegrationTestCase):
             u'collective.cart.shopping.viewlet.order-listing-total',
             u'slt.theme.viewlet.order-listing-registration-number',
             u'slt.theme.viewlet.order-listing-birth-date',
+            u'slt.theme.viewlet.order-listing-verkkolasku',
             u'collective.cart.shopping.viewlet.order-listing-addresses'))
 
     def test_viewlets__hidden__plone_portalfooter(self):

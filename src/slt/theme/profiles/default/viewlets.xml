@@ -16,6 +16,9 @@
     <viewlet
       insert-after="slt.theme.viewlet.order-listing-registration-number"
       name="slt.theme.viewlet.order-listing-birth-date" />
+    <viewlet
+      insert-after="slt.theme.viewlet.order-listing-birth-date"
+      name="slt.theme.viewlet.order-listing-verkkolasku" />
   </order>
 
   <order manager="plone.portalfooter" skinname="*">

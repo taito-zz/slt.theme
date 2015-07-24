@@ -22,7 +22,12 @@
 </span>
 <span i18n:domain="slt.theme" tal:condition="view/localized_birth_date" tal:omit-tag="" i18n:translate="birth-date">Birth Date: <span i18n:name="date" tal:replace="view/localized_birth_date" />
 </span>
-
+<span tal:condition="python:item.get('use_verkkolasku')" tal:omit-tag="">
+<span i18n:domain="slt.theme" tal:omit-tag="" i18n:translate="verkkolasku-operator">Verkkolasku operator: <span i18n:name="operator" tal:replace="item/verkkolasku_operator" />
+</span>
+<span i18n:domain="slt.theme" tal:omit-tag="" i18n:translate="account-of-intermediator">Account of intermediator: <span i18n:name="account" tal:replace="item/verkkolasku_account" />
+</span>
+</span>
 <span tal:omit-tag="" i18n:translate="">Billing Address</span>
 <span tal:replace="item/underline" />
 <span tal:replace="item/billing_address" />

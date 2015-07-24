@@ -1,4 +1,5 @@
 from collective.cart.shopping.tests.base import IntegrationTestCase as BaseIntegrationTestCase
+from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PLONE_FIXTURE
@@ -41,6 +42,7 @@ class SltThemeLayer(PloneSandboxLayer):
 
         # Install portal content. Including the Members folder! to setup defaul plone site.
         self.applyProfile(portal, 'Products.CMFPlone:plone-content')
+        self.applyProfile(portal, 'plonetheme.sunburst:default')
 
         self.applyProfile(portal, 'slt.theme:default')
 
@@ -57,6 +59,9 @@ INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,), name="SltThemeLayer:Integration")
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,), name="SltThemeLayer:Functional")
+ROBOT_TESTING = FunctionalTesting(
+   bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE,
+          z2.ZSERVER_FIXTURE), name="SltThemeLayer:Robot")
 
 
 class IntegrationTestCase(BaseIntegrationTestCase):

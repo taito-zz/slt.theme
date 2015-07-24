@@ -2,6 +2,7 @@ from DateTime import DateTime
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from Products.statusmessages.interfaces import IStatusMessage
 from collective.base.viewlet import Viewlet
 from collective.cart.shopping.browser.viewlet import BillingAndShippingBillingAddressViewlet as BaseBillingAndShippingBillingAddressViewlet
 from collective.cart.shopping.interfaces import IShoppingSite
@@ -12,6 +13,7 @@ from plone.memoize import ram
 from plone.memoize import view
 from plone.registry.interfaces import IRegistry
 from slt.content.interfaces import IMember
+from slt.theme import _
 from slt.theme.browser.interfaces import IAddAddressViewlet
 from slt.theme.browser.interfaces import IAddressListingViewlet
 from slt.theme.browser.interfaces import IBillingAndShippingBillingAddressViewlet
@@ -19,6 +21,7 @@ from slt.theme.browser.interfaces import ILinkToOrderViewlet
 from slt.theme.browser.interfaces import IMembersExportViewlet
 from slt.theme.browser.interfaces import IOrderListingBirthDateViewlet
 from slt.theme.browser.interfaces import IOrderListingRegistrationNumberViewlet
+from slt.theme.browser.interfaces import IOrderListingVerkkolaskuViewlet
 from slt.theme.browser.interfaces import IShopArticleListingViewlet
 from slt.theme.interfaces import ICollapsedOnLoad
 from slt.theme.interfaces import IFeedToShopTop
@@ -197,6 +200,37 @@ class BillingAndShippingBillingAddressViewlet(BaseBillingAndShippingBillingAddre
         return self.view.shopping_site().cart().get('registration_number') or self.context.restrictedTraverse(
             '@@plone_portal_state').member().getProperty('registration_number')
 
+    def use_verkkolasku(self):
+        """Return True if use verkkolasku otherwise False
+
+        :rtype: boolean
+        """
+        return self.view.shopping_site().cart().get('use_verkkolasku', False)
+
+    def use_verkkolasku_checked(self):
+        """Return checked if use verkkolasku otherwise empty string
+
+        :rtype: str
+        """
+        if self.use_verkkolasku():
+            return 'checked'
+        else:
+            return ''
+
+    def verkkolasku_operator(self):
+        """Return verkkolasku operator
+
+        :rtype: str
+        """
+        return self.view.shopping_site().cart().get('verkkolasku_operator', '')
+
+    def verkkolasku_account(self):
+        """Return verkkolasku intermediator account
+
+        :rtype: int
+        """
+        return self.view.shopping_site().cart().get('verkkolasku_account', '')
+
     def update(self):
         form = self.request.form
         registration_number = form.get('registration_number')
@@ -225,3 +259,14 @@ class OrderListingBirthDateViewlet(Viewlet):
             toLocalizedTime = self.context.restrictedTraverse('@@plone').toLocalizedTime
             birth_date = toLocalizedTime(DateTime(birth_date))
         self.birth_date = birth_date
+
+
+class OrderListingVerkkolaskuViewlet(Viewlet):
+    """Viewlet for order listing to show verkkolasku"""
+    implements(IOrderListingVerkkolaskuViewlet)
+    index = ViewPageTemplateFile('viewlets/order-listing-verkkolasku.pt')
+
+    def _handle_repeated(self, item):
+        self.use_verkkolasku = getattr(item['obj'], 'use_verkkolasku', False)
+        self.verkkolasku_operator = getattr(item['obj'], 'verkkolasku_operator', None)
+        self.verkkolasku_account = getattr(item['obj'], 'verkkolasku_account', None)

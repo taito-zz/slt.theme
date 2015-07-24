@@ -1,3 +1,22 @@
+<script type="text/javascript">
+  (function($) {
+    $(document).ready(function() {
+      $('#yes_i_want_verkkolasku').click(function() {
+        $('#verkkolasku').css('display', 'block');
+        $('#verkkolasku span').css('display', 'inline');
+        $('#verkkolasku input.required').attr('required', 'required');
+      });
+      $('#no_i_do_not_want_verkkolasku').click(function() {
+        $('#verkkolasku').css('display', 'none');
+        $('#verkkolasku span').css('display', 'none');
+        $('#verkkolasku input.required').removeAttr('required');
+      });
+      if($('#yes_i_want_verkkolasku').attr('checked')) {
+        $('#verkkolasku').css('display', 'block');
+      };
+    });
+  })(jQuery);
+</script>
 <section i18n:domain="collective.cart.shopping" id="billing-address" tal:define="info view/billing_info">
   <h1 i18n:translate="">Billing Address</h1>
   <dl class="field">
@@ -97,6 +116,43 @@
     </dt>
     <dd>
       <input name="registration_number" type="text" tal:attributes="value view/registration_number" />
+    </dd>
+  </dl>
+</section>
+<section i18n:domain="slt.theme" id="i_want_verkkolasku">
+  <span i18n:translate="i_want_verkkolasku">
+    I want verkkolasku
+  </span>
+  <input
+    id="yes_i_want_verkkolasku"
+    name="use_verkkolasku"
+    tal:attributes="checked view/use_verkkolasku_checked"
+    type="radio"
+    value="True" /><span i18n:translate="">Yes</span>
+  <input
+    id="no_i_do_not_want_verkkolasku"
+    name="use_verkkolasku"
+    tal:attributes="checked not:view/use_verkkolasku_checked"
+    type="radio"
+    value="False" /><span i18n:translate="">No</span>
+</section>
+<section i18n:domain="slt.theme" id="verkkolasku">
+  <dl class="field verkkolasku_operator">
+    <dt>
+      <tal:label i18n:translate="">Verkkolasku operator</tal:label>
+      <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
+    </dt>
+    <dd>
+      <input name="verkkolasku_operator" type="text" tal:attributes="value view/verkkolasku_operator" />
+    </dd>
+  </dl>
+  <dl class="field verkkolasku_account">
+    <dt>
+      <tal:label i18n:translate="">Account of intermediator</tal:label>
+      <span class="required" i18n:domain="plone" i18n:attributes="title" title="title_required"> </span>
+    </dt>
+    <dd>
+      <input name="verkkolasku_account" type="text" tal:attributes="value view/verkkolasku_account" />
     </dd>
   </dl>
 </section>
