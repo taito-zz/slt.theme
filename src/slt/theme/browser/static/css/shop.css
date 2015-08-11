@@ -420,6 +420,10 @@ section#verkkolasku {
   display: none;
 }
 
+.template-billing-and-shipping input[type="radio"] {
+ margin: 0 0.5em;
+}
+
 /* order-confirmation */
 .template-order-confirmation #content-core section#article-listing .title-and-description {
   padding: 1em 0.7em;

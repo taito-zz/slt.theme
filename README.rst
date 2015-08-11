@@ -10,6 +10,11 @@ This package contains theme related files for SLT shopping site.
 Changelog
 ---------
 
+0.28 (2015-08-11)
+=================
+
+- Style radio button on billing-and-shipping page. [taito]
+
 0.27 (2015-07-24)
 =================
 
