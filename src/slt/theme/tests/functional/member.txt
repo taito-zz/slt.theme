@@ -14,14 +14,17 @@ Log out::
     >>> browser.open('/')
     >>> print browser.bycss('.portletMember')
     --- 1 ---
-    <dl class="portlet portletMember"><dd class="portletItem">
-    <ul><li>
+    <dl class="portlet portletMember">
+    <dd class="portletItem">
+    <ul>
+    <li>
     <a href="http://www.sll.fi/" title="The Finnish Association for Nature Conservation">The Finnish Association for Nature Conservation</a>
     </li>
     <li>
     <a href="http://nohost/plone/login" title="Log in">Log in</a>
     </li>
-    </ul></dd>
+    </ul>
+    </dd>
     </dl>
 
 Log in as member1::
@@ -34,7 +37,8 @@ Log in as member1::
     --- 1 ---
     ...
     --- 2 ---
-    <dl class="portalMessage info"><dt>Info</dt>
+    <dl class="portalMessage info">
+    <dt>Info</dt>
     <dd>Please fill your personal information.</dd>
     </dl>
 
@@ -81,7 +85,8 @@ Log out and log in again should not redirect to @@personal-information::
     --- 1 ---
     ...
     --- 2 ---
-    <dl class="portalMessage info"><dt>Info</dt>
+    <dl class="portalMessage info">
+    <dt>Info</dt>
     <dd>Welcome! You are now logged in.</dd>
     </dl>
 
@@ -102,7 +107,8 @@ Go add to cart and go to billing-and-shipping::
     True
     >>> print browser.bycss('#i_want_verkkolasku')
     --- 1 ---
-    <section id="i_want_verkkolasku"><span>
+    <section id="i_want_verkkolasku">
+    <span>
     I want verkkolasku
     </span>
     <input id="yes_i_want_verkkolasku" name="use_verkkolasku" type="radio" value="True"><span>Yes</span>
@@ -111,19 +117,26 @@ Go add to cart and go to billing-and-shipping::
 
     >>> print browser.bycss('#verkkolasku')
     --- 1 ---
-    <section id="verkkolasku"><dl class="field verkkolasku_operator"><dt>
+    <section id="verkkolasku">
+    <dl class="field verkkolasku_operator">
+    <dt>
     Verkkolasku operator
     <span class="required" title="title_required"> </span>
     </dt>
     <dd>
-    <input name="verkkolasku_operator" type="text" value=""></dd>
-    </dl><dl class="field verkkolasku_account"><dt>
+    <input name="verkkolasku_operator" type="text" value="">
+    </dd>
+    </dl>
+    <dl class="field verkkolasku_account">
+    <dt>
     Account of intermediator
     <span class="required" title="title_required"> </span>
     </dt>
     <dd>
-    <input name="verkkolasku_account" type="text" value=""></dd>
-    </dl></section>
+    <input name="verkkolasku_account" type="text" value="">
+    </dd>
+    </dl>
+    </section>
 
 Checkout::
 
@@ -166,7 +179,8 @@ Input non date value to birth date::
 
     >>> print browser.bycss('.warn')
     --- 1 ---
-    <dl class="portalMessage warn"><dt>Warn</dt>
+    <dl class="portalMessage warn">
+    <dt>Warn</dt>
     <dd>Input birth date with format: YYYY-MM-DD like 1990-01-31</dd>
     </dl>
 
@@ -315,12 +329,14 @@ Check the order::
     >>> browser.open('/tilaukset/1')
     >>> print browser.bycss('#birth-date')
     --- 1 ---
-    <section id="birth-date"><span class="title">Birth Date</span>
+    <section id="birth-date">
+    <span class="title">Birth Date</span>
     <span class="birth-date">...</span>
     </section>
     >>> print browser.bycss('#registration-number')
     --- 1 ---
-    <section id="registration-number"><span class="title">Registration Number</span>
+    <section id="registration-number">
+    <span class="title">Registration Number</span>
     <span class="registration-number">REGNUMBER</span>
     </section>
     >>> print browser.bycss('#verkkolasku')
@@ -346,13 +362,15 @@ Go to article and add to cart::
     --- 1 ---
     ...
     --- 2 ---
-    <dl class="portalMessage info"><dt>Info</dt>
+    <dl class="portalMessage info">
+    <dt>Info</dt>
     <dd>Input verkkolasku operator or remove check from "I want verkkolasku".</dd>
     </dl>
 
     >>> print browser.bycss('#i_want_verkkolasku')
     --- 1 ---
-    <section id="i_want_verkkolasku"><span>
+    <section id="i_want_verkkolasku">
+    <span>
     I want verkkolasku
     </span>
     <input id="yes_i_want_verkkolasku" name="use_verkkolasku" type="radio" value="True" checked><span>Yes</span>
@@ -370,7 +388,8 @@ Go to article and add to cart::
     --- 1 ---
     ...
     --- 2 ---
-    <dl class="portalMessage info"><dt>Info</dt>
+    <dl class="portalMessage info">
+    <dt>Info</dt>
     <dd>Input verkkolasku intermediator account.</dd>
     </dl>
 
@@ -392,7 +411,8 @@ Back to billing-and-shipping::
 
     >>> print browser.bycss('#i_want_verkkolasku')
     --- 1 ---
-    <section id="i_want_verkkolasku"><span>
+    <section id="i_want_verkkolasku">
+    <span>
     I want verkkolasku
     </span>
     <input id="yes_i_want_verkkolasku" name="use_verkkolasku" type="radio" value="True" checked><span>Yes</span>
@@ -401,19 +421,26 @@ Back to billing-and-shipping::
 
     >>> print browser.bycss('#verkkolasku')
     --- 1 ---
-    <section id="verkkolasku"><dl class="field verkkolasku_operator"><dt>
+    <section id="verkkolasku">
+    <dl class="field verkkolasku_operator">
+    <dt>
     Verkkolasku operator
     <span class="required" title="title_required"> </span>
     </dt>
     <dd>
-    <input name="verkkolasku_operator" type="text" value="VERKKO&#214;PE"></dd>
-    </dl><dl class="field verkkolasku_account"><dt>
+    <input name="verkkolasku_operator" type="text" value="VERKKO&#214;PE">
+    </dd>
+    </dl>
+    <dl class="field verkkolasku_account">
+    <dt>
     Account of intermediator
     <span class="required" title="title_required"> </span>
     </dt>
     <dd>
-    <input name="verkkolasku_account" type="text" value="VERKKO&#196;CC"></dd>
-    </dl></section>
+    <input name="verkkolasku_account" type="text" value="VERKKO&#196;CC">
+    </dd>
+    </dl>
+    </section>
 
 Check out and confirm the order::
 
@@ -568,7 +595,8 @@ Check the order::
     >>> browser.open('/tilaukset/2')
     >>> print browser.bycss('#verkkolasku')
     --- 1 ---
-    <section id="verkkolasku"><span class="title">Verkkolasku operator</span>
+    <section id="verkkolasku">
+    <span class="title">Verkkolasku operator</span>
     <span class="verkkolasku-operator">VERKKO&#214;PE</span>
     <span class="title">Account of intermediator</span>
     <span class="verkkolasku-account">VERKKO&#196;CC</span>

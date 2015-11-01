@@ -1,5 +1,4 @@
 from Products.CMFCore.utils import getToolByName
-from abita.utils.utils import get_roles
 from slt.theme.tests.base import IntegrationTestCase
 
 
@@ -202,14 +201,14 @@ class TestCase(IntegrationTestCase):
 
     def test_rolemap__collective_cart_shopping_View_Stock_On_Add_To_Cart(self):
         permission = "collective.cart.shopping: View Stock On Add To Cart"
-        self.assertEqual(get_roles(self.portal, permission), [
+        self.assertEqual(self.get_roles(self.portal, permission), [
             'Manager',
             'Site Administrator'])
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
 
     def test_rolemap__slt_theme_Show_byline(self):
         permission = "slt.theme: Show byline"
-        self.assertEqual(get_roles(self.portal, permission), [
+        self.assertEqual(self.get_roles(self.portal, permission), [
             'Manager',
             'Site Administrator'])
         self.assertEqual(self.portal.acquiredRolesAreUsedBy(permission), '')
@@ -291,11 +290,12 @@ class TestCase(IntegrationTestCase):
         storage = getUtility(IViewletSettingsStorage)
         manager = "plone.portalfooter"
         skinname = "*"
-        for viewlet in (u'plone.colophon',
-        u'plone.footer',
-        u'plone.site_actions',
-        u'sll.basetheme.footer.message',
-        u'sll.basetheme.footer.subfolders'):
+        for viewlet in (
+            u'plone.colophon',
+            u'plone.footer',
+            u'plone.site_actions',
+            u'sll.basetheme.footer.message',
+            u'sll.basetheme.footer.subfolders'):
             self.assertIn(viewlet, storage.getHidden(manager, skinname))
 
     def test_viewlets__order__plone_portalfooter(self):

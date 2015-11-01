@@ -83,9 +83,11 @@ class MembersView(BaseView):
     title = _(u'Members')
 
     def description(self):
-        return _(u'members-description',
+        return _(
+            u'members-description',
             default=u'There are ${direct_marketing_allowers} members out of ${all_members} who allows direct marketing.',
-            mapping={'direct_marketing_allowers': len(self.direct_marketing_allowers()), 'all_members': len(self.all_members())})
+            mapping= 'direct_marketing_allowers': len(self.direct_marketing_allowers()),
+            'all_members': len(self.all_members())})
 
     @memoize
     def all_members(self):

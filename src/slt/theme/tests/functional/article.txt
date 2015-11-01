@@ -49,9 +49,12 @@ Go to Ärticle1::
 
     >>> print browser.bycss('#money')
     --- 1 ---
-    <section id="money"><section id="price" class="gross">12.40 &#8364;</section><section id="vat-rate">
+    <section id="money">
+    <section id="price" class="gross">12.40 &#8364;</section>
+    <section id="vat-rate">
     Including VAT: 24%
-    </section></section>
+    </section>
+    </section>
 
     >>> print browser.bycss('#discount')
 
@@ -70,9 +73,12 @@ Log out and go to Ärticle1::
 
     >>> print browser.bycss('#money')
     --- 1 ---
-    <section id="money"><section id="price" class="gross">12.40 &#8364;</section><section id="vat-rate">
+    <section id="money">
+    <section id="price" class="gross">12.40 &#8364;</section>
+    <section id="vat-rate">
     Including VAT: 24%
-    </section></section>
+    </section>
+    </section>
 
     >>> print browser.bycss('#discount')
 
