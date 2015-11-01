@@ -86,7 +86,7 @@ class MembersView(BaseView):
         return _(
             u'members-description',
             default=u'There are ${direct_marketing_allowers} members out of ${all_members} who allows direct marketing.',
-            mapping= 'direct_marketing_allowers': len(self.direct_marketing_allowers()),
+            mapping={'direct_marketing_allowers': len(self.direct_marketing_allowers()),
             'all_members': len(self.all_members())})
 
     @memoize
